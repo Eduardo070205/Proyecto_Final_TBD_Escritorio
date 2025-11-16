@@ -4,6 +4,7 @@
  */
 package Ventanas;
 
+import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 /**
@@ -221,6 +222,17 @@ public class VentanaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cambiarColorBoton(JButton... btnMenu){
+        
+        for(JButton i : btnMenu){
+            
+            i.setBackground(new java.awt.Color(227,211,163));
+            
+        }
+        
+    }
+    
+    
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         
         SwingUtilities.invokeLater(new Runnable() {
@@ -238,31 +250,59 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
+        
+        cambiarColorBoton(btnCerrarSesion, btnVehiculos, btnModelos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
+        
+        btnHome.setBackground(new java.awt.Color(214,198,152));
+       
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosActionPerformed
-        // TODO add your handling code here:
+        
+        cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
+        
+        btnVehiculos.setBackground(new java.awt.Color(214,198,152));
+        
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosActionPerformed
-        // TODO add your handling code here:
+        
+        cambiarColorBoton(btnCerrarSesion, btnHome, btnVehiculos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
+        
+        btnModelos.setBackground(new java.awt.Color(214,198,152));
+        
     }//GEN-LAST:event_btnModelosActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
+        
+        cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVehiculos, btnEmpleados, btnClientes, btnDocumentacion);
+        
+        btnVentas.setBackground(new java.awt.Color(214,198,152));
+        
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-        // TODO add your handling code here:
+        
+        cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnVehiculos, btnClientes, btnDocumentacion);
+        
+        btnEmpleados.setBackground(new java.awt.Color(214,198,152));
+        
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
+        
+        cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnEmpleados, btnVehiculos, btnDocumentacion);
+        
+        btnClientes.setBackground(new java.awt.Color(214,198,152));
+        
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnDocumentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocumentacionActionPerformed
-        // TODO add your handling code here:
+        
+        cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnEmpleados, btnClientes, btnVehiculos);
+        
+        btnDocumentacion.setBackground(new java.awt.Color(214,198,152));
+        
     }//GEN-LAST:event_btnDocumentacionActionPerformed
 
     /**
