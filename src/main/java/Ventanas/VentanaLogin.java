@@ -4,11 +4,17 @@
  */
 package Ventanas;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Eduardo
  */
 public class VentanaLogin extends javax.swing.JFrame {
+    
+
+        
+        
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaLogin.class.getName());
 
@@ -17,6 +23,9 @@ public class VentanaLogin extends javax.swing.JFrame {
      */
     public VentanaLogin() {
         initComponents();
+        setVisible(true);
+        pack();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -114,6 +123,11 @@ public class VentanaLogin extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Iniciar Sesión");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnRestablecerLogin.setBackground(new java.awt.Color(122, 122, 63));
         btnRestablecerLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -176,7 +190,7 @@ public class VentanaLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(login_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 162, Short.MAX_VALUE))
+                .addGap(0, 117, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,6 +203,22 @@ public class VentanaLogin extends javax.swing.JFrame {
     private void cajaContrasenaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaContrasenaLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaContrasenaLoginActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        
+       SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+
+                new VentanaInicio();
+
+            }
+        });
+       
+        setVisible(false);
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
