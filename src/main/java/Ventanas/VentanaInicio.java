@@ -40,6 +40,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupBusqueda = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
         sidePane = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -57,7 +58,21 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         internalVehiculos = new javax.swing.JInternalFrame();
         jPanel2 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cajaNumVehiculoBuscar = new javax.swing.JTextField();
+        radioTipoBusqueda = new javax.swing.JRadioButton();
+        radioModeloBusqueda = new javax.swing.JRadioButton();
+        cajaNumSerieBuscar = new javax.swing.JTextField();
+        comboModeloBusqueda = new javax.swing.JComboBox<>();
+        radioNumSerieBusqueda = new javax.swing.JRadioButton();
+        comboAnioBusqueda = new javax.swing.JComboBox<>();
+        radioNumVehiculoBusqueda = new javax.swing.JRadioButton();
+        comboTipoBusqueda = new javax.swing.JComboBox<>();
+        radioAnioBusqueda = new javax.swing.JRadioButton();
+        radioPrecioBusqueda1 = new javax.swing.JRadioButton();
+        comboPrecioBusqueda1 = new javax.swing.JComboBox<>();
         internalModelos = new javax.swing.JInternalFrame();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -207,7 +222,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalHome.setBackground(new java.awt.Color(255, 255, 255));
         internalHome.setTitle("Home");
         internalHome.setToolTipText("");
-        internalHome.setVisible(true);
+        internalHome.setVisible(false);
         internalHome.getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -226,17 +241,141 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalHome.setBounds(0, 0, 770, 610);
 
         internalVehiculos.setTitle("Vehiculos");
-        internalVehiculos.setVisible(false);
+        internalVehiculos.setVisible(true);
         internalVehiculos.getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
 
+        jPanel6.setBackground(new java.awt.Color(214, 198, 152));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Vehículos");
-        jPanel2.add(jLabel2);
-        jLabel2.setBounds(94, 74, 510, 70);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel6);
+        jPanel6.setBounds(0, 0, 760, 60);
+
+        cajaNumVehiculoBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaNumVehiculoBuscar.setText("Buscar");
+        cajaNumVehiculoBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaNumVehiculoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaNumVehiculoBuscarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cajaNumVehiculoBuscar);
+        cajaNumVehiculoBuscar.setBounds(30, 100, 210, 30);
+
+        groupBusqueda.add(radioTipoBusqueda);
+        radioTipoBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioTipoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        radioTipoBusqueda.setText("Tipo");
+        jPanel2.add(radioTipoBusqueda);
+        radioTipoBusqueda.setBounds(510, 150, 200, 25);
+
+        groupBusqueda.add(radioModeloBusqueda);
+        radioModeloBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioModeloBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        radioModeloBusqueda.setText("Modelo");
+        radioModeloBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioModeloBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(radioModeloBusqueda);
+        radioModeloBusqueda.setBounds(510, 70, 170, 25);
+
+        cajaNumSerieBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaNumSerieBuscar.setText("Buscar");
+        cajaNumSerieBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaNumSerieBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaNumSerieBuscarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cajaNumSerieBuscar);
+        cajaNumSerieBuscar.setBounds(270, 100, 210, 30);
+
+        comboModeloBusqueda.setBackground(new java.awt.Color(214, 198, 152));
+        comboModeloBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        comboModeloBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboModeloBusqueda);
+        comboModeloBusqueda.setBounds(510, 100, 210, 26);
+
+        groupBusqueda.add(radioNumSerieBusqueda);
+        radioNumSerieBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioNumSerieBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        radioNumSerieBusqueda.setText("Número de Serie");
+        radioNumSerieBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioNumSerieBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(radioNumSerieBusqueda);
+        radioNumSerieBusqueda.setBounds(260, 70, 170, 25);
+
+        comboAnioBusqueda.setBackground(new java.awt.Color(214, 198, 152));
+        comboAnioBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        comboAnioBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboAnioBusqueda);
+        comboAnioBusqueda.setBounds(30, 180, 210, 26);
+
+        groupBusqueda.add(radioNumVehiculoBusqueda);
+        radioNumVehiculoBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioNumVehiculoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        radioNumVehiculoBusqueda.setText("Número de Vehículo");
+        jPanel2.add(radioNumVehiculoBusqueda);
+        radioNumVehiculoBusqueda.setBounds(30, 70, 170, 25);
+
+        comboTipoBusqueda.setBackground(new java.awt.Color(214, 198, 152));
+        comboTipoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        comboTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboTipoBusqueda);
+        comboTipoBusqueda.setBounds(510, 180, 210, 26);
+
+        groupBusqueda.add(radioAnioBusqueda);
+        radioAnioBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioAnioBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        radioAnioBusqueda.setText("Año de Fabricación");
+        jPanel2.add(radioAnioBusqueda);
+        radioAnioBusqueda.setBounds(30, 150, 200, 25);
+
+        groupBusqueda.add(radioPrecioBusqueda1);
+        radioPrecioBusqueda1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioPrecioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
+        radioPrecioBusqueda1.setText("Precio Menor A:");
+        jPanel2.add(radioPrecioBusqueda1);
+        radioPrecioBusqueda1.setBounds(270, 150, 200, 25);
+
+        comboPrecioBusqueda1.setBackground(new java.awt.Color(214, 198, 152));
+        comboPrecioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
+        comboPrecioBusqueda1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboPrecioBusqueda1);
+        comboPrecioBusqueda1.setBounds(270, 180, 210, 26);
 
         internalVehiculos.getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 760, 580);
@@ -436,6 +575,22 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDocumentacionActionPerformed
 
+    private void cajaNumVehiculoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNumVehiculoBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaNumVehiculoBuscarActionPerformed
+
+    private void cajaNumSerieBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNumSerieBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaNumSerieBuscarActionPerformed
+
+    private void radioModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModeloBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioModeloBusquedaActionPerformed
+
+    private void radioNumSerieBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumSerieBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioNumSerieBusquedaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,6 +626,13 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnModelos;
     private javax.swing.JButton btnVehiculos;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JTextField cajaNumSerieBuscar;
+    private javax.swing.JTextField cajaNumVehiculoBuscar;
+    private javax.swing.JComboBox<String> comboAnioBusqueda;
+    private javax.swing.JComboBox<String> comboModeloBusqueda;
+    private javax.swing.JComboBox<String> comboPrecioBusqueda1;
+    private javax.swing.JComboBox<String> comboTipoBusqueda;
+    private javax.swing.ButtonGroup groupBusqueda;
     private javax.swing.JInternalFrame internalHome;
     private javax.swing.JInternalFrame internalModelos;
     private javax.swing.JInternalFrame internalProximamente;
@@ -483,11 +645,19 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JRadioButton radioAnioBusqueda;
+    private javax.swing.JRadioButton radioModeloBusqueda;
+    private javax.swing.JRadioButton radioNumSerieBusqueda;
+    private javax.swing.JRadioButton radioNumVehiculoBusqueda;
+    private javax.swing.JRadioButton radioPrecioBusqueda1;
+    private javax.swing.JRadioButton radioTipoBusqueda;
     private javax.swing.JPanel sidePane;
     // End of variables declaration//GEN-END:variables
 }
