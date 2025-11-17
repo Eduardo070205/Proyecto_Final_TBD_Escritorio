@@ -5,6 +5,7 @@
 package Ventanas;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.SwingUtilities;
 
@@ -22,13 +23,17 @@ public class VentanaInicio extends javax.swing.JFrame {
     public VentanaInicio() {
         initComponents();
         setVisible(true);
-        pack();
         setLocationRelativeTo(null);
         //internalHome.setVisible(false);
         internalVehiculos.setVisible(false);
         internalModelos.setVisible(false);
         internalVentas.setVisible(false);
         internalProximamente.setVisible(false);
+        internalAgregarAutos.setVisible(false);
+        desabilitarComponenetes(radioTodosBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
+                comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
+        pack();
     }
 
     /**
@@ -61,18 +66,24 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnAgregarVehiculos = new javax.swing.JButton();
         cajaNumVehiculoBuscar = new javax.swing.JTextField();
         radioTipoBusqueda = new javax.swing.JRadioButton();
         radioModeloBusqueda = new javax.swing.JRadioButton();
         cajaNumSerieBuscar = new javax.swing.JTextField();
         comboModeloBusqueda = new javax.swing.JComboBox<>();
         radioNumSerieBusqueda = new javax.swing.JRadioButton();
-        comboAnioBusqueda = new javax.swing.JComboBox<>();
+        comboEstadoBusqueda = new javax.swing.JComboBox<>();
         radioNumVehiculoBusqueda = new javax.swing.JRadioButton();
         comboTipoBusqueda = new javax.swing.JComboBox<>();
-        radioAnioBusqueda = new javax.swing.JRadioButton();
+        radioTodosBusqueda = new javax.swing.JRadioButton();
         radioPrecioBusqueda1 = new javax.swing.JRadioButton();
         comboPrecioBusqueda1 = new javax.swing.JComboBox<>();
+        radioAnioBusqueda1 = new javax.swing.JRadioButton();
+        comboAnioBusqueda1 = new javax.swing.JComboBox<>();
+        radioEstadoBusqueda1 = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaVehiculos = new javax.swing.JTable();
         internalModelos = new javax.swing.JInternalFrame();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -82,6 +93,35 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalProximamente = new javax.swing.JInternalFrame();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        internalAgregarAutos = new javax.swing.JInternalFrame();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cajaNumVehiculoAgregar = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        cajaNumSerieAgregar = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        comboModeloAgregar = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        comboAnioAgregar = new javax.swing.JComboBox<>();
+        comboMesAgregar = new javax.swing.JComboBox<>();
+        comboDiaAgregar = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        spinnerPrecioAgregar = new javax.swing.JSpinner();
+        jLabel18 = new javax.swing.JLabel();
+        spinnerKilometrajeAgregar = new javax.swing.JSpinner();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        comboTipoAgregar = new javax.swing.JComboBox<>();
+        comboEstadoAgregar = new javax.swing.JComboBox<>();
+        btnAgregarAgregar = new javax.swing.JButton();
+        btnRestaurarAgregar = new javax.swing.JButton();
+        btnCancelarAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autos Amistosos");
@@ -255,6 +295,17 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
 
+        btnAgregarVehiculos.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarVehiculos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarVehiculos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
+        btnAgregarVehiculos.setText("Agregar");
+        btnAgregarVehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarVehiculosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -262,7 +313,9 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 392, Short.MAX_VALUE)
+                .addComponent(btnAgregarVehiculos)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -271,7 +324,9 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -280,7 +335,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel6.setBounds(0, 0, 760, 60);
 
         cajaNumVehiculoBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        cajaNumVehiculoBuscar.setText("Buscar");
         cajaNumVehiculoBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         cajaNumVehiculoBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +348,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         radioTipoBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         radioTipoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
         radioTipoBusqueda.setText("Tipo");
+        radioTipoBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioTipoBusquedaActionPerformed(evt);
+            }
+        });
         jPanel2.add(radioTipoBusqueda);
         radioTipoBusqueda.setBounds(510, 150, 200, 25);
 
@@ -310,7 +369,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         radioModeloBusqueda.setBounds(510, 70, 170, 25);
 
         cajaNumSerieBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        cajaNumSerieBuscar.setText("Buscar");
         cajaNumSerieBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         cajaNumSerieBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,16 +396,21 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel2.add(radioNumSerieBusqueda);
         radioNumSerieBusqueda.setBounds(260, 70, 170, 25);
 
-        comboAnioBusqueda.setBackground(new java.awt.Color(214, 198, 152));
-        comboAnioBusqueda.setForeground(new java.awt.Color(0, 0, 0));
-        comboAnioBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(comboAnioBusqueda);
-        comboAnioBusqueda.setBounds(30, 180, 210, 26);
+        comboEstadoBusqueda.setBackground(new java.awt.Color(214, 198, 152));
+        comboEstadoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        comboEstadoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboEstadoBusqueda);
+        comboEstadoBusqueda.setBounds(30, 250, 210, 26);
 
         groupBusqueda.add(radioNumVehiculoBusqueda);
         radioNumVehiculoBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         radioNumVehiculoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
         radioNumVehiculoBusqueda.setText("Número de Vehículo");
+        radioNumVehiculoBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioNumVehiculoBusquedaActionPerformed(evt);
+            }
+        });
         jPanel2.add(radioNumVehiculoBusqueda);
         radioNumVehiculoBusqueda.setBounds(30, 70, 170, 25);
 
@@ -357,17 +420,28 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel2.add(comboTipoBusqueda);
         comboTipoBusqueda.setBounds(510, 180, 210, 26);
 
-        groupBusqueda.add(radioAnioBusqueda);
-        radioAnioBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        radioAnioBusqueda.setForeground(new java.awt.Color(0, 0, 0));
-        radioAnioBusqueda.setText("Año de Fabricación");
-        jPanel2.add(radioAnioBusqueda);
-        radioAnioBusqueda.setBounds(30, 150, 200, 25);
+        groupBusqueda.add(radioTodosBusqueda);
+        radioTodosBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioTodosBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        radioTodosBusqueda.setSelected(true);
+        radioTodosBusqueda.setText("Mostrar Todos los Vehículos");
+        radioTodosBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioTodosBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(radioTodosBusqueda);
+        radioTodosBusqueda.setBounds(290, 240, 230, 25);
 
         groupBusqueda.add(radioPrecioBusqueda1);
         radioPrecioBusqueda1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         radioPrecioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
         radioPrecioBusqueda1.setText("Precio Menor A:");
+        radioPrecioBusqueda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioPrecioBusqueda1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(radioPrecioBusqueda1);
         radioPrecioBusqueda1.setBounds(270, 150, 200, 25);
 
@@ -376,6 +450,53 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboPrecioBusqueda1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(comboPrecioBusqueda1);
         comboPrecioBusqueda1.setBounds(270, 180, 210, 26);
+
+        groupBusqueda.add(radioAnioBusqueda1);
+        radioAnioBusqueda1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioAnioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
+        radioAnioBusqueda1.setText("Año de Fabricación");
+        radioAnioBusqueda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAnioBusqueda1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(radioAnioBusqueda1);
+        radioAnioBusqueda1.setBounds(30, 150, 200, 25);
+
+        comboAnioBusqueda1.setBackground(new java.awt.Color(214, 198, 152));
+        comboAnioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
+        comboAnioBusqueda1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboAnioBusqueda1);
+        comboAnioBusqueda1.setBounds(30, 180, 210, 26);
+
+        groupBusqueda.add(radioEstadoBusqueda1);
+        radioEstadoBusqueda1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        radioEstadoBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
+        radioEstadoBusqueda1.setText("Estado");
+        radioEstadoBusqueda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioEstadoBusqueda1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(radioEstadoBusqueda1);
+        radioEstadoBusqueda1.setBounds(30, 220, 200, 25);
+
+        tablaVehiculos.setBackground(new java.awt.Color(247, 227, 178));
+        tablaVehiculos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID_Vehiculo", "Numero_Serie", "ID_Modelo", "Fecha_Fabricacion", "Precio", "Kilometraje", "Fecha_Entrada", "Tipo", "Estado"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaVehiculos);
+
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(20, 290, 720, 270);
 
         internalVehiculos.getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 760, 580);
@@ -440,6 +561,281 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalProximamente);
         internalProximamente.setBounds(0, 0, 770, 610);
 
+        internalAgregarAutos.setClosable(true);
+        internalAgregarAutos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        internalAgregarAutos.setTitle("Agregar Vehículo");
+        internalAgregarAutos.setMinimumSize(new java.awt.Dimension(480, 550));
+        internalAgregarAutos.setPreferredSize(new java.awt.Dimension(480, 550));
+        internalAgregarAutos.setVisible(false);
+        internalAgregarAutos.getContentPane().setLayout(null);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel8.setBackground(new java.awt.Color(214, 198, 152));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Agregar Vehículo");
+
+        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Número de Vehículo");
+
+        cajaNumVehiculoAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaNumVehiculoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cajaNumVehiculoAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaNumVehiculoAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Número de Serie");
+
+        cajaNumSerieAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaNumSerieAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cajaNumSerieAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaNumSerieAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("ID Modelo");
+
+        comboModeloAgregar.setBackground(new java.awt.Color(214, 198, 152));
+        comboModeloAgregar.setEditable(true);
+        comboModeloAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboModeloAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        comboModeloAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Fecha de Fabricación");
+
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Año");
+
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Mes");
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Dia");
+
+        comboAnioAgregar.setBackground(new java.awt.Color(214, 198, 152));
+        comboAnioAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        comboAnioAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboMesAgregar.setBackground(new java.awt.Color(214, 198, 152));
+        comboMesAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        comboMesAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboDiaAgregar.setBackground(new java.awt.Color(214, 198, 152));
+        comboDiaAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        comboDiaAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Precio");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Kilometraje");
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Tipo");
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Estado");
+
+        comboTipoAgregar.setBackground(new java.awt.Color(214, 198, 152));
+        comboTipoAgregar.setEditable(true);
+        comboTipoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboTipoAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        comboTipoAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboEstadoAgregar.setBackground(new java.awt.Color(214, 198, 152));
+        comboEstadoAgregar.setEditable(true);
+        comboEstadoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboEstadoAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        comboEstadoAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnAgregarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregarAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
+        btnAgregarAgregar.setText("Agregar");
+        btnAgregarAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAgregarActionPerformed(evt);
+            }
+        });
+
+        btnRestaurarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnRestaurarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRestaurarAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        btnRestaurarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\restaurar.png")); // NOI18N
+        btnRestaurarAgregar.setText("Restaurar");
+        btnRestaurarAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarAgregarActionPerformed(evt);
+            }
+        });
+
+        btnCancelarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnCancelarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelarAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancelarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
+        btnCancelarAgregar.setText("Cancelar");
+        btnCancelarAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarAgregarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(83, 83, 83)
+                .addComponent(jLabel14)
+                .addGap(93, 93, 93)
+                .addComponent(jLabel15)
+                .addGap(45, 45, 45))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cajaNumVehiculoAgregar)
+                            .addComponent(cajaNumSerieAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .addComponent(comboModeloAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(btnAgregarAgregar)
+                                .addGap(12, 12, 12)))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(spinnerPrecioAgregar))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboTipoAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(spinnerKilometrajeAgregar)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboEstadoAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboAnioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboMesAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboDiaAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRestaurarAgregar)
+                                .addGap(35, 35, 35)
+                                .addComponent(btnCancelarAgregar)
+                                .addGap(15, 15, 15)))))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cajaNumVehiculoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(cajaNumSerieAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(comboModeloAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboAnioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(comboMesAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboDiaAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(spinnerPrecioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(spinnerKilometrajeAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(comboTipoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(comboEstadoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRestaurarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
+        );
+
+        internalAgregarAutos.getContentPane().add(jPanel7);
+        jPanel7.setBounds(0, 0, 480, 520);
+
+        jDesktopPane1.add(internalAgregarAutos);
+        internalAgregarAutos.setBounds(200, 30, 490, 550);
+
         bg.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 770, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -448,7 +844,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,6 +877,18 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }
     
+    private void desabilitarComponenetes(JComponent componente_activo, JComponent... componente){
+        
+        for(JComponent c : componente){
+            
+            c.setEnabled(false);
+            
+        }
+        
+        componente_activo.setEnabled(true);
+        
+    }
+    
     
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         
@@ -509,9 +917,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         // Abrir Frame
         
         ocultarInternal(internalHome, internalVehiculos, internalModelos);
-        
-        
-        
+       
        
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -584,12 +990,80 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_cajaNumSerieBuscarActionPerformed
 
     private void radioModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModeloBusquedaActionPerformed
-        // TODO add your handling code here:
+      
+        desabilitarComponenetes(comboModeloBusqueda, cajaNumSerieBuscar, cajaNumVehiculoBuscar,  
+                comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);    
+        
     }//GEN-LAST:event_radioModeloBusquedaActionPerformed
 
     private void radioNumSerieBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumSerieBusquedaActionPerformed
-        // TODO add your handling code here:
+       
+        desabilitarComponenetes(cajaNumSerieBuscar, cajaNumVehiculoBuscar, 
+                comboModeloBusqueda, comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
     }//GEN-LAST:event_radioNumSerieBusquedaActionPerformed
+
+    private void radioTodosBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTodosBusquedaActionPerformed
+        
+        desabilitarComponenetes(radioTodosBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
+                comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
+        
+    }//GEN-LAST:event_radioTodosBusquedaActionPerformed
+
+    private void radioNumVehiculoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumVehiculoBusquedaActionPerformed
+      
+        
+        desabilitarComponenetes(cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
+                comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
+    }//GEN-LAST:event_radioNumVehiculoBusquedaActionPerformed
+
+    private void radioAnioBusqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAnioBusqueda1ActionPerformed
+        
+        desabilitarComponenetes(comboAnioBusqueda1, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
+                comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
+    }//GEN-LAST:event_radioAnioBusqueda1ActionPerformed
+
+    private void radioPrecioBusqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPrecioBusqueda1ActionPerformed
+       
+        desabilitarComponenetes(comboPrecioBusqueda1,comboAnioBusqueda1, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
+                comboTipoBusqueda, comboEstadoBusqueda);
+        
+    }//GEN-LAST:event_radioPrecioBusqueda1ActionPerformed
+
+    private void radioTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTipoBusquedaActionPerformed
+        
+        desabilitarComponenetes(comboTipoBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
+                comboAnioBusqueda1, comboPrecioBusqueda1, comboEstadoBusqueda);
+        
+    }//GEN-LAST:event_radioTipoBusquedaActionPerformed
+
+    private void radioEstadoBusqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEstadoBusqueda1ActionPerformed
+        
+        desabilitarComponenetes(comboEstadoBusqueda, comboTipoBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
+                comboAnioBusqueda1, comboPrecioBusqueda1);
+        
+    }//GEN-LAST:event_radioEstadoBusqueda1ActionPerformed
+
+    private void btnAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarAgregarActionPerformed
+
+    private void btnRestaurarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRestaurarAgregarActionPerformed
+
+    private void btnCancelarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarAgregarActionPerformed
+
+    private void btnAgregarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculosActionPerformed
+        
+        internalAgregarAutos.setVisible(true);
+        
+    }//GEN-LAST:event_btnAgregarVehiculosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -618,21 +1092,35 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnAgregarAgregar;
+    private javax.swing.JButton btnAgregarVehiculos;
+    private javax.swing.JButton btnCancelarAgregar;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnDocumentacion;
     private javax.swing.JButton btnEmpleados;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnModelos;
+    private javax.swing.JButton btnRestaurarAgregar;
     private javax.swing.JButton btnVehiculos;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JTextField cajaNumSerieAgregar;
     private javax.swing.JTextField cajaNumSerieBuscar;
+    private javax.swing.JTextField cajaNumVehiculoAgregar;
     private javax.swing.JTextField cajaNumVehiculoBuscar;
-    private javax.swing.JComboBox<String> comboAnioBusqueda;
+    private javax.swing.JComboBox<String> comboAnioAgregar;
+    private javax.swing.JComboBox<String> comboAnioBusqueda1;
+    private javax.swing.JComboBox<String> comboDiaAgregar;
+    private javax.swing.JComboBox<String> comboEstadoAgregar;
+    private javax.swing.JComboBox<String> comboEstadoBusqueda;
+    private javax.swing.JComboBox<String> comboMesAgregar;
+    private javax.swing.JComboBox<String> comboModeloAgregar;
     private javax.swing.JComboBox<String> comboModeloBusqueda;
     private javax.swing.JComboBox<String> comboPrecioBusqueda1;
+    private javax.swing.JComboBox<String> comboTipoAgregar;
     private javax.swing.JComboBox<String> comboTipoBusqueda;
     private javax.swing.ButtonGroup groupBusqueda;
+    private javax.swing.JInternalFrame internalAgregarAutos;
     private javax.swing.JInternalFrame internalHome;
     private javax.swing.JInternalFrame internalModelos;
     private javax.swing.JInternalFrame internalProximamente;
@@ -640,24 +1128,45 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JInternalFrame internalVentas;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton radioAnioBusqueda;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton radioAnioBusqueda1;
+    private javax.swing.JRadioButton radioEstadoBusqueda1;
     private javax.swing.JRadioButton radioModeloBusqueda;
     private javax.swing.JRadioButton radioNumSerieBusqueda;
     private javax.swing.JRadioButton radioNumVehiculoBusqueda;
     private javax.swing.JRadioButton radioPrecioBusqueda1;
     private javax.swing.JRadioButton radioTipoBusqueda;
+    private javax.swing.JRadioButton radioTodosBusqueda;
     private javax.swing.JPanel sidePane;
+    private javax.swing.JSpinner spinnerKilometrajeAgregar;
+    private javax.swing.JSpinner spinnerPrecioAgregar;
+    private javax.swing.JTable tablaVehiculos;
     // End of variables declaration//GEN-END:variables
 }
