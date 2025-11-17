@@ -5,6 +5,7 @@
 package Ventanas;
 
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.SwingUtilities;
 
 /**
@@ -23,6 +24,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         setVisible(true);
         pack();
         setLocationRelativeTo(null);
+        //internalHome.setVisible(false);
+        internalVehiculos.setVisible(false);
+        internalModelos.setVisible(false);
+        internalVentas.setVisible(false);
+        internalProximamente.setVisible(false);
     }
 
     /**
@@ -45,12 +51,27 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnEmpleados = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnDocumentacion = new javax.swing.JButton();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        internalHome = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        internalVehiculos = new javax.swing.JInternalFrame();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        internalModelos = new javax.swing.JInternalFrame();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        internalVentas = new javax.swing.JInternalFrame();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        internalProximamente = new javax.swing.JInternalFrame();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autos Amistosos");
         setPreferredSize(new java.awt.Dimension(1000, 650));
+        setResizable(false);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -183,36 +204,112 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         bg.add(sidePane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 221, 615));
 
-        jPanel1.setBackground(new java.awt.Color(245, 243, 218));
+        internalHome.setBackground(new java.awt.Color(255, 255, 255));
+        internalHome.setTitle("Home");
+        internalHome.setToolTipText("");
+        internalHome.setVisible(true);
+        internalHome.getContentPane().setLayout(null);
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Home");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(653, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(116, 116, 116))
-        );
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Hola Bienvenido a Autos Amistosos");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(180, 20, 443, 66);
 
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 790, 140));
+        internalHome.getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 760, 570);
+
+        jDesktopPane1.add(internalHome);
+        internalHome.setBounds(0, 0, 770, 610);
+
+        internalVehiculos.setTitle("Vehiculos");
+        internalVehiculos.setVisible(false);
+        internalVehiculos.getContentPane().setLayout(null);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Vehículos");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(94, 74, 510, 70);
+
+        internalVehiculos.getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 760, 580);
+
+        jDesktopPane1.add(internalVehiculos);
+        internalVehiculos.setBounds(0, 0, 770, 610);
+
+        internalModelos.setTitle("Modelos");
+        internalModelos.setVisible(false);
+        internalModelos.getContentPane().setLayout(null);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(null);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Modelos");
+        jPanel3.add(jLabel3);
+        jLabel3.setBounds(50, 40, 420, 90);
+
+        internalModelos.getContentPane().add(jPanel3);
+        jPanel3.setBounds(0, 0, 760, 580);
+
+        jDesktopPane1.add(internalModelos);
+        internalModelos.setBounds(0, 0, 770, 610);
+
+        internalVentas.setTitle("Ventas");
+        internalVentas.setVisible(false);
+        internalVentas.getContentPane().setLayout(null);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(null);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Ventas");
+        jPanel4.add(jLabel4);
+        jLabel4.setBounds(10, 10, 140, 40);
+
+        internalVentas.getContentPane().add(jPanel4);
+        jPanel4.setBounds(0, 0, 760, 580);
+
+        jDesktopPane1.add(internalVentas);
+        internalVentas.setBounds(0, 0, 770, 620);
+
+        internalProximamente.setTitle("Proximamente");
+        internalProximamente.setVisible(false);
+        internalProximamente.getContentPane().setLayout(null);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(null);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Estamos trabajando en la construcción de esta página");
+        jPanel5.add(jLabel5);
+        jLabel5.setBounds(60, 50, 640, 80);
+
+        internalProximamente.getContentPane().add(jPanel5);
+        jPanel5.setBounds(0, 0, 760, 580);
+
+        jDesktopPane1.add(internalProximamente);
+        internalProximamente.setBounds(0, 0, 770, 610);
+
+        bg.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 770, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +319,19 @@ public class VentanaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void ocultarInternal(JInternalFrame internalVisible, JInternalFrame... internals){
+        
+        for(JInternalFrame i : internals){
+            
+            i.setVisible(false);
+            
+        }
+        
+        internalVisible.setVisible(true);
+        
+    }
+    
     private void cambiarColorBoton(JButton... btnMenu){
         
         for(JButton i : btnMenu){
@@ -251,9 +361,18 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         
+        // Cambio de Colores de Botones
+        
         cambiarColorBoton(btnCerrarSesion, btnVehiculos, btnModelos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
         btnHome.setBackground(new java.awt.Color(214,198,152));
+        
+        // Abrir Frame
+        
+        ocultarInternal(internalHome, internalVehiculos, internalModelos);
+        
+        
+        
        
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -263,6 +382,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         btnVehiculos.setBackground(new java.awt.Color(214,198,152));
         
+        ocultarInternal(internalVehiculos, internalHome, internalModelos);
+        
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosActionPerformed
@@ -270,6 +391,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         cambiarColorBoton(btnCerrarSesion, btnHome, btnVehiculos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
         btnModelos.setBackground(new java.awt.Color(214,198,152));
+        
+        ocultarInternal(internalModelos, internalHome, internalVehiculos);
         
     }//GEN-LAST:event_btnModelosActionPerformed
 
@@ -279,6 +402,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         btnVentas.setBackground(new java.awt.Color(214,198,152));
         
+        ocultarInternal(internalVentas, internalHome, internalModelos, internalVehiculos);
+        
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
@@ -286,6 +411,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnVehiculos, btnClientes, btnDocumentacion);
         
         btnEmpleados.setBackground(new java.awt.Color(214,198,152));
+        
+        ocultarInternal(internalProximamente, internalHome, internalModelos, internalVehiculos, internalVentas);
         
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
@@ -295,6 +422,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         btnClientes.setBackground(new java.awt.Color(214,198,152));
         
+        ocultarInternal(internalProximamente, internalHome, internalModelos, internalVehiculos, internalVentas);
+        
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnDocumentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocumentacionActionPerformed
@@ -302,6 +431,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnEmpleados, btnClientes, btnVehiculos);
         
         btnDocumentacion.setBackground(new java.awt.Color(214,198,152));
+        
+        ocultarInternal(internalProximamente, internalHome, internalModelos, internalVehiculos, internalVentas);
         
     }//GEN-LAST:event_btnDocumentacionActionPerformed
 
@@ -340,9 +471,23 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnModelos;
     private javax.swing.JButton btnVehiculos;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JInternalFrame internalHome;
+    private javax.swing.JInternalFrame internalModelos;
+    private javax.swing.JInternalFrame internalProximamente;
+    private javax.swing.JInternalFrame internalVehiculos;
+    private javax.swing.JInternalFrame internalVentas;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel sidePane;
     // End of variables declaration//GEN-END:variables
 }
