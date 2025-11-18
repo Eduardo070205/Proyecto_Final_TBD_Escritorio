@@ -460,9 +460,9 @@
                                   <EmptySpace pref="118" max="32767" attributes="0"/>
                                   <Component id="btnAgregarVehiculos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnAgregarVehiculos1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnModificarVehiculos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnAgregarVehiculos2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnEliminarVehiculos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" pref="49" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -477,8 +477,8 @@
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                           <Component id="jLabel2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                                           <Component id="btnAgregarVehiculos" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                          <Component id="btnAgregarVehiculos2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                          <Component id="btnAgregarVehiculos1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                          <Component id="btnEliminarVehiculos" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                          <Component id="btnModificarVehiculos" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel6" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
                                   </Group>
@@ -506,7 +506,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="btnAgregarVehiculos1">
+                        <Component class="javax.swing.JButton" name="btnModificarVehiculos">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="3f" green="7a" red="7a" type="rgb"/>
@@ -523,7 +523,7 @@
                             <Property name="text" type="java.lang.String" value="Actualizar"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarVehiculos1ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarVehiculosActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnAgregarVehiculos">
@@ -546,7 +546,7 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarVehiculosActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="btnAgregarVehiculos2">
+                        <Component class="javax.swing.JButton" name="btnEliminarVehiculos">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="3f" green="7a" red="7a" type="rgb"/>
@@ -563,7 +563,7 @@
                             <Property name="text" type="java.lang.String" value="Eliminar"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarVehiculos2ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarVehiculosActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>
