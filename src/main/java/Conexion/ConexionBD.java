@@ -14,21 +14,36 @@ import java.sql.SQLException;
  * @author Eduardo
  */
 public class ConexionBD {
-    
+
+    private static ConexionBD instancia;
+    private Connection conexion;
+
     private static final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
     private static final String USER = "eduardo";
     private static final String PASSWORD = "Eduardo10";
 
-    public static Connection getConnection() {
+    // Constructor privado para impedir instancias externas
+    private ConexionBD() {
         try {
-            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Conexión exitosa a PostgreSQL");
-            return conn;
-        } catch (SQLException e) {
-            System.out.println("Error al conectar:");
+            Class.forName("org.postgresql.Driver"); // cargar driver
+            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conexión establecida");
+        } catch (Exception e) {
+            System.out.println("Error al conectar a la BD:");
             e.printStackTrace();
-            return null;
         }
     }
-    
+
+    // Obtener la instancia única
+    public static synchronized ConexionBD getInstancia() {
+        if (instancia == null) {
+            instancia = new ConexionBD();
+        }
+        return instancia;
+    }
+
+    // Obtener conexión
+    public Connection getConexion() {
+        return conexion;
+    }
 }

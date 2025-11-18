@@ -45,6 +45,30 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         actualizarTabla(tablaVehiculos, "vehiculos");
         
+        for(int i = 2025; i > 1900; i--){
+            
+            comboAnioBusqueda1.addItem(Integer.toString(i));
+            
+        }
+        
+        comboPrecioBusqueda1.addItem("100000");
+        comboPrecioBusqueda1.addItem("200000");
+        comboPrecioBusqueda1.addItem("300000");
+        comboPrecioBusqueda1.addItem("400000");
+        comboPrecioBusqueda1.addItem("500000");
+        comboPrecioBusqueda1.addItem("600000");
+        comboPrecioBusqueda1.addItem("700000");
+        comboPrecioBusqueda1.addItem("800000");
+        comboPrecioBusqueda1.addItem("900000");
+        comboPrecioBusqueda1.addItem("1000000");
+        
+        comboTipoBusqueda.addItem("Nuevo");
+        comboTipoBusqueda.addItem("Usado");
+        
+        comboEstadoBusqueda.addItem("Disponible");
+        comboEstadoBusqueda.addItem("Vendido");
+        
+        
         pack();
        
     }
@@ -79,7 +103,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnAgregarVehiculos1 = new javax.swing.JButton();
         btnAgregarVehiculos = new javax.swing.JButton();
+        btnAgregarVehiculos2 = new javax.swing.JButton();
         cajaNumVehiculoBuscar = new javax.swing.JTextField();
         radioTipoBusqueda = new javax.swing.JRadioButton();
         radioModeloBusqueda = new javax.swing.JRadioButton();
@@ -343,6 +369,17 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
 
+        btnAgregarVehiculos1.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarVehiculos1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregarVehiculos1.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarVehiculos1.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
+        btnAgregarVehiculos1.setText("Actualizar");
+        btnAgregarVehiculos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarVehiculos1ActionPerformed(evt);
+            }
+        });
+
         btnAgregarVehiculos.setBackground(new java.awt.Color(122, 122, 63));
         btnAgregarVehiculos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
@@ -354,6 +391,17 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
+        btnAgregarVehiculos2.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarVehiculos2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregarVehiculos2.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarVehiculos2.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\eliminar.png")); // NOI18N
+        btnAgregarVehiculos2.setText("Eliminar");
+        btnAgregarVehiculos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarVehiculos2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -361,9 +409,13 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 392, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(btnAgregarVehiculos)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAgregarVehiculos1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAgregarVehiculos2)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -374,7 +426,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAgregarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAgregarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregarVehiculos2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregarVehiculos1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -438,7 +492,6 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboModeloBusqueda.setBackground(new java.awt.Color(214, 198, 152));
         comboModeloBusqueda.setForeground(new java.awt.Color(0, 0, 0));
-        comboModeloBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(comboModeloBusqueda);
         comboModeloBusqueda.setBounds(510, 100, 210, 26);
 
@@ -456,7 +509,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboEstadoBusqueda.setBackground(new java.awt.Color(214, 198, 152));
         comboEstadoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
-        comboEstadoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEstadoBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEstadoBusquedaActionPerformed(evt);
+            }
+        });
         jPanel2.add(comboEstadoBusqueda);
         comboEstadoBusqueda.setBounds(30, 250, 210, 26);
 
@@ -474,7 +531,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboTipoBusqueda.setBackground(new java.awt.Color(214, 198, 152));
         comboTipoBusqueda.setForeground(new java.awt.Color(0, 0, 0));
-        comboTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTipoBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoBusquedaActionPerformed(evt);
+            }
+        });
         jPanel2.add(comboTipoBusqueda);
         comboTipoBusqueda.setBounds(510, 180, 210, 26);
 
@@ -505,7 +566,6 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboPrecioBusqueda1.setBackground(new java.awt.Color(214, 198, 152));
         comboPrecioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
-        comboPrecioBusqueda1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(comboPrecioBusqueda1);
         comboPrecioBusqueda1.setBounds(270, 180, 210, 26);
 
@@ -523,7 +583,6 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboAnioBusqueda1.setBackground(new java.awt.Color(214, 198, 152));
         comboAnioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
-        comboAnioBusqueda1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(comboAnioBusqueda1);
         comboAnioBusqueda1.setBounds(30, 180, 210, 26);
 
@@ -1633,6 +1692,36 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cajaNumSerieBuscarKeyReleased
 
+    private void comboTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoBusquedaActionPerformed
+        
+        actualizarTablaConFiltro(
+            tablaVehiculos,
+            "vehiculos",
+            "tipo",
+            comboTipoBusqueda.getSelectedItem().toString()
+        );
+       
+    }//GEN-LAST:event_comboTipoBusquedaActionPerformed
+
+    private void comboEstadoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoBusquedaActionPerformed
+       
+        actualizarTablaConFiltro(
+            tablaVehiculos,
+            "vehiculos",
+            "estado",
+            comboEstadoBusqueda.getSelectedItem().toString()
+        );
+        
+    }//GEN-LAST:event_comboEstadoBusquedaActionPerformed
+
+    private void btnAgregarVehiculos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarVehiculos1ActionPerformed
+
+    private void btnAgregarVehiculos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculos2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarVehiculos2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1663,6 +1752,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizarModificar;
     private javax.swing.JButton btnAgregarAgregar;
     private javax.swing.JButton btnAgregarVehiculos;
+    private javax.swing.JButton btnAgregarVehiculos1;
+    private javax.swing.JButton btnAgregarVehiculos2;
     private javax.swing.JButton btnCancelarAgregar;
     private javax.swing.JButton btnCancelarModificar;
     private javax.swing.JButton btnCerrarSesion;
