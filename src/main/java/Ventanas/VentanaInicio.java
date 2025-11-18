@@ -4,9 +4,14 @@
  */
 package Ventanas;
 
+import Modelo.ResultSetTableModel;
+import java.sql.SQLException;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,6 +19,8 @@ import javax.swing.SwingUtilities;
  * @author Eduardo
  */
 public class VentanaInicio extends javax.swing.JFrame {
+    
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInicio.class.getName());
 
@@ -33,7 +40,13 @@ public class VentanaInicio extends javax.swing.JFrame {
         desabilitarComponenetes(radioTodosBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
                 comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
         
+        
+        asignarFechas(comboAnioAgregar, comboMesAgregar);
+        
+        actualizarTabla(tablaVehiculos, "vehiculos");
+        
         pack();
+       
     }
 
     /**
@@ -316,7 +329,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalHome.setBounds(0, 0, 770, 610);
 
         internalVehiculos.setTitle("Vehiculos");
-        internalVehiculos.setVisible(false);
+        internalVehiculos.setVisible(true);
         internalVehiculos.getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -376,6 +389,11 @@ public class VentanaInicio extends javax.swing.JFrame {
                 cajaNumVehiculoBuscarActionPerformed(evt);
             }
         });
+        cajaNumVehiculoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaNumVehiculoBuscarKeyReleased(evt);
+            }
+        });
         jPanel2.add(cajaNumVehiculoBuscar);
         cajaNumVehiculoBuscar.setBounds(30, 100, 210, 30);
 
@@ -408,6 +426,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         cajaNumSerieBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaNumSerieBuscarActionPerformed(evt);
+            }
+        });
+        cajaNumSerieBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaNumSerieBuscarKeyReleased(evt);
             }
         });
         jPanel2.add(cajaNumSerieBuscar);
@@ -679,15 +702,22 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboAnioAgregar.setBackground(new java.awt.Color(214, 198, 152));
         comboAnioAgregar.setForeground(new java.awt.Color(0, 0, 0));
-        comboAnioAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAnioAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAnioAgregarActionPerformed(evt);
+            }
+        });
 
         comboMesAgregar.setBackground(new java.awt.Color(214, 198, 152));
         comboMesAgregar.setForeground(new java.awt.Color(0, 0, 0));
-        comboMesAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboMesAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMesAgregarActionPerformed(evt);
+            }
+        });
 
         comboDiaAgregar.setBackground(new java.awt.Color(214, 198, 152));
         comboDiaAgregar.setForeground(new java.awt.Color(0, 0, 0));
-        comboDiaAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
@@ -876,7 +906,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalModificarAutos.setTitle("Modificar Vehículo");
         internalModificarAutos.setMinimumSize(new java.awt.Dimension(480, 550));
         internalModificarAutos.setPreferredSize(new java.awt.Dimension(480, 550));
-        internalModificarAutos.setVisible(true);
+        internalModificarAutos.setVisible(false);
         internalModificarAutos.getContentPane().setLayout(null);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -1212,6 +1242,59 @@ public class VentanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
+
+
+    
+    
+    public void actualizarTabla(JTable tabla, String tablaBaseDatos) {
+
+        final String CONTROLADOR_JDBC = "org.postgresql.Driver";
+        final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
+        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + "";
+
+        try {
+            ResultSetTableModel modelo = new ResultSetTableModel(
+                CONTROLADOR_JDBC,
+                URL,
+                CONSULTA
+            );
+
+            tabla.setModel(modelo);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void actualizarTablaConFiltro(JTable tabla, String tablaBaseDatos, String campo, String valor){
+        
+        
+        final String CONTROLADOR_JDBC = "org.postgresql.Driver";
+        final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
+        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " LIKE '" + valor + "%';";
+
+        try {
+            ResultSetTableModel modelo = new ResultSetTableModel(
+                CONTROLADOR_JDBC,
+                URL,
+                CONSULTA
+            );
+
+            tabla.setModel(modelo);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        
+    }
+
+    
+
+    
     private void ocultarInternal(JInternalFrame internalVisible, JInternalFrame... internals){
         
         for(JInternalFrame i : internals){
@@ -1246,6 +1329,82 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }
     
+    private void asignarFechas(JComboBox comboAnio, JComboBox comboMes){
+        
+        comboAnio.removeAllItems();
+        comboMes.removeAllItems();
+       
+        
+        for(int i = 2025; i > 1900; i--){
+            
+            comboAnio.addItem(Integer.toString(i));
+            
+        }
+        
+        comboMes.addItem("Enero");
+        comboMes.addItem("Febrero");
+        comboMes.addItem("Marzo");
+        comboMes.addItem("Abril");
+        comboMes.addItem("Mayo");
+        comboMes.addItem("Junio");
+        comboMes.addItem("Julio");
+        comboMes.addItem("Agosto");
+        comboMes.addItem("Septiembre");
+        comboMes.addItem("Octubre");
+        comboMes.addItem("Noviembre");
+        comboMes.addItem("Diciembre");
+        
+        
+ 
+    }
+    
+    public void anioBisiesto(int anio, int valorMes, JComboBox comboDias){
+        
+        
+        comboDias.removeAllItems();
+        
+        valorMes = valorMes + 1;
+        
+        if(valorMes == 1 || valorMes == 3 || valorMes == 5 || valorMes == 7 || valorMes == 8 || valorMes == 10 || valorMes == 12){
+            
+            for(int x = 1; x <= 31; x++){
+                
+                comboDias.addItem(x);
+                
+            }
+            
+        }else if(valorMes == 2){
+            
+            if ((anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)) {
+   
+                for(int x = 1; x <= 29; x++){
+                
+                    comboDias.addItem(x);
+                
+                }
+            
+            } else{
+                
+                for(int x = 1; x <= 28; x++){
+                
+                    comboDias.addItem(x);
+                
+                }
+                
+            }
+            
+        }else{
+            
+            for(int x = 1; x <= 30; x++){
+                
+                comboDias.addItem(x);
+                
+            }           
+            
+        }
+        
+    }
+    
     
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         
@@ -1273,8 +1432,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         // Abrir Frame
         
-        ocultarInternal(internalHome, internalVehiculos, internalModelos);
-       
+        ocultarInternal(internalHome, internalVehiculos, internalModelos); 
        
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -1366,6 +1524,8 @@ public class VentanaInicio extends javax.swing.JFrame {
                 comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
         
         
+        actualizarTabla(tablaVehiculos, "vehiculos");
+        
     }//GEN-LAST:event_radioTodosBusquedaActionPerformed
 
     private void radioNumVehiculoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumVehiculoBusquedaActionPerformed
@@ -1373,6 +1533,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         desabilitarComponenetes(cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
                 comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
         
     }//GEN-LAST:event_radioNumVehiculoBusquedaActionPerformed
 
@@ -1433,6 +1594,44 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void comboModeloModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModeloModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboModeloModificarActionPerformed
+
+    private void comboAnioAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioAgregarActionPerformed
+        
+        anioBisiesto(Integer.parseInt(comboAnioAgregar.getSelectedItem().toString()), comboMesAgregar.getSelectedIndex(), comboDiaAgregar);
+        
+        //JOptionPane.showMessageDialog(this, comboAnioAgregar.getSelectedIndex());
+        
+    }//GEN-LAST:event_comboAnioAgregarActionPerformed
+
+    private void comboMesAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMesAgregarActionPerformed
+        
+        anioBisiesto(Integer.parseInt(comboAnioAgregar.getSelectedItem().toString()), comboMesAgregar.getSelectedIndex(), comboDiaAgregar);
+        
+        //JOptionPane.showMessageDialog(this, comboMesAgregar.getSelectedIndex());
+        
+    }//GEN-LAST:event_comboMesAgregarActionPerformed
+
+    private void cajaNumVehiculoBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumVehiculoBuscarKeyReleased
+
+        actualizarTablaConFiltro(
+            tablaVehiculos,
+            "vehiculos",
+            "id_vehiculo",
+            cajaNumVehiculoBuscar.getText().toUpperCase()
+        );
+        
+    }//GEN-LAST:event_cajaNumVehiculoBuscarKeyReleased
+
+    private void cajaNumSerieBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumSerieBuscarKeyReleased
+       
+        actualizarTablaConFiltro(
+            tablaVehiculos,
+            "vehiculos",
+            "numero_serie",
+            cajaNumSerieBuscar.getText().toUpperCase()
+        );
+        
+    }//GEN-LAST:event_cajaNumSerieBuscarKeyReleased
 
     /**
      * @param args the command line arguments
