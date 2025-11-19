@@ -5,6 +5,10 @@
 package Conexion;
 
 
+import javax.swing.*;
+import java.awt.*;
+import java.sql.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,7 +21,12 @@ public class ConexionBD {
 
     private static ConexionBD instancia;
     private Connection conexion;
+    
+    private PreparedStatement pstm;
+    private ResultSet rs;
 
+    String mensaje;
+    
     private static final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
     private static final String USER = "eduardo";
     private static final String PASSWORD = "Eduardo10";
@@ -46,4 +55,71 @@ public class ConexionBD {
     public Connection getConexion() {
         return conexion;
     }
+    
+    
+    public boolean ejecutarInstruccionLMD(String sql, Object... parametros){
+
+        boolean res = false;
+
+        try {
+
+            pstm = conexion.prepareStatement(sql);
+
+            for (int i = 0; i < parametros.length; i++) {
+
+                pstm.setObject(i + 1, parametros[i]);
+
+            }
+
+            if(pstm.executeUpdate() >= 1){
+                res = true;
+            }
+
+        } catch (SQLException e) {
+
+            if (e instanceof SQLIntegrityConstraintViolationException) {
+
+                mensaje = "Error, Número de paciente repetido";
+
+            }
+
+            System.out.println("Error en la ejecucion de la instruccion SQL jajajaja");
+        }
+
+        return res;
+
+    }
+
+    public void mostrarError(Component padre) {
+
+        JOptionPane.showMessageDialog(padre, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+
+    }
+
+    public ResultSet ejecutarInstruccionSQL(String sql, Object... parametros){
+
+        rs = null;
+
+        try {
+
+            pstm = conexion.prepareStatement(sql);
+
+            for (int i = 0; i < parametros.length; i++) {
+
+                pstm.setObject(i + 1, parametros[i]);
+
+            }
+
+            rs = pstm.executeQuery();
+
+        } catch (SQLException e) {
+
+            System.out.println("Error en la ejecucion de la instruccion SQL");
+
+        }
+
+        return rs;
+
+    }
+    
 }
