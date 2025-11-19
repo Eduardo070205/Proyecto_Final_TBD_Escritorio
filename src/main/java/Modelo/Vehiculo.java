@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
-
+import java.time.LocalDate;
 /**
  *
  * @author Eduardo
@@ -16,19 +16,19 @@ public class Vehiculo {
     
     private int idModelo;
     
-    private String fechaFabricacion;
+    private LocalDate fechaFabricacion;
 
     private double precio;
     
     private int kilometraje;
     
-    private String fehcaEntrada;
+    private LocalDate fehcaEntrada;
     
     private String tipo;
     
     private String estado;
 
-    public Vehiculo(String idVehiculo, String numSerie, int idModelo, String fechaFabricacion, double precio, int kilometraje, String fehcaEntrada, String tipo, String estado) {
+    public Vehiculo(String idVehiculo, String numSerie, int idModelo, LocalDate fechaFabricacion, double precio, int kilometraje, LocalDate fehcaEntrada, String tipo, String estado) {
         this.idVehiculo = idVehiculo;
         this.numSerie = numSerie;
         this.idModelo = idModelo;
@@ -64,11 +64,11 @@ public class Vehiculo {
         this.idModelo = idModelo;
     }
 
-    public String getFechaFabricacion() {
+    public LocalDate getFechaFabricacion() {
         return fechaFabricacion;
     }
 
-    public void setFechaFabricacion(String fechaFabricacion) {
+    public void setFechaFabricacion(LocalDate fechaFabricacion) {
         this.fechaFabricacion = fechaFabricacion;
     }
 
@@ -88,11 +88,11 @@ public class Vehiculo {
         this.kilometraje = kilometraje;
     }
 
-    public String getFehcaEntrada() {
+    public LocalDate getFehcaEntrada() {
         return fehcaEntrada;
     }
 
-    public void setFehcaEntrada(String fehcaEntrada) {
+    public void setFehcaEntrada(LocalDate fehcaEntrada) {
         this.fehcaEntrada = fehcaEntrada;
     }
 

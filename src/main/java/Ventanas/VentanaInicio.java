@@ -4,15 +4,14 @@
  */
 package Ventanas;
 
+import Modelo.Vehiculo;
+import Conexion.ConexionBD;
+import Controlador.VehiculoDAO;
 import Modelo.ResultSetTableModel;
 import java.sql.SQLException;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
+import java.time.LocalDate;
+import javax.swing.*;
+
 
 /**
  *
@@ -20,6 +19,12 @@ import javax.swing.SwingUtilities;
  */
 public class VentanaInicio extends javax.swing.JFrame {
    
+    
+    VehiculoDAO vehiculoDAO = new VehiculoDAO();
+    
+    ConexionBD con = ConexionBD.getInstancia();
+    
+    LocalDate hoy = LocalDate.now();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInicio.class.getName());
 
@@ -1337,10 +1342,35 @@ public class VentanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
+    public void restablecer(JComponent... componentes){
 
+        for(JComponent c : componentes){
 
-    
-    
+            if(c instanceof JTextField) {
+
+                ((JTextField) c).setText("");
+
+            }
+            if(c instanceof JComboBox<?>){
+
+                ((JComboBox<?>) c).setSelectedIndex(0);
+
+            }
+            if(c instanceof JRadioButton){
+
+                ((JRadioButton) c).setSelected(true);
+
+            }
+            if(c instanceof JSpinner){
+                
+                ((JSpinner) c).setValue(0);
+                
+            }
+
+        }
+
+    }
+
     public void actualizarTabla(JTable tabla, String tablaBaseDatos) {
 
         final String CONTROLADOR_JDBC = "org.postgresql.Driver";
@@ -1528,6 +1558,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }
     
+    // ============================================== VENTANA VEHICULOS ================================================================
     
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         
@@ -1689,7 +1720,61 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_radioEstadoBusqueda1ActionPerformed
 
     private void btnAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAgregarActionPerformed
-        // TODO add your handling code here:
+
+        String mes, dia;
+        
+        if(String.valueOf(comboMesAgregar.getSelectedIndex()+1).length() == 1){
+           
+            mes = "0"+String.valueOf(comboMesAgregar.getSelectedIndex()+1);
+            
+        }else{
+            
+            mes = String.valueOf(comboMesAgregar.getSelectedIndex()+1);
+            
+        }
+        
+        if(comboDiaAgregar.getSelectedItem().toString().length() == 1){
+            
+            dia = "0" + comboDiaAgregar.getSelectedItem().toString();
+            
+        }else{
+            
+            dia = comboDiaAgregar.getSelectedItem().toString();
+            
+        }
+        
+        String fechaFabricacion = comboAnioAgregar.getSelectedItem().toString() + "-" + mes + "-" + dia;
+        
+
+        
+        Vehiculo vehiculo = new Vehiculo(
+        
+            cajaNumVehiculoAgregar.getText().toString(),
+            cajaNumSerieAgregar.getText().toString(),
+            Integer.parseInt(comboModeloAgregar.getSelectedItem().toString()),
+            LocalDate.parse(fechaFabricacion),
+            Double.parseDouble(spinnerPrecioAgregar.getValue().toString()),
+            Integer.parseInt(spinnerKilometrajeAgregar.getValue().toString()),
+            hoy,
+            comboTipoAgregar.getSelectedItem().toString(),
+            comboEstadoAgregar.getSelectedItem().toString()
+         
+        );
+        
+        if(vehiculoDAO.agregarVehiculo(vehiculo)){
+            
+            actualizarTabla(tablaVehiculos, "vehiculos");
+            
+            JOptionPane.showMessageDialog(this, "Registro agregado correctamente");
+            
+        }else{
+
+            JOptionPane.showMessageDialog(this, "Error en la Insercción");
+
+            con.mostrarError(this);
+            
+        }
+        
     }//GEN-LAST:event_btnAgregarAgregarActionPerformed
 
     private void btnRestaurarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarAgregarActionPerformed

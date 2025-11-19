@@ -82,6 +82,8 @@ public class ConexionBD {
                 mensaje = "Error, clave primaria repetida";
 
             }
+            
+          mensaje = e.toString();
 
             System.out.println("Error en la ejecucion de la instruccion SQL jajajaja");
         }
