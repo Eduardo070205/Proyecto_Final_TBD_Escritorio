@@ -37,5 +37,15 @@ public class VehiculoDAO {
         
     }
     
+    public boolean eliminarVehiculo(String numVehiculo){
+        
+        String sql = "DELETE FROM vehiculos WHERE id_vehiculo = ?;";
+        
+        return con.ejecutarInstruccionLMD(sql, numVehiculo);
+        
+        
+        
+    }
+    
     
 }

@@ -384,7 +384,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalHome.setBounds(0, 0, 770, 610);
 
         internalVehiculos.setTitle("Vehiculos");
-        internalVehiculos.setVisible(false);
+        internalVehiculos.setVisible(true);
         internalVehiculos.getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -745,7 +745,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalAgregarAutos.setTitle("Agregar Vehículo");
         internalAgregarAutos.setMinimumSize(new java.awt.Dimension(480, 550));
         internalAgregarAutos.setPreferredSize(new java.awt.Dimension(480, 550));
-        internalAgregarAutos.setVisible(true);
+        internalAgregarAutos.setVisible(false);
         internalAgregarAutos.getContentPane().setLayout(null);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -1837,6 +1837,12 @@ public class VentanaInicio extends javax.swing.JFrame {
             
             //JOptionPane.showMessageDialog(this, tablaVehiculos.getValueAt(0, 0));
             
+        }else{
+            
+            btnEliminarVehiculos.setEnabled(false);
+            
+            btnModificarVehiculos.setEnabled(false);
+            
         }
         
     }//GEN-LAST:event_cajaNumVehiculoBuscarKeyReleased
@@ -1884,7 +1890,30 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarVehiculosActionPerformed
 
     private void btnEliminarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVehiculosActionPerformed
-        // TODO add your handling code here:
+        
+
+        
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de eliminar el registro?");
+         
+        if(respuesta == JOptionPane.YES_OPTION){
+             
+            if(vehiculoDAO.eliminarVehiculo(tablaVehiculos.getValueAt(0, 0).toString())){
+                 
+               actualizarTabla(tablaVehiculos, "vehiculos");
+                 
+               JOptionPane.showMessageDialog(this, "Registro eliminado con exito");
+                
+               
+            }else{
+                 
+                con.mostrarError(internalVehiculos);
+                 
+            }
+            
+            
+             
+        }
+        
     }//GEN-LAST:event_btnEliminarVehiculosActionPerformed
 
     private void comboModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModeloBusquedaActionPerformed

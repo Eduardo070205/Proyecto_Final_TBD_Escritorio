@@ -83,8 +83,11 @@ public class ConexionBD {
 
             }
             
-          mensaje = e.toString();
-
+            mensaje = e.toString();
+            
+            System.err.println(mensaje);
+;
+            
             System.out.println("Error en la ejecucion de la instruccion SQL jajajaja");
         }
 
