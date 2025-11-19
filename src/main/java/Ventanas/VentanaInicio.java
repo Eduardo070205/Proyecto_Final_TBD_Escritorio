@@ -19,8 +19,7 @@ import javax.swing.SwingUtilities;
  * @author Eduardo
  */
 public class VentanaInicio extends javax.swing.JFrame {
-    
-    
+   
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInicio.class.getName());
 
@@ -80,6 +79,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             comboModeloBusqueda.addItem(tablaModelos.getValueAt(i, 0).toString());
             
         }
+        
+        
         
         actualizarTabla(tablaVehiculos, "vehiculos");
         
@@ -612,6 +613,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboAnioBusqueda1.setBackground(new java.awt.Color(214, 198, 152));
         comboAnioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
+        comboAnioBusqueda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAnioBusqueda1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(comboAnioBusqueda1);
         comboAnioBusqueda1.setBounds(30, 180, 210, 26);
 
@@ -1393,6 +1399,10 @@ public class VentanaInicio extends javax.swing.JFrame {
             
              CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " < " + valor + ";";
             
+        }else if(tipo == 'A'){
+            
+             CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE extract(year from " + campo + ") = " + valor + ";";
+            
         }else{
             
             CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
@@ -1834,6 +1844,18 @@ public class VentanaInicio extends javax.swing.JFrame {
         );        
         
     }//GEN-LAST:event_comboPrecioBusqueda1ActionPerformed
+
+    private void comboAnioBusqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioBusqueda1ActionPerformed
+       
+        actualizarTablaConFiltro(
+            tablaVehiculos,
+            "vehiculos",
+            "fecha_fabricacion",
+            comboAnioBusqueda1.getSelectedItem().toString(),
+            'A'
+        );   
+
+    }//GEN-LAST:event_comboAnioBusqueda1ActionPerformed
 
     /**
      * @param args the command line arguments
