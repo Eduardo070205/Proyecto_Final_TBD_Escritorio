@@ -71,7 +71,17 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboEstadoBusqueda.addItem("Vendido");
         
         
+      
         
+        actualizarTabla(tablaModelos, "modelos");
+        
+        for(int i = 0; i < tablaModelos.getRowCount(); i++){
+            
+            comboModeloBusqueda.addItem(tablaModelos.getValueAt(i, 0).toString());
+            
+        }
+        
+        actualizarTabla(tablaVehiculos, "vehiculos");
         
         
         pack();
@@ -131,6 +141,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalModelos = new javax.swing.JInternalFrame();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaModelos = new javax.swing.JTable();
         internalVentas = new javax.swing.JInternalFrame();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -379,6 +391,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnModificarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
         btnModificarVehiculos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
         btnModificarVehiculos.setText("Actualizar");
+        btnModificarVehiculos.setEnabled(false);
         btnModificarVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarVehiculosActionPerformed(evt);
@@ -401,6 +414,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnEliminarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarVehiculos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\eliminar.png")); // NOI18N
         btnEliminarVehiculos.setText("Eliminar");
+        btnEliminarVehiculos.setEnabled(false);
         btnEliminarVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarVehiculosActionPerformed(evt);
@@ -497,6 +511,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboModeloBusqueda.setBackground(new java.awt.Color(214, 198, 152));
         comboModeloBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        comboModeloBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboModeloBusquedaActionPerformed(evt);
+            }
+        });
         jPanel2.add(comboModeloBusqueda);
         comboModeloBusqueda.setBounds(510, 100, 210, 26);
 
@@ -571,6 +590,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboPrecioBusqueda1.setBackground(new java.awt.Color(214, 198, 152));
         comboPrecioBusqueda1.setForeground(new java.awt.Color(0, 0, 0));
+        comboPrecioBusqueda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPrecioBusqueda1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(comboPrecioBusqueda1);
         comboPrecioBusqueda1.setBounds(270, 180, 210, 26);
 
@@ -638,6 +662,22 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel3.setText("Modelos");
         jPanel3.add(jLabel3);
         jLabel3.setBounds(50, 40, 420, 90);
+
+        tablaModelos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaModelos);
+
+        jPanel3.add(jScrollPane2);
+        jScrollPane2.setBounds(40, 160, 700, 406);
 
         internalModelos.getContentPane().add(jPanel3);
         jPanel3.setBounds(0, 0, 760, 580);
@@ -1314,7 +1354,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         final String CONTROLADOR_JDBC = "org.postgresql.Driver";
         final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + "";
+        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
 
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(
@@ -1332,12 +1372,36 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }
     
-    public void actualizarTablaConFiltro(JTable tabla, String tablaBaseDatos, String campo, String valor){
+    public void actualizarTablaConFiltro(JTable tabla, String tablaBaseDatos, String campo, String valor, char tipo){
         
         
         final String CONTROLADOR_JDBC = "org.postgresql.Driver";
         final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " LIKE '" + valor + "%';";
+        String CONSULTA = null;
+        
+        
+        if(tipo == 'T'){
+                    
+            CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " LIKE '" + valor + "%';";
+            
+        }else if(tipo == 'N'){
+            
+          
+            CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " = " + valor + ";";
+            
+        }else if(tipo == 'O'){
+            
+             CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " < " + valor + ";";
+            
+        }else{
+            
+            CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
+            
+        }
+        
+     
+        
+ 
 
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(
@@ -1681,12 +1745,17 @@ public class VentanaInicio extends javax.swing.JFrame {
             tablaVehiculos,
             "vehiculos",
             "id_vehiculo",
-            cajaNumVehiculoBuscar.getText().toUpperCase()
+            cajaNumVehiculoBuscar.getText().toUpperCase(),
+            'T'
         );
         
-        if(tablaVehiculos.getRowCount() == 1){
+        if(tablaVehiculos.getRowCount() == 1 && radioNumVehiculoBusqueda.isSelected()){
             
+            btnEliminarVehiculos.setEnabled(true);
             
+            btnModificarVehiculos.setEnabled(true);
+            
+            //JOptionPane.showMessageDialog(this, tablaVehiculos.getValueAt(0, 0));
             
         }
         
@@ -1698,7 +1767,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             tablaVehiculos,
             "vehiculos",
             "numero_serie",
-            cajaNumSerieBuscar.getText().toUpperCase()
+            cajaNumSerieBuscar.getText().toUpperCase(),
+            'T'
         );
         
     }//GEN-LAST:event_cajaNumSerieBuscarKeyReleased
@@ -1709,7 +1779,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             tablaVehiculos,
             "vehiculos",
             "tipo",
-            comboTipoBusqueda.getSelectedItem().toString()
+            comboTipoBusqueda.getSelectedItem().toString(),
+            'T'
         );
        
     }//GEN-LAST:event_comboTipoBusquedaActionPerformed
@@ -1720,7 +1791,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             tablaVehiculos,
             "vehiculos",
             "estado",
-            comboEstadoBusqueda.getSelectedItem().toString()
+            comboEstadoBusqueda.getSelectedItem().toString(),
+            'T'
         );
         
     }//GEN-LAST:event_comboEstadoBusquedaActionPerformed
@@ -1734,6 +1806,34 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btnEliminarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVehiculosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarVehiculosActionPerformed
+
+    private void comboModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModeloBusquedaActionPerformed
+        
+       
+        
+        actualizarTablaConFiltro(
+            tablaVehiculos,
+            "vehiculos",
+            "id_modelo",
+            comboModeloBusqueda.getSelectedItem().toString(),
+            'N'
+        );
+        
+       
+        
+    }//GEN-LAST:event_comboModeloBusquedaActionPerformed
+
+    private void comboPrecioBusqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPrecioBusqueda1ActionPerformed
+
+        actualizarTablaConFiltro(
+            tablaVehiculos,
+            "vehiculos",
+            "precio",
+            comboPrecioBusqueda1.getSelectedItem().toString(),
+            'O'
+        );        
+        
+    }//GEN-LAST:event_comboPrecioBusqueda1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1861,6 +1961,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton radioAnioBusqueda1;
     private javax.swing.JRadioButton radioEstadoBusqueda1;
     private javax.swing.JRadioButton radioModeloBusqueda;
@@ -1874,6 +1975,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JSpinner spinnerKilometrajeModificar;
     private javax.swing.JSpinner spinnerPrecioAgregar;
     private javax.swing.JSpinner spinnerPrecioModificar;
+    private javax.swing.JTable tablaModelos;
     private javax.swing.JTable tablaVehiculos;
     // End of variables declaration//GEN-END:variables
 }
