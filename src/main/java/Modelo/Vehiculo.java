@@ -26,9 +26,9 @@ public class Vehiculo {
     
     private String tipo;
     
-    private String entrada;
+    private String estado;
 
-    public Vehiculo(String idVehiculo, String numSerie, int idModelo, String fechaFabricacion, double precio, int kilometraje, String fehcaEntrada, String tipo, String entrada) {
+    public Vehiculo(String idVehiculo, String numSerie, int idModelo, String fechaFabricacion, double precio, int kilometraje, String fehcaEntrada, String tipo, String estado) {
         this.idVehiculo = idVehiculo;
         this.numSerie = numSerie;
         this.idModelo = idModelo;
@@ -37,7 +37,7 @@ public class Vehiculo {
         this.kilometraje = kilometraje;
         this.fehcaEntrada = fehcaEntrada;
         this.tipo = tipo;
-        this.entrada = entrada;
+        this.estado = estado;
     }
 
     public String getIdVehiculo() {
@@ -104,17 +104,17 @@ public class Vehiculo {
         this.tipo = tipo;
     }
 
-    public String getEntrada() {
-        return entrada;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setEntrada(String entrada) {
-        this.entrada = entrada;
+    public void setEstado(String entrada) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", numSerie=" + numSerie + ", idModelo=" + idModelo + ", fechaFabricacion=" + fechaFabricacion + ", precio=" + precio + ", kilometraje=" + kilometraje + ", fehcaEntrada=" + fehcaEntrada + ", tipo=" + tipo + ", entrada=" + entrada + '}';
+        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", numSerie=" + numSerie + ", idModelo=" + idModelo + ", fechaFabricacion=" + fechaFabricacion + ", precio=" + precio + ", kilometraje=" + kilometraje + ", fehcaEntrada=" + fehcaEntrada + ", tipo=" + tipo + ", estado=" + estado + '}';
     }
     
     

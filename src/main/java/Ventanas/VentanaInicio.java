@@ -65,9 +65,15 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         comboTipoBusqueda.addItem("Nuevo");
         comboTipoBusqueda.addItem("Usado");
+        comboTipoAgregar.addItem("Nuevo");
+        comboTipoAgregar.addItem("Usado");
+        
+        
         
         comboEstadoBusqueda.addItem("Disponible");
         comboEstadoBusqueda.addItem("Vendido");
+        comboEstadoAgregar.addItem("Disponible");
+        comboEstadoAgregar.addItem("Vendido");
         
         
       
@@ -77,6 +83,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         for(int i = 0; i < tablaModelos.getRowCount(); i++){
             
             comboModeloBusqueda.addItem(tablaModelos.getValueAt(i, 0).toString());
+            
+            comboModeloAgregar.addItem(tablaModelos.getValueAt(i, 0).toString());
             
         }
         
@@ -184,8 +192,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        cajaNumVehiculoModificar = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         cajaNumSerieModificar = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
@@ -373,7 +379,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalHome.setBounds(0, 0, 770, 610);
 
         internalVehiculos.setTitle("Vehiculos");
-        internalVehiculos.setVisible(true);
+        internalVehiculos.setVisible(false);
         internalVehiculos.getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -734,7 +740,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalAgregarAutos.setTitle("Agregar Vehículo");
         internalAgregarAutos.setMinimumSize(new java.awt.Dimension(480, 550));
         internalAgregarAutos.setPreferredSize(new java.awt.Dimension(480, 550));
-        internalAgregarAutos.setVisible(false);
+        internalAgregarAutos.setVisible(true);
         internalAgregarAutos.getContentPane().setLayout(null);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -792,10 +798,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel10.setText("ID Modelo");
 
         comboModeloAgregar.setBackground(new java.awt.Color(214, 198, 152));
-        comboModeloAgregar.setEditable(true);
         comboModeloAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboModeloAgregar.setForeground(new java.awt.Color(0, 0, 0));
-        comboModeloAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -846,16 +850,12 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel20.setText("Estado");
 
         comboTipoAgregar.setBackground(new java.awt.Color(214, 198, 152));
-        comboTipoAgregar.setEditable(true);
         comboTipoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboTipoAgregar.setForeground(new java.awt.Color(0, 0, 0));
-        comboTipoAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboEstadoAgregar.setBackground(new java.awt.Color(214, 198, 152));
-        comboEstadoAgregar.setEditable(true);
         comboEstadoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboEstadoAgregar.setForeground(new java.awt.Color(0, 0, 0));
-        comboEstadoAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnAgregarAgregar.setBackground(new java.awt.Color(122, 122, 63));
         btnAgregarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1048,17 +1048,8 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("Número de Vehículo");
-
-        cajaNumVehiculoModificar.setBackground(new java.awt.Color(255, 255, 255));
-        cajaNumVehiculoModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cajaNumVehiculoModificar.setForeground(new java.awt.Color(0, 0, 0));
-        cajaNumVehiculoModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
@@ -1208,11 +1199,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cajaNumVehiculoModificar)
                                     .addComponent(cajaNumSerieModificar)
                                     .addComponent(comboModeloModificar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel9Layout.createSequentialGroup()
@@ -1270,11 +1259,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(cajaNumVehiculoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(cajaNumSerieModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1301,7 +1286,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(spinnerKilometrajeModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
                     .addComponent(jLabel35)
@@ -1905,7 +1890,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField cajaNumSerieModificar;
     private javax.swing.JTextField cajaNumVehiculoAgregar;
     private javax.swing.JTextField cajaNumVehiculoBuscar;
-    private javax.swing.JTextField cajaNumVehiculoModificar;
     private javax.swing.JComboBox<String> comboAnioAgregar;
     private javax.swing.JComboBox<String> comboAnioBusqueda1;
     private javax.swing.JComboBox<String> comboAnioEntradaModificar;
@@ -1950,7 +1934,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;

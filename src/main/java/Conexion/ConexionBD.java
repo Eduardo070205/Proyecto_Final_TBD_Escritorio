@@ -79,7 +79,7 @@ public class ConexionBD {
 
             if (e instanceof SQLIntegrityConstraintViolationException) {
 
-                mensaje = "Error, Número de paciente repetido";
+                mensaje = "Error, clave primaria repetida";
 
             }
 
