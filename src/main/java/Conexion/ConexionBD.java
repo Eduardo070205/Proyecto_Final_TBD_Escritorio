@@ -95,11 +95,7 @@ public class ConexionBD {
 
     }
 
-    public void mostrarError(Component padre) {
 
-        JOptionPane.showMessageDialog(padre, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
-
-    }
 
     public ResultSet ejecutarInstruccionSQL(String sql, Object... parametros){
 
@@ -120,10 +116,18 @@ public class ConexionBD {
         } catch (SQLException e) {
 
             System.out.println("Error en la ejecucion de la instruccion SQL");
+            
+            mensaje = e.toString();
 
         }
 
         return rs;
+
+    }
+    
+    public void mostrarError(Component padre) {
+
+        JOptionPane.showMessageDialog(padre, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
 
     }
     

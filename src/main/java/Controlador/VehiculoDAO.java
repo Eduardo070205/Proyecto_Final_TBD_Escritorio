@@ -23,15 +23,15 @@ public class VehiculoDAO {
         
         return con.ejecutarInstruccionLMD(sql, 
                 
-                vehiculo.getIdVehiculo(),
-                vehiculo.getNumSerie(),
-                vehiculo.getIdModelo(),
-                vehiculo.getFechaFabricacion(),
-                vehiculo.getPrecio(),
-                vehiculo.getKilometraje(),
-                vehiculo.getFehcaEntrada(),
-                vehiculo.getTipo(),
-                vehiculo.getEstado()
+            vehiculo.getIdVehiculo(),
+            vehiculo.getNumSerie(),
+            vehiculo.getIdModelo(),
+            vehiculo.getFechaFabricacion(),
+            vehiculo.getPrecio(),
+            vehiculo.getKilometraje(),
+            vehiculo.getFehcaEntrada(),
+            vehiculo.getTipo(),
+            vehiculo.getEstado()
                 
         );
         
@@ -44,6 +44,26 @@ public class VehiculoDAO {
         return con.ejecutarInstruccionLMD(sql, numVehiculo);
         
         
+        
+    }
+    
+    public boolean editarVehiculo(Vehiculo vehiculo){
+        
+        String sql = "UPDATE vehiculos SET numero_serie = ?, id_modelo = ?, fecha_fabricacion = ?, precio = ?, kilometraje = ?, fecha_entrada = ?, tipo = ?, estado = ? WHERE id_vehiculo = ?";
+        
+        return con.ejecutarInstruccionLMD(sql, 
+                
+            vehiculo.getNumSerie(),
+            vehiculo.getIdModelo(),
+            vehiculo.getFechaFabricacion(),
+            vehiculo.getPrecio(),
+            vehiculo.getKilometraje(),
+            vehiculo.getFehcaEntrada(),
+            vehiculo.getTipo(),
+            vehiculo.getEstado(),
+            vehiculo.getIdVehiculo()    
+                
+        );
         
     }
     

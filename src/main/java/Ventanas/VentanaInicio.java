@@ -8,6 +8,7 @@ import Modelo.Vehiculo;
 import Conexion.ConexionBD;
 import Controlador.VehiculoDAO;
 import Modelo.ResultSetTableModel;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.swing.*;
@@ -25,6 +26,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     ConexionBD con = ConexionBD.getInstancia();
     
     LocalDate hoy = LocalDate.now();
+    
+    ResultSet rs;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInicio.class.getName());
 
@@ -49,6 +52,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         asignarFechas(comboAnioAgregar, comboMesAgregar);
         
+        asignarFechas(comboAnioModificar, comboMesModificar);
+        
+        asignarFechas(comboAnioEntradaModificar, comboMesEntradaModificar);
+        
         actualizarTabla(tablaVehiculos, "vehiculos");
         
         for(int i = 2025; i > 1900; i--){
@@ -72,13 +79,17 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboTipoBusqueda.addItem("Usado");
         comboTipoAgregar.addItem("Nuevo");
         comboTipoAgregar.addItem("Usado");
+        comboTipoModificar.addItem("Nuevo");
+        comboTipoModificar.addItem("Usado");
+        
+        
         
         
         
         comboEstadoBusqueda.addItem("Disponible");
         comboEstadoBusqueda.addItem("Vendido");
-        comboEstadoAgregar.addItem("Disponible");
-        comboEstadoAgregar.addItem("Vendido");
+        comboEstadoModificar.addItem("Disponible");
+        comboEstadoModificar.addItem("Vendido");
         
         
       
@@ -90,6 +101,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             comboModeloBusqueda.addItem(tablaModelos.getValueAt(i, 0).toString());
             
             comboModeloAgregar.addItem(tablaModelos.getValueAt(i, 0).toString());
+            
+            comboModeloModificar.addItem(tablaModelos.getValueAt(i, 0).toString());
             
         }
         
@@ -186,9 +199,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         spinnerKilometrajeAgregar = new javax.swing.JSpinner();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         comboTipoAgregar = new javax.swing.JComboBox<>();
-        comboEstadoAgregar = new javax.swing.JComboBox<>();
         btnAgregarAgregar = new javax.swing.JButton();
         btnRestaurarAgregar = new javax.swing.JButton();
         btnCancelarAgregar = new javax.swing.JButton();
@@ -850,17 +861,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Tipo");
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setText("Estado");
-
         comboTipoAgregar.setBackground(new java.awt.Color(214, 198, 152));
         comboTipoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboTipoAgregar.setForeground(new java.awt.Color(0, 0, 0));
-
-        comboEstadoAgregar.setBackground(new java.awt.Color(214, 198, 152));
-        comboEstadoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        comboEstadoAgregar.setForeground(new java.awt.Color(0, 0, 0));
 
         btnAgregarAgregar.setBackground(new java.awt.Color(122, 122, 63));
         btnAgregarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -923,7 +926,6 @@ public class VentanaInicio extends javax.swing.JFrame {
                             .addComponent(comboModeloAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -940,9 +942,6 @@ public class VentanaInicio extends javax.swing.JFrame {
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(comboTipoAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(spinnerKilometrajeAgregar)))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboEstadoAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(comboAnioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -998,11 +997,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(comboTipoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(comboEstadoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1021,7 +1016,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalModificarAutos.setTitle("Modificar Vehículo");
         internalModificarAutos.setMinimumSize(new java.awt.Dimension(480, 550));
         internalModificarAutos.setPreferredSize(new java.awt.Dimension(480, 550));
-        internalModificarAutos.setVisible(false);
+        internalModificarAutos.setVisible(true);
         internalModificarAutos.getContentPane().setLayout(null);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -1073,7 +1068,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboModeloModificar.setEditable(true);
         comboModeloModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboModeloModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboModeloModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboModeloModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboModeloModificarActionPerformed(evt);
@@ -1095,15 +1089,22 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboAnioModificar.setBackground(new java.awt.Color(214, 198, 152));
         comboAnioModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboAnioModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAnioModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAnioModificarActionPerformed(evt);
+            }
+        });
 
         comboMesModificar.setBackground(new java.awt.Color(214, 198, 152));
         comboMesModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboMesModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboMesModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMesModificarActionPerformed(evt);
+            }
+        });
 
         comboDiaModificar.setBackground(new java.awt.Color(214, 198, 152));
         comboDiaModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboDiaModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
@@ -1125,13 +1126,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboTipoModificar.setEditable(true);
         comboTipoModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboTipoModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboTipoModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboEstadoModificar.setBackground(new java.awt.Color(214, 198, 152));
         comboEstadoModificar.setEditable(true);
         comboEstadoModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboEstadoModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboEstadoModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnActualizarModificar.setBackground(new java.awt.Color(122, 122, 63));
         btnActualizarModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1157,7 +1156,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboAnioEntradaModificar.setBackground(new java.awt.Color(214, 198, 152));
         comboAnioEntradaModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboAnioEntradaModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAnioEntradaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAnioEntradaModificarActionPerformed(evt);
+            }
+        });
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
@@ -1165,11 +1168,14 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboMesEntradaModificar.setBackground(new java.awt.Color(214, 198, 152));
         comboMesEntradaModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboMesEntradaModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboMesEntradaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMesEntradaModificarActionPerformed(evt);
+            }
+        });
 
         comboDiaEntradaModificar.setBackground(new java.awt.Color(214, 198, 152));
         comboDiaEntradaModificar.setForeground(new java.awt.Color(0, 0, 0));
-        comboDiaEntradaModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Dia");
@@ -1749,15 +1755,15 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         Vehiculo vehiculo = new Vehiculo(
         
-            cajaNumVehiculoAgregar.getText().toString(),
-            cajaNumSerieAgregar.getText().toString(),
+            cajaNumVehiculoAgregar.getText().toString().toUpperCase(),
+            cajaNumSerieAgregar.getText().toString().toUpperCase(),
             Integer.parseInt(comboModeloAgregar.getSelectedItem().toString()),
             LocalDate.parse(fechaFabricacion),
             Double.parseDouble(spinnerPrecioAgregar.getValue().toString()),
             Integer.parseInt(spinnerKilometrajeAgregar.getValue().toString()),
             hoy,
             comboTipoAgregar.getSelectedItem().toString(),
-            comboEstadoAgregar.getSelectedItem().toString()
+            "Disponible"
          
         );
         
@@ -1778,11 +1784,24 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarAgregarActionPerformed
 
     private void btnRestaurarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarAgregarActionPerformed
-        // TODO add your handling code here:
+        
+        restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, spinnerPrecioAgregar, spinnerKilometrajeAgregar, comboTipoAgregar);
+                
     }//GEN-LAST:event_btnRestaurarAgregarActionPerformed
 
     private void btnCancelarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAgregarActionPerformed
-        // TODO add your handling code here:
+       
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de cancelar la agregación? Se perderan los cambios hechos");
+         
+        if(respuesta == JOptionPane.YES_OPTION){
+            
+            restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, spinnerPrecioAgregar, spinnerKilometrajeAgregar, comboTipoAgregar);
+            
+            internalAgregarAutos.setVisible(false);
+            
+        }
+        
+        
     }//GEN-LAST:event_btnCancelarAgregarActionPerformed
 
     private void btnAgregarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculosActionPerformed
@@ -1792,7 +1811,86 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarVehiculosActionPerformed
 
     private void btnActualizarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarModificarActionPerformed
-        // TODO add your handling code here:
+        
+        String mes, dia, mes2, dia2;
+        
+        if(String.valueOf(comboMesModificar.getSelectedIndex()+1).length() == 1){
+           
+            mes = "0"+String.valueOf(comboMesModificar.getSelectedIndex()+1);
+            
+        }else{
+            
+            mes = String.valueOf(comboMesModificar.getSelectedIndex()+1);
+            
+        }
+        
+        if(comboDiaModificar.getSelectedItem().toString().length() == 1){
+            
+            dia = "0" + comboDiaModificar.getSelectedItem().toString();
+            
+        }else{
+            
+            dia = comboDiaModificar.getSelectedItem().toString();
+            
+        }
+        
+        //============================================================================================================
+        
+        if(String.valueOf(comboMesEntradaModificar.getSelectedIndex()+1).length() == 1){
+           
+            mes2 = "0"+String.valueOf(comboMesEntradaModificar.getSelectedIndex()+1);
+            
+        }else{
+            
+            mes2 = String.valueOf(comboMesEntradaModificar.getSelectedIndex()+1);
+            
+        }
+        
+        if(comboDiaEntradaModificar.getSelectedItem().toString().length() == 1){
+            
+            dia2 = "0" + comboDiaEntradaModificar.getSelectedItem().toString();
+            
+        }else{
+            
+            dia2 = comboDiaEntradaModificar.getSelectedItem().toString();
+            
+        }
+        
+        
+        String fechaFabricacion = comboAnioModificar.getSelectedItem().toString() + "-" + mes + "-" + dia;
+        
+        String fechaEntrada = comboAnioEntradaModificar.getSelectedItem().toString() + "-" + mes2 + "-" +  dia2;
+        
+        Vehiculo vehiculo = new Vehiculo(
+        
+            tablaVehiculos.getValueAt(0, 0).toString(),    
+            cajaNumSerieModificar.getText().toString().toUpperCase(),
+            Integer.parseInt(comboModeloModificar.getSelectedItem().toString()),
+            LocalDate.parse(fechaFabricacion),
+            Double.parseDouble(spinnerPrecioModificar.getValue().toString()),
+            Integer.parseInt(spinnerKilometrajeModificar.getValue().toString()),
+            LocalDate.parse(fechaEntrada),
+            comboTipoModificar.getSelectedItem().toString(),
+            comboEstadoModificar.getSelectedItem().toString()
+         
+        );
+        
+        if(vehiculoDAO.editarVehiculo(vehiculo)){
+            
+            actualizarTabla(tablaVehiculos, "vehiculos");
+            
+            JOptionPane.showMessageDialog(this, "Se guardaron los cambios");
+            
+            btnModificarVehiculos.setEnabled(false);
+            btnEliminarVehiculos.setEnabled(false);
+            
+        }else{
+           
+            
+            con.mostrarError(this);
+            
+        }
+        
     }//GEN-LAST:event_btnActualizarModificarActionPerformed
 
     private void btnCancelarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarModificarActionPerformed
@@ -1887,11 +1985,53 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         internalModificarAutos.setVisible(true);
         
+        String sql = "SELECT * FROM vehiculos WHERE id_vehiculo = ?;";
+        
+        rs = con.ejecutarInstruccionSQL(sql, tablaVehiculos.getValueAt(0, 0).toString());
+        
+        try {
+            
+            rs.next();
+            
+            cajaNumSerieModificar.setText(rs.getString(2));
+            
+            comboModeloModificar.setSelectedItem(rs.getString(3));
+            
+            String fechaFabricacion = rs.getString(4);
+            
+            String[] fechaSeparada = fechaFabricacion.split("-");
+            
+            comboAnioModificar.setSelectedItem(fechaSeparada[0]);
+            
+            comboMesModificar.setSelectedIndex(Integer.parseInt(fechaSeparada[1])-1);
+            
+            comboDiaModificar.setSelectedIndex(Integer.parseInt(fechaSeparada[2])-1);
+            
+            spinnerPrecioModificar.setValue(Double.parseDouble(rs.getString(5)));
+            
+            spinnerKilometrajeModificar.setValue(Integer.parseInt(rs.getString(6)));
+           
+            
+            String fechaIngreso = rs.getString(7);
+            
+            String[] fechaEntradaSeparada = fechaIngreso.split("-");
+            
+            comboAnioEntradaModificar.setSelectedItem(fechaEntradaSeparada[0]);
+            
+            comboMesEntradaModificar.setSelectedIndex(Integer.parseInt(fechaEntradaSeparada[1])-1);
+            
+            comboDiaEntradaModificar.setSelectedIndex(Integer.parseInt(fechaEntradaSeparada[2])-1);
+            
+            comboTipoModificar.setSelectedItem(rs.getString(8));
+            
+            comboEstadoModificar.setSelectedItem(rs.getString(9));
+            
+        } catch (Exception e) {
+        }
+        
     }//GEN-LAST:event_btnModificarVehiculosActionPerformed
 
     private void btnEliminarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVehiculosActionPerformed
-        
-
         
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de eliminar el registro?");
          
@@ -1909,8 +2049,6 @@ public class VentanaInicio extends javax.swing.JFrame {
                 con.mostrarError(internalVehiculos);
                  
             }
-            
-            
              
         }
         
@@ -1955,6 +2093,29 @@ public class VentanaInicio extends javax.swing.JFrame {
         );   
 
     }//GEN-LAST:event_comboAnioBusqueda1ActionPerformed
+
+    private void comboAnioModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioModificarActionPerformed
+       
+        anioBisiesto(Integer.parseInt(comboAnioModificar.getSelectedItem().toString()), comboMesModificar.getSelectedIndex(), comboDiaModificar);
+        
+    }//GEN-LAST:event_comboAnioModificarActionPerformed
+
+    private void comboMesModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMesModificarActionPerformed
+        
+        anioBisiesto(Integer.parseInt(comboAnioModificar.getSelectedItem().toString()), comboMesModificar.getSelectedIndex(), comboDiaModificar);
+        
+    }//GEN-LAST:event_comboMesModificarActionPerformed
+
+    private void comboAnioEntradaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioEntradaModificarActionPerformed
+        
+        anioBisiesto(Integer.parseInt(comboAnioEntradaModificar.getSelectedItem().toString()), comboMesEntradaModificar.getSelectedIndex(), comboDiaEntradaModificar);
+        
+    }//GEN-LAST:event_comboAnioEntradaModificarActionPerformed
+
+    private void comboMesEntradaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMesEntradaModificarActionPerformed
+        
+        anioBisiesto(Integer.parseInt(comboAnioEntradaModificar.getSelectedItem().toString()), comboMesEntradaModificar.getSelectedIndex(), comboDiaEntradaModificar);
+    }//GEN-LAST:event_comboMesEntradaModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2011,7 +2172,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboDiaAgregar;
     private javax.swing.JComboBox<String> comboDiaEntradaModificar;
     private javax.swing.JComboBox<String> comboDiaModificar;
-    private javax.swing.JComboBox<String> comboEstadoAgregar;
     private javax.swing.JComboBox<String> comboEstadoBusqueda;
     private javax.swing.JComboBox<String> comboEstadoModificar;
     private javax.swing.JComboBox<String> comboMesAgregar;
@@ -2045,7 +2205,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
