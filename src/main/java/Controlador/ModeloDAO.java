@@ -44,6 +44,26 @@ public class ModeloDAO {
         
     }
     
-
+    public boolean actualizarModelo(Modelo modelo, int idModelo){
+        
+        String sql = "UPDATE modelos SET nombre_modelo = ?, año_modelo = ?, fabricante = ?, numero_cilindros = ?, numero_puertas = ?, peso_kg = ?, capacidad_pasajeros = ?, color_base = ?, pais_fabricacion = ? WHERE id_modelo = ?;";
+        
+        return con.ejecutarInstruccionLMD(sql, 
+                
+                modelo.getNombreModelo(),
+                modelo.getAnioModelo(),
+                modelo.getFabricante(),
+                modelo.getNumeroCilindros(),
+                modelo.getNumeroPuertas(),
+                modelo.getPeso(),
+                modelo.getCatidadPasajeros(),
+                modelo.getColor(),
+                modelo.getPaisFabricacion(),
+                idModelo
+        
+        );
+        
+        
+    }
     
 }
