@@ -36,4 +36,14 @@ public class ModeloDAO {
         
     }
     
+    public boolean eliminarModelo(int idModelo){
+        
+        String sql = "DELETE FROM modelos WHERE id_modelo = ?";
+        
+        return con.ejecutarInstruccionLMD(sql, idModelo);
+        
+    }
+    
+
+    
 }
