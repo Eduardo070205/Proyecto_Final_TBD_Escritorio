@@ -25,7 +25,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     
     VehiculoDAO vehiculoDAO = new VehiculoDAO();
     
-    ModeloDAO modelosDAO = new ModeloDAO();
+    ModeloDAO modeloDAO = new ModeloDAO();
     
     ConexionBD con = ConexionBD.getInstancia();
     
@@ -2834,7 +2834,29 @@ public class VentanaInicio extends javax.swing.JFrame {
     
     
     private void btnEliminarModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarModelosActionPerformed
-        // TODO add your handling code here:
+        
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de eliminar el registro?");
+         
+        if(respuesta == JOptionPane.YES_OPTION){
+             
+            if(modeloDAO.eliminarModelo(Integer.parseInt(tablaModelos.getValueAt(0, 0).toString()))){
+                 
+               actualizarTabla(tablaModelos, "modelos");
+                 
+               JOptionPane.showMessageDialog(this, "Registro eliminado con exito");
+               
+               btnEliminarModelos.setEnabled(false);
+               
+               btnActualizarModelos.setEnabled(false);
+                
+            }else{
+                 
+                con.mostrarError(this);
+                 
+            }
+             
+        }
+        
     }//GEN-LAST:event_btnEliminarModelosActionPerformed
 
     private void btnAgregarModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarModelosActionPerformed
@@ -3124,7 +3146,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                
         );
         
-        if(modelosDAO.agregarModelo(modelo)){
+        if(modeloDAO.agregarModelo(modelo)){
             
             actualizarTabla(tablaModelos, "modelos");
             
