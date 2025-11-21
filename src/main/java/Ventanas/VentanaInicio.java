@@ -61,6 +61,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         for(int i = 2025; i > 1900; i--){
             
             comboAnioBusqueda1.addItem(Integer.toString(i));
+            comboAnioModeloBuscar.addItem(Integer.toString(i));
             
         }
         
@@ -91,8 +92,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboEstadoModificar.addItem("Disponible");
         comboEstadoModificar.addItem("Vendido");
         
-        desabilitarComponenetes(radioTodosModelos, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes(radioTodosModelos, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
         
       
@@ -107,7 +108,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             
             comboModeloModificar.addItem(tablaModelos.getValueAt(i, 0).toString());
             
-            comboModeloBuscar.addItem(tablaModelos.getValueAt(i, 0).toString());
+     
             
         }
         
@@ -115,6 +116,14 @@ public class VentanaInicio extends javax.swing.JFrame {
         // ================================ Modelos ======================================
         
         
+        for(int i = 2; i <= 12; i = i+2){
+            
+            
+            comboNumeroCilindrosBuscar.addItem(Integer.toString(i));
+            
+        }
+        
+       
         
         
         
@@ -188,24 +197,24 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnActualizarModelos = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         radioNumeroCilindros = new javax.swing.JRadioButton();
-        comboModeloBuscar = new javax.swing.JComboBox<>();
         radioidModeloBusqueda = new javax.swing.JRadioButton();
         cajaNombreModeloBusqueda = new javax.swing.JTextField();
         radioNombreModelo = new javax.swing.JRadioButton();
         comboAnioModeloBuscar = new javax.swing.JComboBox<>();
         radioAnioModeloBuscar = new javax.swing.JRadioButton();
-        comboFabricanteModeloBuscar = new javax.swing.JComboBox<>();
         radioFabricanteModelo = new javax.swing.JRadioButton();
         comboNumeroCilindrosBuscar = new javax.swing.JComboBox<>();
         radioPais = new javax.swing.JRadioButton();
-        comboNumeroPuertasBuscar = new javax.swing.JComboBox<>();
         radioNumeroPuertas = new javax.swing.JRadioButton();
-        spinnerPesoBuscar = new javax.swing.JSpinner();
         radioPeso = new javax.swing.JRadioButton();
-        spinnerPasajerosBuscar = new javax.swing.JSpinner();
         radioPasajeros = new javax.swing.JRadioButton();
-        comboPaisBuscar = new javax.swing.JComboBox<>();
         radioTodosModelos = new javax.swing.JRadioButton();
+        cajaFabricanteModeloBusqueda = new javax.swing.JTextField();
+        cajaPaisModeloBusqueda = new javax.swing.JTextField();
+        cajaIDModeloBusqueda = new javax.swing.JTextField();
+        cajaModeloPesoBusqueda = new javax.swing.JTextField();
+        cajaModeloPasajerosBusqueda = new javax.swing.JTextField();
+        cajaModeloPuertasBusqueda = new javax.swing.JTextField();
         internalVentas = new javax.swing.JInternalFrame();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -866,12 +875,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel3.add(radioNumeroCilindros);
         radioNumeroCilindros.setBounds(590, 70, 130, 20);
 
-        comboModeloBuscar.setBackground(new java.awt.Color(214, 198, 152));
-        comboModeloBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        comboModeloBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(comboModeloBuscar);
-        comboModeloBuscar.setBounds(30, 100, 90, 26);
-
         groupBusquedaModelos.add(radioidModeloBusqueda);
         radioidModeloBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         radioidModeloBusqueda.setForeground(new java.awt.Color(0, 0, 0));
@@ -886,6 +889,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         cajaNombreModeloBusqueda.setBackground(new java.awt.Color(255, 255, 255));
         cajaNombreModeloBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaNombreModeloBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaNombreModeloBusquedaKeyReleased(evt);
+            }
+        });
         jPanel3.add(cajaNombreModeloBusqueda);
         cajaNombreModeloBusqueda.setBounds(160, 100, 120, 18);
 
@@ -904,6 +912,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboAnioModeloBuscar.setBackground(new java.awt.Color(214, 198, 152));
         comboAnioModeloBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         comboAnioModeloBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboAnioModeloBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAnioModeloBuscarActionPerformed(evt);
+            }
+        });
         jPanel3.add(comboAnioModeloBuscar);
         comboAnioModeloBuscar.setBounds(310, 100, 90, 26);
 
@@ -918,12 +931,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jPanel3.add(radioAnioModeloBuscar);
         radioAnioModeloBuscar.setBounds(310, 70, 100, 21);
-
-        comboFabricanteModeloBuscar.setBackground(new java.awt.Color(214, 198, 152));
-        comboFabricanteModeloBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        comboFabricanteModeloBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(comboFabricanteModeloBuscar);
-        comboFabricanteModeloBuscar.setBounds(440, 100, 130, 26);
 
         groupBusquedaModelos.add(radioFabricanteModelo);
         radioFabricanteModelo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -940,6 +947,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboNumeroCilindrosBuscar.setBackground(new java.awt.Color(214, 198, 152));
         comboNumeroCilindrosBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         comboNumeroCilindrosBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboNumeroCilindrosBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNumeroCilindrosBuscarActionPerformed(evt);
+            }
+        });
         jPanel3.add(comboNumeroCilindrosBuscar);
         comboNumeroCilindrosBuscar.setBounds(590, 100, 130, 26);
 
@@ -955,12 +967,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel3.add(radioPais);
         radioPais.setBounds(450, 150, 111, 20);
 
-        comboNumeroPuertasBuscar.setBackground(new java.awt.Color(214, 198, 152));
-        comboNumeroPuertasBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        comboNumeroPuertasBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(comboNumeroPuertasBuscar);
-        comboNumeroPuertasBuscar.setBounds(20, 180, 130, 26);
-
         groupBusquedaModelos.add(radioNumeroPuertas);
         radioNumeroPuertas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         radioNumeroPuertas.setForeground(new java.awt.Color(0, 0, 0));
@@ -972,8 +978,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jPanel3.add(radioNumeroPuertas);
         radioNumeroPuertas.setBounds(20, 150, 130, 20);
-        jPanel3.add(spinnerPesoBuscar);
-        spinnerPesoBuscar.setBounds(170, 180, 110, 26);
 
         groupBusquedaModelos.add(radioPeso);
         radioPeso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -986,8 +990,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jPanel3.add(radioPeso);
         radioPeso.setBounds(170, 150, 130, 20);
-        jPanel3.add(spinnerPasajerosBuscar);
-        spinnerPasajerosBuscar.setBounds(300, 180, 130, 26);
 
         groupBusquedaModelos.add(radioPasajeros);
         radioPasajeros.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1001,12 +1003,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel3.add(radioPasajeros);
         radioPasajeros.setBounds(300, 150, 140, 20);
 
-        comboPaisBuscar.setBackground(new java.awt.Color(214, 198, 152));
-        comboPaisBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        comboPaisBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(comboPaisBuscar);
-        comboPaisBuscar.setBounds(450, 180, 130, 26);
-
         groupBusquedaModelos.add(radioTodosModelos);
         radioTodosModelos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         radioTodosModelos.setForeground(new java.awt.Color(0, 0, 0));
@@ -1019,6 +1015,96 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jPanel3.add(radioTodosModelos);
         radioTodosModelos.setBounds(570, 150, 180, 20);
+
+        cajaFabricanteModeloBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        cajaFabricanteModeloBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaFabricanteModeloBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaFabricanteModeloBusquedaActionPerformed(evt);
+            }
+        });
+        cajaFabricanteModeloBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaFabricanteModeloBusquedaKeyReleased(evt);
+            }
+        });
+        jPanel3.add(cajaFabricanteModeloBusqueda);
+        cajaFabricanteModeloBusqueda.setBounds(440, 100, 120, 18);
+
+        cajaPaisModeloBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        cajaPaisModeloBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaPaisModeloBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaPaisModeloBusquedaActionPerformed(evt);
+            }
+        });
+        cajaPaisModeloBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaPaisModeloBusquedaKeyReleased(evt);
+            }
+        });
+        jPanel3.add(cajaPaisModeloBusqueda);
+        cajaPaisModeloBusqueda.setBounds(450, 180, 120, 18);
+
+        cajaIDModeloBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        cajaIDModeloBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaIDModeloBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaIDModeloBusquedaActionPerformed(evt);
+            }
+        });
+        cajaIDModeloBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaIDModeloBusquedaKeyReleased(evt);
+            }
+        });
+        jPanel3.add(cajaIDModeloBusqueda);
+        cajaIDModeloBusqueda.setBounds(30, 100, 120, 18);
+
+        cajaModeloPesoBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModeloPesoBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModeloPesoBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaModeloPesoBusquedaActionPerformed(evt);
+            }
+        });
+        cajaModeloPesoBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModeloPesoBusquedaKeyReleased(evt);
+            }
+        });
+        jPanel3.add(cajaModeloPesoBusqueda);
+        cajaModeloPesoBusqueda.setBounds(160, 180, 120, 18);
+
+        cajaModeloPasajerosBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModeloPasajerosBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModeloPasajerosBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaModeloPasajerosBusquedaActionPerformed(evt);
+            }
+        });
+        cajaModeloPasajerosBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModeloPasajerosBusquedaKeyReleased(evt);
+            }
+        });
+        jPanel3.add(cajaModeloPasajerosBusqueda);
+        cajaModeloPasajerosBusqueda.setBounds(310, 180, 120, 18);
+
+        cajaModeloPuertasBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModeloPuertasBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModeloPuertasBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaModeloPuertasBusquedaActionPerformed(evt);
+            }
+        });
+        cajaModeloPuertasBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModeloPuertasBusquedaKeyReleased(evt);
+            }
+        });
+        jPanel3.add(cajaModeloPuertasBusqueda);
+        cajaModeloPuertasBusqueda.setBounds(20, 180, 120, 18);
 
         internalModelos.getContentPane().add(jPanel3);
         jPanel3.setBounds(0, 0, 760, 580);
@@ -1642,6 +1728,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalModificarAutos);
         internalModificarAutos.setBounds(140, 20, 490, 580);
 
+        internalAgregarModelos.setClosable(true);
         internalAgregarModelos.setTitle("Agregar Modelos");
         internalAgregarModelos.setVisible(false);
         internalAgregarModelos.getContentPane().setLayout(null);
@@ -1791,6 +1878,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalAgregarModelos);
         internalAgregarModelos.setBounds(150, 30, 440, 540);
 
+        internalCambiosModelos.setClosable(true);
         internalCambiosModelos.setTitle("Actualizar Modelos");
         internalCambiosModelos.setVisible(false);
         internalCambiosModelos.getContentPane().setLayout(null);
@@ -2201,6 +2289,8 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosActionPerformed
         
+        actualizarTabla(tablaModelos, "modelos");
+        
         cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
         btnVehiculos.setBackground(new java.awt.Color(214,198,152));
@@ -2210,6 +2300,10 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosActionPerformed
+
+        actualizarTabla(tablaModelos, "modelos");
+          
+            
         
         cambiarColorBoton(btnCerrarSesion, btnHome, btnVehiculos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
@@ -2745,68 +2839,264 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void radioNumeroCilindrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumeroCilindrosActionPerformed
 
-        desabilitarComponenetes(comboNumeroCilindrosBuscar, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar,
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes(comboNumeroCilindrosBuscar, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda,
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioNumeroCilindrosActionPerformed
 
     private void radioNombreModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNombreModeloActionPerformed
         
-        desabilitarComponenetes( cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes( cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioNombreModeloActionPerformed
 
     private void radioAnioModeloBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAnioModeloBuscarActionPerformed
-        desabilitarComponenetes(comboAnioModeloBuscar, cajaNombreModeloBusqueda, comboModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes(comboAnioModeloBuscar, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioAnioModeloBuscarActionPerformed
 
     private void radioFabricanteModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFabricanteModeloActionPerformed
 
-        desabilitarComponenetes(comboFabricanteModeloBuscar, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar , comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes(cajaFabricanteModeloBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar , comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
         // TODO add your handling code here:
     }//GEN-LAST:event_radioFabricanteModeloActionPerformed
 
     private void radioPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPaisActionPerformed
-        desabilitarComponenetes(comboPaisBuscar, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar );
+        desabilitarComponenetes(cajaPaisModeloBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda );
         
     }//GEN-LAST:event_radioPaisActionPerformed
 
     private void radioNumeroPuertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumeroPuertasActionPerformed
-        desabilitarComponenetes(comboNumeroPuertasBuscar, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes(cajaModeloPuertasBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioNumeroPuertasActionPerformed
 
     private void radioPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPesoActionPerformed
-        desabilitarComponenetes(spinnerPesoBuscar, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes(cajaModeloPesoBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioPesoActionPerformed
 
     private void radioPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPasajerosActionPerformed
-        desabilitarComponenetes(spinnerPasajerosBuscar, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, comboPaisBuscar);
+        desabilitarComponenetes(cajaModeloPasajerosBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioPasajerosActionPerformed
 
     private void radioTodosModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTodosModelosActionPerformed
-        desabilitarComponenetes(radioTodosModelos, cajaNombreModeloBusqueda, comboModeloBuscar, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+
+        actualizarTabla(tablaModelos, "modelos");
+
+        desabilitarComponenetes(radioTodosModelos, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+               cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioTodosModelosActionPerformed
 
     private void radioidModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioidModeloBusquedaActionPerformed
        
-        desabilitarComponenetes(comboModeloBuscar, cajaNombreModeloBusqueda, comboAnioModeloBuscar, comboFabricanteModeloBuscar, comboNumeroCilindrosBuscar, 
-                comboNumeroPuertasBuscar, spinnerPesoBuscar, spinnerPasajerosBuscar, comboPaisBuscar);
+        desabilitarComponenetes(cajaIDModeloBusqueda, cajaNombreModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
     }//GEN-LAST:event_radioidModeloBusquedaActionPerformed
+
+    private void cajaFabricanteModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaFabricanteModeloBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaFabricanteModeloBusquedaActionPerformed
+
+    private void cajaPaisModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaPaisModeloBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaPaisModeloBusquedaActionPerformed
+
+    private void cajaIDModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaIDModeloBusquedaActionPerformed
+        
+   
+        
+    }//GEN-LAST:event_cajaIDModeloBusquedaActionPerformed
+
+    private void cajaIDModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaIDModeloBusquedaKeyReleased
+        
+        if(cajaIDModeloBusqueda.getText().length() == 0){
+            
+            actualizarTabla(tablaModelos, "modelos");
+            
+            //JOptionPane.showMessageDialog(this, "Hola");
+            
+        }else{
+            
+            actualizarTablaConFiltro(
+                tablaModelos,
+                "modelos",
+                "id_modelo",
+                cajaIDModeloBusqueda.getText(),
+                'N'
+            );          
+            
+        }
+        
+        if(radioidModeloBusqueda.isSelected() && tablaModelos.getRowCount() == 1){
+            
+            btnActualizarModelos.setEnabled(true);
+            
+            btnEliminarModelos.setEnabled(true);
+            
+        }else{
+            
+            btnActualizarModelos.setEnabled(false);
+            
+            btnEliminarModelos.setEnabled(false);
+            
+        }
+
+    }//GEN-LAST:event_cajaIDModeloBusquedaKeyReleased
+
+    private void cajaNombreModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreModeloBusquedaKeyReleased
+        
+        actualizarTablaConFiltro(
+            tablaModelos,
+            "modelos",
+            "nombre_modelo",
+            cajaNombreModeloBusqueda.getText().toUpperCase(),
+            'T'
+        );          
+                    
+        
+    }//GEN-LAST:event_cajaNombreModeloBusquedaKeyReleased
+
+    private void comboAnioModeloBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioModeloBuscarActionPerformed
+      
+        actualizarTablaConFiltro(
+            tablaModelos,
+            "modelos",
+            "año_modelo",
+            comboAnioModeloBuscar.getSelectedItem().toString(),
+            'N'
+        ); 
+        
+    }//GEN-LAST:event_comboAnioModeloBuscarActionPerformed
+
+    private void cajaFabricanteModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaFabricanteModeloBusquedaKeyReleased
+        
+        actualizarTablaConFiltro(
+            tablaModelos,
+            "modelos",
+            "fabricante",
+            cajaFabricanteModeloBusqueda.getText().toLowerCase(),
+            'T'
+        );       
+        
+    }//GEN-LAST:event_cajaFabricanteModeloBusquedaKeyReleased
+
+    private void comboNumeroCilindrosBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNumeroCilindrosBuscarActionPerformed
+        
+        actualizarTablaConFiltro(
+            tablaModelos,
+            "modelos",
+            "numero_cilindros",
+            comboNumeroCilindrosBuscar.getSelectedItem().toString(),
+            'N'
+        ); 
+        
+    }//GEN-LAST:event_comboNumeroCilindrosBuscarActionPerformed
+
+    private void cajaModeloPesoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaModeloPesoBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaModeloPesoBusquedaActionPerformed
+
+    private void cajaModeloPasajerosBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaModeloPasajerosBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaModeloPasajerosBusquedaActionPerformed
+
+    private void cajaModeloPuertasBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaModeloPuertasBusquedaActionPerformed
+        
+    }//GEN-LAST:event_cajaModeloPuertasBusquedaActionPerformed
+
+    private void cajaModeloPuertasBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModeloPuertasBusquedaKeyReleased
+        if(cajaModeloPuertasBusqueda.getText().length() == 0){
+             
+            actualizarTabla(tablaModelos, "modelos");
+             
+         }else{
+             
+            actualizarTablaConFiltro(
+                tablaModelos,
+                "modelos",
+                "numero_puertas",
+                cajaModeloPuertasBusqueda.getText().toString(),
+                'N'
+            ); 
+             
+        }
+        
+        
+        
+    }//GEN-LAST:event_cajaModeloPuertasBusquedaKeyReleased
+
+    private void cajaModeloPesoBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModeloPesoBusquedaKeyReleased
+        
+        if(cajaModeloPesoBusqueda.getText().length() == 0){
+             
+            actualizarTabla(tablaModelos, "modelos");
+             
+         }else{
+             
+            actualizarTablaConFiltro(
+                tablaModelos,
+                "modelos",
+                "peso_kg",
+                cajaModeloPesoBusqueda.getText().toString(),
+                'N'
+            ); 
+             
+        }
+        
+    }//GEN-LAST:event_cajaModeloPesoBusquedaKeyReleased
+
+    private void cajaModeloPasajerosBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModeloPasajerosBusquedaKeyReleased
+        
+        if(cajaModeloPasajerosBusqueda.getText().length() == 0){
+             
+            actualizarTabla(tablaModelos, "modelos");
+             
+         }else{
+             
+            actualizarTablaConFiltro(
+                tablaModelos,
+                "modelos",
+                "capacidad_pasajeros",
+                cajaModeloPasajerosBusqueda.getText().toString(),
+                'N'
+            ); 
+             
+        }
+        
+    }//GEN-LAST:event_cajaModeloPasajerosBusquedaKeyReleased
+
+    private void cajaPaisModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaPaisModeloBusquedaKeyReleased
+        
+        
+        if(cajaPaisModeloBusqueda.getText().length() == 0){
+             
+            actualizarTabla(tablaModelos, "modelos");
+             
+         }else{
+             
+            actualizarTablaConFiltro(
+                tablaModelos,
+                "modelos",
+                "pais_fabricacion",
+                cajaPaisModeloBusqueda.getText().toString(),
+                'T'
+            ); 
+             
+        }
+        
+    }//GEN-LAST:event_cajaPaisModeloBusquedaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -2859,6 +3149,11 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnRestaurarAgregar;
     private javax.swing.JButton btnVehiculos;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JTextField cajaFabricanteModeloBusqueda;
+    private javax.swing.JTextField cajaIDModeloBusqueda;
+    private javax.swing.JTextField cajaModeloPasajerosBusqueda;
+    private javax.swing.JTextField cajaModeloPesoBusqueda;
+    private javax.swing.JTextField cajaModeloPuertasBusqueda;
     private javax.swing.JTextField cajaModelosColorActualizar;
     private javax.swing.JTextField cajaModelosColorAgregar;
     private javax.swing.JTextField cajaModelosFabricanteActualizar;
@@ -2873,6 +3168,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField cajaNumSerieModificar;
     private javax.swing.JTextField cajaNumVehiculoAgregar;
     private javax.swing.JTextField cajaNumVehiculoBuscar;
+    private javax.swing.JTextField cajaPaisModeloBusqueda;
     private javax.swing.JComboBox<String> comboAnioAgregar;
     private javax.swing.JComboBox<String> comboAnioBusqueda1;
     private javax.swing.JComboBox<String> comboAnioEntradaModificar;
@@ -2883,12 +3179,10 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboDiaModificar;
     private javax.swing.JComboBox<String> comboEstadoBusqueda;
     private javax.swing.JComboBox<String> comboEstadoModificar;
-    private javax.swing.JComboBox<String> comboFabricanteModeloBuscar;
     private javax.swing.JComboBox<String> comboMesAgregar;
     private javax.swing.JComboBox<String> comboMesEntradaModificar;
     private javax.swing.JComboBox<String> comboMesModificar;
     private javax.swing.JComboBox<String> comboModeloAgregar;
-    private javax.swing.JComboBox<String> comboModeloBuscar;
     private javax.swing.JComboBox<String> comboModeloBusqueda;
     private javax.swing.JComboBox<String> comboModeloModificar;
     private javax.swing.JComboBox<String> comboModelosAnioActualizar;
@@ -2896,8 +3190,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboModelosCilindrosActualizar;
     private javax.swing.JComboBox<String> comboModelosCilindrosAgregar;
     private javax.swing.JComboBox<String> comboNumeroCilindrosBuscar;
-    private javax.swing.JComboBox<String> comboNumeroPuertasBuscar;
-    private javax.swing.JComboBox<String> comboPaisBuscar;
     private javax.swing.JComboBox<String> comboPrecioBusqueda1;
     private javax.swing.JComboBox<String> comboTipoAgregar;
     private javax.swing.JComboBox<String> comboTipoBusqueda;
@@ -3019,8 +3311,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JSpinner spinnerModelosPesoAgregar;
     private javax.swing.JSpinner spinnerModelosPuertasActualizar;
     private javax.swing.JSpinner spinnerModelosPuertasAgregar;
-    private javax.swing.JSpinner spinnerPasajerosBuscar;
-    private javax.swing.JSpinner spinnerPesoBuscar;
     private javax.swing.JSpinner spinnerPrecioAgregar;
     private javax.swing.JSpinner spinnerPrecioModificar;
     private javax.swing.JTable tablaModelos;
