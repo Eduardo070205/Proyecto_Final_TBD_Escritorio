@@ -6,7 +6,9 @@ package Ventanas;
 
 import Modelo.Vehiculo;
 import Conexion.ConexionBD;
+import Controlador.ModeloDAO;
 import Controlador.VehiculoDAO;
+import Modelo.Modelo;
 import Modelo.ResultSetTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +24,8 @@ public class VentanaInicio extends javax.swing.JFrame {
    
     
     VehiculoDAO vehiculoDAO = new VehiculoDAO();
+    
+    ModeloDAO modelosDAO = new ModeloDAO();
     
     ConexionBD con = ConexionBD.getInstancia();
     
@@ -62,6 +66,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             
             comboAnioBusqueda1.addItem(Integer.toString(i));
             comboAnioModeloBuscar.addItem(Integer.toString(i));
+            comboModelosAnioAgregar.addItem(Integer.toString(i));
             
         }
         
@@ -118,8 +123,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         for(int i = 2; i <= 12; i = i+2){
             
-            
             comboNumeroCilindrosBuscar.addItem(Integer.toString(i));
+            comboModelosCilindrosAgregar.addItem(Integer.toString(i));
             
         }
         
@@ -1861,6 +1866,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnModelosAgregarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnModelosAgregarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
         btnModelosAgregarAgregar.setText("Agregar");
+        btnModelosAgregarAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModelosAgregarAgregarActionPerformed(evt);
+            }
+        });
         jPanel12.add(btnModelosAgregarAgregar);
         btnModelosAgregarAgregar.setBounds(10, 400, 120, 40);
 
@@ -3097,6 +3107,40 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cajaPaisModeloBusquedaKeyReleased
+
+    private void btnModelosAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosAgregarAgregarActionPerformed
+        
+        Modelo modelo = new Modelo(
+        
+                cajaModelosNombreAgregar.getText().toUpperCase(),
+                Short.parseShort(comboModelosAnioAgregar.getSelectedItem().toString()),
+                cajaModelosFabricanteAgregar.getText().toUpperCase(),
+                Byte.parseByte(comboModelosCilindrosAgregar.getSelectedItem().toString()),
+                Byte.parseByte(spinnerModelosPuertasAgregar.getValue().toString()),
+                Double.parseDouble(spinnerModelosPesoAgregar.getValue().toString()),
+                Byte.parseByte(spinnerModelosPasajerosAgregar.getValue().toString()),
+                cajaModelosColorAgregar.getText().toUpperCase(),
+                cajaModelosPaisAgregar.getText().toUpperCase()
+               
+        );
+        
+        if(modelosDAO.agregarModelo(modelo)){
+            
+            actualizarTabla(tablaModelos, "modelos");
+            
+            JOptionPane.showMessageDialog(this, "El modelo se agrego correctamente");
+            
+        }else{
+            
+            con.mostrarError(this);
+            
+        }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnModelosAgregarAgregarActionPerformed
 
     /**
      * @param args the command line arguments
