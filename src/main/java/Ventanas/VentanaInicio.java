@@ -67,6 +67,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             comboAnioBusqueda1.addItem(Integer.toString(i));
             comboAnioModeloBuscar.addItem(Integer.toString(i));
             comboModelosAnioAgregar.addItem(Integer.toString(i));
+            comboModelosAnioActualizar.addItem(Integer.toString(i));
             
         }
         
@@ -125,6 +126,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             
             comboNumeroCilindrosBuscar.addItem(Integer.toString(i));
             comboModelosCilindrosAgregar.addItem(Integer.toString(i));
+            comboModelosCilindrosActualizar.addItem(Integer.toString(i));
             
         }
         
@@ -245,14 +247,14 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboMesAgregar = new javax.swing.JComboBox<>();
         comboDiaAgregar = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        spinnerPrecioAgregar = new javax.swing.JSpinner();
         jLabel18 = new javax.swing.JLabel();
-        spinnerKilometrajeAgregar = new javax.swing.JSpinner();
         jLabel19 = new javax.swing.JLabel();
         comboTipoAgregar = new javax.swing.JComboBox<>();
         btnAgregarAgregar = new javax.swing.JButton();
         btnRestaurarAgregar = new javax.swing.JButton();
         btnCancelarAgregar = new javax.swing.JButton();
+        cajaPrecioAgregar = new javax.swing.JTextField();
+        cajaKilometrajeAgregar = new javax.swing.JTextField();
         internalModificarAutos = new javax.swing.JInternalFrame();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -270,9 +272,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboMesModificar = new javax.swing.JComboBox<>();
         comboDiaModificar = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
-        spinnerPrecioModificar = new javax.swing.JSpinner();
         jLabel31 = new javax.swing.JLabel();
-        spinnerKilometrajeModificar = new javax.swing.JSpinner();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         comboTipoModificar = new javax.swing.JComboBox<>();
@@ -286,6 +286,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
+        cajaPrecioModificar = new javax.swing.JTextField();
+        cajaKilometrajeModificar = new javax.swing.JTextField();
         internalAgregarModelos = new javax.swing.JInternalFrame();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
@@ -307,12 +309,12 @@ public class VentanaInicio extends javax.swing.JFrame {
         cajaModelosColorAgregar = new javax.swing.JTextField();
         comboModelosCilindrosAgregar = new javax.swing.JComboBox<>();
         comboModelosAnioAgregar = new javax.swing.JComboBox<>();
-        spinnerModelosPasajerosAgregar = new javax.swing.JSpinner();
-        spinnerModelosPuertasAgregar = new javax.swing.JSpinner();
-        spinnerModelosPesoAgregar = new javax.swing.JSpinner();
         btnModelosCancelarAgregar = new javax.swing.JButton();
         btnModelosAgregarAgregar = new javax.swing.JButton();
         btnModelosRestaurarAgregar = new javax.swing.JButton();
+        cajaModelosPasajerosAgregar = new javax.swing.JTextField();
+        cajaModelosPuertasAgregar = new javax.swing.JTextField();
+        cajaModelosPesoAgregar = new javax.swing.JTextField();
         internalCambiosModelos = new javax.swing.JInternalFrame();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
@@ -334,11 +336,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         cajaModelosColorActualizar = new javax.swing.JTextField();
         comboModelosCilindrosActualizar = new javax.swing.JComboBox<>();
         comboModelosAnioActualizar = new javax.swing.JComboBox<>();
-        spinnerModelosPasajerosActualizar = new javax.swing.JSpinner();
-        spinnerModelosPuertasActualizar = new javax.swing.JSpinner();
-        spinnerModelosPesoActualizar = new javax.swing.JSpinner();
         btnModelosCancelarActualizar = new javax.swing.JButton();
         btnModelosActualizarActualizar = new javax.swing.JButton();
+        cajaModelosPasajerosActualizar = new javax.swing.JTextField();
+        cajaModelosPuertasActualizar = new javax.swing.JTextField();
+        cajaModelosPesoActualizar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autos Amistosos");
@@ -1302,6 +1304,16 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
+        cajaPrecioAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaPrecioAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cajaPrecioAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaPrecioAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        cajaKilometrajeAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaKilometrajeAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cajaKilometrajeAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaKilometrajeAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1339,27 +1351,24 @@ public class VentanaInicio extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)))
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(spinnerPrecioAgregar))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboTipoAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(spinnerKilometrajeAgregar)))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboAnioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboMesAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboDiaAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRestaurarAgregar)
                                 .addGap(35, 35, 35)
                                 .addComponent(btnCancelarAgregar)
-                                .addGap(15, 15, 15)))))
+                                .addGap(15, 15, 15))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(comboAnioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboMesAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(comboDiaAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(cajaPrecioAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                                    .addComponent(comboTipoAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cajaKilometrajeAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -1392,16 +1401,16 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(spinnerPrecioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaPrecioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(spinnerKilometrajeAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaKilometrajeAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(comboTipoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1590,6 +1599,16 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("Año");
 
+        cajaPrecioModificar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaPrecioModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cajaPrecioModificar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaPrecioModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        cajaKilometrajeModificar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaKilometrajeModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cajaKilometrajeModificar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaKilometrajeModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1626,34 +1645,28 @@ public class VentanaInicio extends javax.swing.JFrame {
                                     .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboTipoModificar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboEstadoModificar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cajaPrecioModificar)
                                     .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(spinnerPrecioModificar))
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(spinnerKilometrajeModificar))
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(comboAnioModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboMesModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(comboDiaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                                .addComponent(comboAnioModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(comboMesModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(comboDiaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel9Layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
                                                 .addComponent(comboAnioEntradaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(comboMesEntradaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(comboDiaEntradaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(comboTipoModificar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(comboEstadoModificar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                                .addComponent(comboDiaEntradaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(cajaKilometrajeModificar, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
                                 .addComponent(btnActualizarModificar)
@@ -1696,12 +1709,12 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(spinnerPrecioModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaPrecioModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(spinnerKilometrajeModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                    .addComponent(cajaKilometrajeModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
                     .addComponent(jLabel35)
@@ -1734,6 +1747,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalModificarAutos.setBounds(140, 20, 490, 580);
 
         internalAgregarModelos.setClosable(true);
+        internalAgregarModelos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalAgregarModelos.setTitle("Agregar Modelos");
         internalAgregarModelos.setVisible(false);
         internalAgregarModelos.getContentPane().setLayout(null);
@@ -1846,12 +1860,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboModelosAnioAgregar.setForeground(new java.awt.Color(0, 0, 0));
         jPanel12.add(comboModelosAnioAgregar);
         comboModelosAnioAgregar.setBounds(160, 110, 250, 26);
-        jPanel12.add(spinnerModelosPasajerosAgregar);
-        spinnerModelosPasajerosAgregar.setBounds(160, 260, 250, 26);
-        jPanel12.add(spinnerModelosPuertasAgregar);
-        spinnerModelosPuertasAgregar.setBounds(160, 200, 250, 26);
-        jPanel12.add(spinnerModelosPesoAgregar);
-        spinnerModelosPesoAgregar.setBounds(160, 230, 250, 26);
 
         btnModelosCancelarAgregar.setBackground(new java.awt.Color(122, 122, 63));
         btnModelosCancelarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1882,6 +1890,24 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel12.add(btnModelosRestaurarAgregar);
         btnModelosRestaurarAgregar.setBounds(150, 400, 120, 40);
 
+        cajaModelosPasajerosAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModelosPasajerosAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaModelosPasajerosAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel12.add(cajaModelosPasajerosAgregar);
+        cajaModelosPasajerosAgregar.setBounds(160, 260, 250, 20);
+
+        cajaModelosPuertasAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModelosPuertasAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaModelosPuertasAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel12.add(cajaModelosPuertasAgregar);
+        cajaModelosPuertasAgregar.setBounds(160, 200, 250, 20);
+
+        cajaModelosPesoAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModelosPesoAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaModelosPesoAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel12.add(cajaModelosPesoAgregar);
+        cajaModelosPesoAgregar.setBounds(160, 230, 250, 20);
+
         internalAgregarModelos.getContentPane().add(jPanel12);
         jPanel12.setBounds(0, 0, 430, 510);
 
@@ -1889,6 +1915,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalAgregarModelos.setBounds(150, 30, 440, 540);
 
         internalCambiosModelos.setClosable(true);
+        internalCambiosModelos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalCambiosModelos.setTitle("Actualizar Modelos");
         internalCambiosModelos.setVisible(false);
         internalCambiosModelos.getContentPane().setLayout(null);
@@ -2001,12 +2028,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboModelosAnioActualizar.setForeground(new java.awt.Color(0, 0, 0));
         jPanel14.add(comboModelosAnioActualizar);
         comboModelosAnioActualizar.setBounds(160, 110, 250, 26);
-        jPanel14.add(spinnerModelosPasajerosActualizar);
-        spinnerModelosPasajerosActualizar.setBounds(160, 260, 250, 26);
-        jPanel14.add(spinnerModelosPuertasActualizar);
-        spinnerModelosPuertasActualizar.setBounds(160, 200, 250, 26);
-        jPanel14.add(spinnerModelosPesoActualizar);
-        spinnerModelosPesoActualizar.setBounds(160, 230, 250, 26);
 
         btnModelosCancelarActualizar.setBackground(new java.awt.Color(122, 122, 63));
         btnModelosCancelarActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -2021,8 +2042,31 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnModelosActualizarActualizar.setForeground(new java.awt.Color(0, 0, 0));
         btnModelosActualizarActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
         btnModelosActualizarActualizar.setText("Actualizar");
+        btnModelosActualizarActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModelosActualizarActualizarActionPerformed(evt);
+            }
+        });
         jPanel14.add(btnModelosActualizarActualizar);
         btnModelosActualizarActualizar.setBounds(50, 400, 120, 40);
+
+        cajaModelosPasajerosActualizar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModelosPasajerosActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaModelosPasajerosActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel14.add(cajaModelosPasajerosActualizar);
+        cajaModelosPasajerosActualizar.setBounds(160, 260, 250, 20);
+
+        cajaModelosPuertasActualizar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModelosPuertasActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaModelosPuertasActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel14.add(cajaModelosPuertasActualizar);
+        cajaModelosPuertasActualizar.setBounds(160, 200, 250, 20);
+
+        cajaModelosPesoActualizar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaModelosPesoActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        cajaModelosPesoActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel14.add(cajaModelosPesoActualizar);
+        cajaModelosPesoActualizar.setBounds(160, 230, 250, 20);
 
         internalCambiosModelos.getContentPane().add(jPanel14);
         jPanel14.setBounds(0, 0, 430, 510);
@@ -2466,8 +2510,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             cajaNumSerieAgregar.getText().toString().toUpperCase(),
             Integer.parseInt(comboModeloAgregar.getSelectedItem().toString()),
             LocalDate.parse(fechaFabricacion),
-            Double.parseDouble(spinnerPrecioAgregar.getValue().toString()),
-            Integer.parseInt(spinnerKilometrajeAgregar.getValue().toString()),
+            Double.parseDouble(cajaPrecioAgregar.getText()),
+            Integer.parseInt(cajaKilometrajeAgregar.getText()),
             hoy,
             comboTipoAgregar.getSelectedItem().toString(),
             "Disponible"
@@ -2492,7 +2536,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnRestaurarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarAgregarActionPerformed
         
-        restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, spinnerPrecioAgregar, spinnerKilometrajeAgregar, comboTipoAgregar);
+        restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, cajaPrecioAgregar, cajaKilometrajeAgregar, comboTipoAgregar);
                 
     }//GEN-LAST:event_btnRestaurarAgregarActionPerformed
 
@@ -2502,7 +2546,7 @@ public class VentanaInicio extends javax.swing.JFrame {
          
         if(respuesta == JOptionPane.YES_OPTION){
             
-            restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, spinnerPrecioAgregar, spinnerKilometrajeAgregar, comboTipoAgregar);
+            restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, cajaPrecioAgregar, cajaKilometrajeAgregar, comboTipoAgregar);
             
             internalAgregarAutos.setVisible(false);
             
@@ -2574,8 +2618,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             cajaNumSerieModificar.getText().toString().toUpperCase(),
             Integer.parseInt(comboModeloModificar.getSelectedItem().toString()),
             LocalDate.parse(fechaFabricacion),
-            Double.parseDouble(spinnerPrecioModificar.getValue().toString()),
-            Integer.parseInt(spinnerKilometrajeModificar.getValue().toString()),
+            Double.parseDouble(cajaPrecioModificar.getText()),
+            Integer.parseInt(cajaKilometrajeModificar.getText()),
             LocalDate.parse(fechaEntrada),
             comboTipoModificar.getSelectedItem().toString(),
             comboEstadoModificar.getSelectedItem().toString()
@@ -2714,9 +2758,9 @@ public class VentanaInicio extends javax.swing.JFrame {
             
             comboDiaModificar.setSelectedIndex(Integer.parseInt(fechaSeparada[2])-1);
             
-            spinnerPrecioModificar.setValue(Double.parseDouble(rs.getString(5)));
+            cajaPrecioModificar.setText(rs.getString(5));
             
-            spinnerKilometrajeModificar.setValue(Integer.parseInt(rs.getString(6)));
+            cajaKilometrajeModificar.setText(rs.getString(6));
            
             
             String fechaIngreso = rs.getString(7);
@@ -2867,6 +2911,43 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnActualizarModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarModelosActionPerformed
         internalCambiosModelos.setVisible(true);
+        
+        String sql = "SELECT * FROM modelos WHERE id_modelo = ?;";
+        
+        rs = con.ejecutarInstruccionSQL(sql, tablaModelos.getValueAt(0, 0));
+       
+
+        try {
+            
+            rs.next();
+            
+            cajaModelosNombreActualizar.setText(rs.getString(2));
+            
+            comboModelosAnioActualizar.setSelectedItem(rs.getString(3));
+            
+            cajaModelosFabricanteActualizar.setText(rs.getString(4));
+            
+            comboModelosCilindrosActualizar.setSelectedItem(rs.getString(5));
+            
+            cajaModelosPuertasActualizar.setText(rs.getString(6));
+            
+            cajaModelosPesoActualizar.setText(String.valueOf(rs.getDouble(7)));
+            
+            cajaModelosPasajerosActualizar.setText(rs.getString(8));
+            
+            cajaModelosColorActualizar.setText(rs.getString(9));
+            
+            cajaModelosPaisActualizar.setText(rs.getString(10));
+            
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(this, e);
+            
+            System.out.println(e);
+            
+        }
+     
     }//GEN-LAST:event_btnActualizarModelosActionPerformed
 
     private void radioNumeroCilindrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumeroCilindrosActionPerformed
@@ -3138,9 +3219,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 Short.parseShort(comboModelosAnioAgregar.getSelectedItem().toString()),
                 cajaModelosFabricanteAgregar.getText().toUpperCase(),
                 Byte.parseByte(comboModelosCilindrosAgregar.getSelectedItem().toString()),
-                Byte.parseByte(spinnerModelosPuertasAgregar.getValue().toString()),
-                Double.parseDouble(spinnerModelosPesoAgregar.getValue().toString()),
-                Byte.parseByte(spinnerModelosPasajerosAgregar.getValue().toString()),
+                Byte.parseByte(cajaModelosPuertasAgregar.getText()),
+                Double.parseDouble(cajaModelosPesoAgregar.getText()),
+                Byte.parseByte(cajaModelosPasajerosAgregar.getText()),
                 cajaModelosColorAgregar.getText().toUpperCase(),
                 cajaModelosPaisAgregar.getText().toUpperCase()
                
@@ -3163,6 +3244,37 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnModelosAgregarAgregarActionPerformed
+
+    private void btnModelosActualizarActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosActualizarActualizarActionPerformed
+        
+        Modelo modelo = new Modelo(
+        
+            cajaModelosNombreActualizar.getText().toUpperCase(),
+            Short.parseShort(comboModelosAnioActualizar.getSelectedItem().toString()),
+            cajaModelosFabricanteActualizar.getText().toUpperCase(),
+            Byte.parseByte(comboModelosCilindrosActualizar.getSelectedItem().toString()),
+            Byte.parseByte(cajaModelosPuertasActualizar.getText()),
+            Double.parseDouble(cajaModelosPesoActualizar.getText()),
+            Byte.parseByte(cajaModelosPasajerosActualizar.getText()),
+            cajaModelosColorActualizar.getText().toUpperCase(),
+            cajaModelosPaisActualizar.getText().toUpperCase()
+               
+        );
+        
+        if(modeloDAO.actualizarModelo(modelo, Integer.parseInt(tablaModelos.getValueAt(0, 0).toString()))){
+            
+            actualizarTabla(tablaModelos, "modelos");
+            
+            JOptionPane.showMessageDialog(this, "El modelo se actualizo correctamente");
+            
+        }else{
+            
+            con.mostrarError(this);
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnModelosActualizarActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3217,6 +3329,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnVentas;
     private javax.swing.JTextField cajaFabricanteModeloBusqueda;
     private javax.swing.JTextField cajaIDModeloBusqueda;
+    private javax.swing.JTextField cajaKilometrajeAgregar;
+    private javax.swing.JTextField cajaKilometrajeModificar;
     private javax.swing.JTextField cajaModeloPasajerosBusqueda;
     private javax.swing.JTextField cajaModeloPesoBusqueda;
     private javax.swing.JTextField cajaModeloPuertasBusqueda;
@@ -3228,6 +3342,12 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField cajaModelosNombreAgregar;
     private javax.swing.JTextField cajaModelosPaisActualizar;
     private javax.swing.JTextField cajaModelosPaisAgregar;
+    private javax.swing.JTextField cajaModelosPasajerosActualizar;
+    private javax.swing.JTextField cajaModelosPasajerosAgregar;
+    private javax.swing.JTextField cajaModelosPesoActualizar;
+    private javax.swing.JTextField cajaModelosPesoAgregar;
+    private javax.swing.JTextField cajaModelosPuertasActualizar;
+    private javax.swing.JTextField cajaModelosPuertasAgregar;
     private javax.swing.JTextField cajaNombreModeloBusqueda;
     private javax.swing.JTextField cajaNumSerieAgregar;
     private javax.swing.JTextField cajaNumSerieBuscar;
@@ -3235,6 +3355,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField cajaNumVehiculoAgregar;
     private javax.swing.JTextField cajaNumVehiculoBuscar;
     private javax.swing.JTextField cajaPaisModeloBusqueda;
+    private javax.swing.JTextField cajaPrecioAgregar;
+    private javax.swing.JTextField cajaPrecioModificar;
     private javax.swing.JComboBox<String> comboAnioAgregar;
     private javax.swing.JComboBox<String> comboAnioBusqueda1;
     private javax.swing.JComboBox<String> comboAnioEntradaModificar;
@@ -3369,16 +3491,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioTodosModelos;
     private javax.swing.JRadioButton radioidModeloBusqueda;
     private javax.swing.JPanel sidePane;
-    private javax.swing.JSpinner spinnerKilometrajeAgregar;
-    private javax.swing.JSpinner spinnerKilometrajeModificar;
-    private javax.swing.JSpinner spinnerModelosPasajerosActualizar;
-    private javax.swing.JSpinner spinnerModelosPasajerosAgregar;
-    private javax.swing.JSpinner spinnerModelosPesoActualizar;
-    private javax.swing.JSpinner spinnerModelosPesoAgregar;
-    private javax.swing.JSpinner spinnerModelosPuertasActualizar;
-    private javax.swing.JSpinner spinnerModelosPuertasAgregar;
-    private javax.swing.JSpinner spinnerPrecioAgregar;
-    private javax.swing.JSpinner spinnerPrecioModificar;
     private javax.swing.JTable tablaModelos;
     private javax.swing.JTable tablaVehiculos;
     // End of variables declaration//GEN-END:variables
