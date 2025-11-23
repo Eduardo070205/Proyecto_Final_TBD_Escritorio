@@ -13,8 +13,10 @@ import Modelo.Venta;
 import Modelo.Modelo;
 import Modelo.ResultSetTableModel;
 import java.awt.Component;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import javax.swing.*;
 
@@ -47,7 +49,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        //internalHome.setVisible(false);
+        internalHome.setVisible(true);
         internalVehiculos.setVisible(false);
         internalModelos.setVisible(false);
         internalVentas.setVisible(false);
@@ -234,6 +236,14 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalHome = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel82 = new javax.swing.JLabel();
+        btnHomeGrafica = new javax.swing.JButton();
+        btnHomeVista = new javax.swing.JButton();
+        btnHomeReporte = new javax.swing.JButton();
+        btnHomeHistorialPrecios = new javax.swing.JButton();
+        btnHomeVehiculosEliminados = new javax.swing.JButton();
         internalVehiculos = new javax.swing.JInternalFrame();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -472,6 +482,30 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel78 = new javax.swing.JLabel();
         jLabel79 = new javax.swing.JLabel();
         jLabel80 = new javax.swing.JLabel();
+        internalVehiculosEliminados = new javax.swing.JInternalFrame();
+        jPanel22 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
+        jLabel83 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaVehiculosEliminados = new javax.swing.JTable();
+        btnVehiculosEliminadosCerrar = new javax.swing.JButton();
+        internalHistorialPrecios = new javax.swing.JInternalFrame();
+        jPanel24 = new javax.swing.JPanel();
+        jPanel25 = new javax.swing.JPanel();
+        jLabel85 = new javax.swing.JLabel();
+        jLabel86 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaHistorialPrecios = new javax.swing.JTable();
+        btnHistorialPreciosCerrar = new javax.swing.JButton();
+        internalHomeVista = new javax.swing.JInternalFrame();
+        jPanel27 = new javax.swing.JPanel();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel87 = new javax.swing.JLabel();
+        jLabel88 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaVista = new javax.swing.JTable();
+        btnVistaCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autos Amistosos");
@@ -615,14 +649,88 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalHome.setVisible(false);
         internalHome.getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(247, 227, 178));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Hola Bienvenido a Autos Amistosos");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(180, 20, 443, 66);
+        jLabel1.setBounds(190, 0, 370, 66);
+
+        jLabel81.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\LOGO.png")); // NOI18N
+        jPanel1.add(jLabel81);
+        jLabel81.setBounds(270, 50, 200, 190);
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel21.setLayout(null);
+
+        jLabel82.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel82.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel82.setText("Acciones Rápidas");
+        jPanel21.add(jLabel82);
+        jLabel82.setBounds(10, 10, 150, 30);
+
+        btnHomeGrafica.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeGrafica.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHomeGrafica.setForeground(new java.awt.Color(0, 0, 0));
+        btnHomeGrafica.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\grafica.png")); // NOI18N
+        btnHomeGrafica.setText("Gráfica Ventas");
+        jPanel21.add(btnHomeGrafica);
+        btnHomeGrafica.setBounds(540, 70, 200, 60);
+
+        btnHomeVista.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeVista.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHomeVista.setForeground(new java.awt.Color(0, 0, 0));
+        btnHomeVista.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\vista.png")); // NOI18N
+        btnHomeVista.setText("Vista Vehículos-Modelo");
+        btnHomeVista.setToolTipText("");
+        btnHomeVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeVistaActionPerformed(evt);
+            }
+        });
+        jPanel21.add(btnHomeVista);
+        btnHomeVista.setBounds(10, 70, 240, 60);
+
+        btnHomeReporte.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHomeReporte.setForeground(new java.awt.Color(0, 0, 0));
+        btnHomeReporte.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\reporte.png")); // NOI18N
+        btnHomeReporte.setText("Reporte Ventas");
+        jPanel21.add(btnHomeReporte);
+        btnHomeReporte.setBounds(290, 70, 210, 60);
+
+        btnHomeHistorialPrecios.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeHistorialPrecios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHomeHistorialPrecios.setForeground(new java.awt.Color(0, 0, 0));
+        btnHomeHistorialPrecios.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\ventas.png")); // NOI18N
+        btnHomeHistorialPrecios.setText("Historial Precios");
+        btnHomeHistorialPrecios.setToolTipText("");
+        btnHomeHistorialPrecios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeHistorialPreciosActionPerformed(evt);
+            }
+        });
+        jPanel21.add(btnHomeHistorialPrecios);
+        btnHomeHistorialPrecios.setBounds(450, 180, 240, 60);
+
+        btnHomeVehiculosEliminados.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeVehiculosEliminados.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHomeVehiculosEliminados.setForeground(new java.awt.Color(0, 0, 0));
+        btnHomeVehiculosEliminados.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\carro.png")); // NOI18N
+        btnHomeVehiculosEliminados.setText("Vehículos Eliminados");
+        btnHomeVehiculosEliminados.setToolTipText("");
+        btnHomeVehiculosEliminados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeVehiculosEliminadosActionPerformed(evt);
+            }
+        });
+        jPanel21.add(btnHomeVehiculosEliminados);
+        btnHomeVehiculosEliminados.setBounds(90, 180, 240, 60);
+
+        jPanel1.add(jPanel21);
+        jPanel21.setBounds(0, 240, 760, 330);
 
         internalHome.getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 760, 570);
@@ -1251,7 +1359,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         internalModelos.setBounds(0, 0, 770, 610);
 
         internalVentas.setTitle("Ventas");
-        internalVentas.setVisible(true);
+        internalVentas.setVisible(false);
         internalVentas.getContentPane().setLayout(null);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -2774,6 +2882,204 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalActualizarVentas);
         internalActualizarVentas.setBounds(180, 20, 440, 380);
 
+        internalVehiculosEliminados.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        internalVehiculosEliminados.setTitle("Historial de Vehiculos");
+        internalVehiculosEliminados.setVisible(false);
+
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel22.setLayout(null);
+
+        jPanel23.setBackground(new java.awt.Color(214, 198, 152));
+        jPanel23.setLayout(null);
+
+        jLabel83.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel83.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel83.setText("Vehiculos Eliminados");
+        jPanel23.add(jLabel83);
+        jLabel83.setBounds(10, 10, 140, 30);
+
+        jLabel84.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
+        jPanel23.add(jLabel84);
+        jLabel84.setBounds(360, 0, 50, 50);
+
+        jPanel22.add(jPanel23);
+        jPanel23.setBounds(0, 0, 410, 50);
+
+        tablaVehiculosEliminados.setBackground(new java.awt.Color(247, 227, 178));
+        tablaVehiculosEliminados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tablaVehiculosEliminados);
+
+        jPanel22.add(jScrollPane4);
+        jScrollPane4.setBounds(10, 60, 390, 220);
+
+        btnVehiculosEliminadosCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVehiculosEliminadosCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnVehiculosEliminadosCerrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnVehiculosEliminadosCerrar.setText("Cerrar Ventana");
+        btnVehiculosEliminadosCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVehiculosEliminadosCerrarActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnVehiculosEliminadosCerrar);
+        btnVehiculosEliminadosCerrar.setBounds(130, 310, 140, 50);
+
+        javax.swing.GroupLayout internalVehiculosEliminadosLayout = new javax.swing.GroupLayout(internalVehiculosEliminados.getContentPane());
+        internalVehiculosEliminados.getContentPane().setLayout(internalVehiculosEliminadosLayout);
+        internalVehiculosEliminadosLayout.setHorizontalGroup(
+            internalVehiculosEliminadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+        );
+        internalVehiculosEliminadosLayout.setVerticalGroup(
+            internalVehiculosEliminadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+        );
+
+        jDesktopPane1.add(internalVehiculosEliminados);
+        internalVehiculosEliminados.setBounds(120, 40, 420, 440);
+
+        internalHistorialPrecios.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        internalHistorialPrecios.setTitle("Historial de Precios");
+        internalHistorialPrecios.setVisible(false);
+
+        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel24.setLayout(null);
+
+        jPanel25.setBackground(new java.awt.Color(214, 198, 152));
+        jPanel25.setLayout(null);
+
+        jLabel85.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel85.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel85.setText("Historial de Precios");
+        jPanel25.add(jLabel85);
+        jLabel85.setBounds(10, 10, 140, 30);
+
+        jLabel86.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
+        jPanel25.add(jLabel86);
+        jLabel86.setBounds(360, 0, 50, 50);
+
+        jPanel24.add(jPanel25);
+        jPanel25.setBounds(0, 0, 410, 50);
+
+        tablaHistorialPrecios.setBackground(new java.awt.Color(247, 227, 178));
+        tablaHistorialPrecios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tablaHistorialPrecios);
+
+        jPanel24.add(jScrollPane5);
+        jScrollPane5.setBounds(10, 60, 390, 220);
+
+        btnHistorialPreciosCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnHistorialPreciosCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHistorialPreciosCerrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnHistorialPreciosCerrar.setText("Cerrar Ventana");
+        btnHistorialPreciosCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialPreciosCerrarActionPerformed(evt);
+            }
+        });
+        jPanel24.add(btnHistorialPreciosCerrar);
+        btnHistorialPreciosCerrar.setBounds(130, 310, 140, 50);
+
+        javax.swing.GroupLayout internalHistorialPreciosLayout = new javax.swing.GroupLayout(internalHistorialPrecios.getContentPane());
+        internalHistorialPrecios.getContentPane().setLayout(internalHistorialPreciosLayout);
+        internalHistorialPreciosLayout.setHorizontalGroup(
+            internalHistorialPreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+        );
+        internalHistorialPreciosLayout.setVerticalGroup(
+            internalHistorialPreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+        );
+
+        jDesktopPane1.add(internalHistorialPrecios);
+        internalHistorialPrecios.setBounds(120, 40, 420, 440);
+
+        internalHomeVista.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        internalHomeVista.setTitle("Vista Vehiculos-Modelo");
+        internalHomeVista.setVisible(false);
+
+        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel27.setLayout(null);
+
+        jPanel28.setBackground(new java.awt.Color(214, 198, 152));
+        jPanel28.setLayout(null);
+
+        jLabel87.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel87.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel87.setText("Vista Vehículos-Modelo");
+        jPanel28.add(jLabel87);
+        jLabel87.setBounds(10, 10, 170, 30);
+
+        jLabel88.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
+        jPanel28.add(jLabel88);
+        jLabel88.setBounds(360, 0, 50, 50);
+
+        jPanel27.add(jPanel28);
+        jPanel28.setBounds(0, 0, 410, 50);
+
+        tablaVista.setBackground(new java.awt.Color(247, 227, 178));
+        tablaVista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(tablaVista);
+
+        jPanel27.add(jScrollPane6);
+        jScrollPane6.setBounds(10, 60, 390, 220);
+
+        btnVistaCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVistaCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnVistaCerrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnVistaCerrar.setText("Cerrar Ventana");
+        btnVistaCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVistaCerrarActionPerformed(evt);
+            }
+        });
+        jPanel27.add(btnVistaCerrar);
+        btnVistaCerrar.setBounds(130, 310, 140, 50);
+
+        javax.swing.GroupLayout internalHomeVistaLayout = new javax.swing.GroupLayout(internalHomeVista.getContentPane());
+        internalHomeVista.getContentPane().setLayout(internalHomeVistaLayout);
+        internalHomeVistaLayout.setHorizontalGroup(
+            internalHomeVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+        );
+        internalHomeVistaLayout.setVerticalGroup(
+            internalHomeVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+        );
+
+        jDesktopPane1.add(internalHomeVista);
+        internalHomeVista.setBounds(120, 40, 420, 440);
+
         bg.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 770, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -2792,6 +3098,47 @@ public class VentanaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void recrearVista(String nombreVista, String consultaSQL) {
+
+        String sqlDrop = "DROP VIEW IF EXISTS " + nombreVista + " CASCADE";
+        String sqlCreate = "CREATE VIEW " + nombreVista + " AS " + consultaSQL;
+
+        try (Statement stmt = con.getConexion().createStatement()) {
+
+            stmt.executeUpdate(sqlDrop);
+            stmt.executeUpdate(sqlCreate);
+
+            System.out.println("Vista recreada correctamente.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    
+    public void cargarVistaEnTabla(JTable tabla, String nombreVista) {
+        
+        final String CONTROLADOR_JDBC = "org.postgresql.Driver";
+        final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
+        String CONSULTA = "SELECT * FROM " + nombreVista;
+
+        try {
+            ResultSetTableModel modelo = new ResultSetTableModel(
+
+                CONTROLADOR_JDBC,
+                URL,
+                CONSULTA
+                    
+            );
+
+            tabla.setModel(modelo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void agregarClientesEmpleados(JComboBox combo, char tipo){
         
         
@@ -3963,6 +4310,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_cajaPaisModeloBusquedaKeyReleased
 
     private void btnModelosAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosAgregarAgregarActionPerformed
+
         
         Modelo modelo = new Modelo(
         
@@ -3988,13 +4336,13 @@ public class VentanaInicio extends javax.swing.JFrame {
             
         }else{
             
-            con.mostrarError(this);
+            JOptionPane.showMessageDialog(this, modeloDAO.mostrarMensaje());
+            
+            System.out.println(modeloDAO.mostrarMensaje());
+            
+            
             
         }
-        
-        
-        
-        
         
     }//GEN-LAST:event_btnModelosAgregarAgregarActionPerformed
 
@@ -4230,7 +4578,9 @@ public class VentanaInicio extends javax.swing.JFrame {
             
         }else{
             
-            con.mostrarError(this);
+            JOptionPane.showMessageDialog(this, ventaDAO.mostrarMensaje());
+            
+           
             
         }
         
@@ -4498,6 +4848,52 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_comboVentasVehiculosBuscarActionPerformed
 
+    private void btnHomeVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeVistaActionPerformed
+        
+        
+        recrearVista("view_vehiculos_modelos", "SELECT v.id_vehiculo, m.nombre_modelo FROM vehiculos v INNER JOIN modelos m ON v.id_modelo=m.id_modelo;");
+ 
+        cargarVistaEnTabla(tablaVista, "view_vehiculos_modelos");
+        
+        internalHomeVista.setVisible(true);
+        
+    }//GEN-LAST:event_btnHomeVistaActionPerformed
+
+    private void btnHomeHistorialPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeHistorialPreciosActionPerformed
+        
+        actualizarTabla(tablaHistorialPrecios, "historial_precios");
+        
+        internalHistorialPrecios.setVisible(true);
+        
+    }//GEN-LAST:event_btnHomeHistorialPreciosActionPerformed
+
+    private void btnHomeVehiculosEliminadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeVehiculosEliminadosActionPerformed
+       
+        actualizarTabla(tablaVehiculosEliminados, "vehiculos_elimminados");
+        
+        internalVehiculosEliminados.setVisible(true);
+        
+    }//GEN-LAST:event_btnHomeVehiculosEliminadosActionPerformed
+
+    private void btnVehiculosEliminadosCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosEliminadosCerrarActionPerformed
+        
+        internalVehiculosEliminados.setVisible(false);
+        
+    }//GEN-LAST:event_btnVehiculosEliminadosCerrarActionPerformed
+
+    private void btnHistorialPreciosCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialPreciosCerrarActionPerformed
+        
+        internalHistorialPrecios.setVisible(false);
+        
+        
+    }//GEN-LAST:event_btnHistorialPreciosCerrarActionPerformed
+
+    private void btnVistaCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVistaCerrarActionPerformed
+        
+        internalHomeVista.setVisible(false);
+        
+    }//GEN-LAST:event_btnVistaCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4541,7 +4937,13 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarVehiculos;
     private javax.swing.JButton btnEliminarVentas;
     private javax.swing.JButton btnEmpleados;
+    private javax.swing.JButton btnHistorialPreciosCerrar;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnHomeGrafica;
+    private javax.swing.JButton btnHomeHistorialPrecios;
+    private javax.swing.JButton btnHomeReporte;
+    private javax.swing.JButton btnHomeVehiculosEliminados;
+    private javax.swing.JButton btnHomeVista;
     private javax.swing.JButton btnModelos;
     private javax.swing.JButton btnModelosActualizarActualizar;
     private javax.swing.JButton btnModelosAgregarAgregar;
@@ -4551,12 +4953,14 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarVehiculos;
     private javax.swing.JButton btnRestaurarAgregar;
     private javax.swing.JButton btnVehiculos;
+    private javax.swing.JButton btnVehiculosEliminadosCerrar;
     private javax.swing.JButton btnVentas;
     private javax.swing.JButton btnVentasActualizarActualizar;
     private javax.swing.JButton btnVentasAgregarAgregar;
     private javax.swing.JButton btnVentasCancelarActualizar;
     private javax.swing.JButton btnVentasCancelarAgregar;
     private javax.swing.JButton btnVentasRestaurarAgregar;
+    private javax.swing.JButton btnVistaCerrar;
     private javax.swing.JTextField cajaFabricanteModeloBusqueda;
     private javax.swing.JTextField cajaIDModeloBusqueda;
     private javax.swing.JTextField cajaIDVentasBuscar;
@@ -4640,11 +5044,14 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JInternalFrame internalAgregarModelos;
     private javax.swing.JInternalFrame internalAltasVentas;
     private javax.swing.JInternalFrame internalCambiosModelos;
+    private javax.swing.JInternalFrame internalHistorialPrecios;
     private javax.swing.JInternalFrame internalHome;
+    private javax.swing.JInternalFrame internalHomeVista;
     private javax.swing.JInternalFrame internalModelos;
     private javax.swing.JInternalFrame internalModificarAutos;
     private javax.swing.JInternalFrame internalProximamente;
     private javax.swing.JInternalFrame internalVehiculos;
+    private javax.swing.JInternalFrame internalVehiculosEliminados;
     private javax.swing.JInternalFrame internalVentas;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
@@ -4726,6 +5133,14 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -4740,6 +5155,13 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -4750,6 +5172,9 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JRadioButton radioAnioBusqueda1;
     private javax.swing.JRadioButton radioAnioModeloBuscar;
     private javax.swing.JRadioButton radioEstadoBusqueda1;
@@ -4777,8 +5202,11 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioVentasPagoBuscar;
     private javax.swing.JRadioButton radioidModeloBusqueda;
     private javax.swing.JPanel sidePane;
+    private javax.swing.JTable tablaHistorialPrecios;
     private javax.swing.JTable tablaModelos;
     private javax.swing.JTable tablaVehiculos;
+    private javax.swing.JTable tablaVehiculosEliminados;
     private javax.swing.JTable tablaVentas;
+    private javax.swing.JTable tablaVista;
     // End of variables declaration//GEN-END:variables
 }

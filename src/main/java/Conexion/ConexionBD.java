@@ -33,6 +33,8 @@ public class ConexionBD {
 
     // Constructor privado para impedir instancias externas
     private ConexionBD() {
+        
+        
         try {
             Class.forName("org.postgresql.Driver"); // cargar driver
             conexion = DriverManager.getConnection(URL, USER, PASSWORD);

@@ -6,6 +6,11 @@ package Controlador;
 
 import Conexion.ConexionBD;
 import Modelo.Modelo;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.SQLWarning;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,26 +18,58 @@ import Modelo.Modelo;
  */
 public class ModeloDAO {
     
+    String mensaje;
+    
     ConexionBD con = ConexionBD.getInstancia();
     
     public boolean agregarModelo(Modelo modelo){
         
-        String sql = "INSERT INTO modelos(nombre_modelo, año_modelo, fabricante, numero_cilindros, numero_puertas, peso_kg, capacidad_pasajeros, color_base, pais_fabricacion)"
-                + "VALUES(?,?,?,?,?,?,?,?,?);";
+        try {
         
-        return con.ejecutarInstruccionLMD(sql, 
-                
-                modelo.getNombreModelo(),
-                modelo.getAnioModelo(),
-                modelo.getFabricante(),
-                modelo.getNumeroCilindros(),
-                modelo.getNumeroPuertas(),
-                modelo.getPeso(),
-                modelo.getCatidadPasajeros(),
-                modelo.getColor(),
-                modelo.getPaisFabricacion()
-                
-        );
+            Connection cn = ConexionBD.getInstancia().getConexion();
+
+            CallableStatement cs = cn.prepareCall("CALL validacion_datos_modelo(?,?,?,?,?,?,?,?,?)");
+
+            cs.setString(1, modelo.getNombreModelo());
+            cs.setShort(2,  modelo.getAnioModelo());
+            cs.setString(3, modelo.getFabricante());
+            cs.setShort(4,  modelo.getNumeroCilindros());
+            cs.setShort(5,  modelo.getNumeroPuertas());
+            cs.setDouble(6, modelo.getPeso());
+            cs.setShort(7,  modelo.getCatidadPasajeros());
+            cs.setString(8, modelo.getColor());
+            cs.setString(9, modelo.getPaisFabricacion());
+
+            cs.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+        
+          
+            if (e instanceof org.postgresql.util.PSQLException) {
+
+                org.postgresql.util.PSQLException pgEx = (org.postgresql.util.PSQLException) e;
+
+                if (pgEx.getServerErrorMessage() != null) {
+                    mensaje = pgEx.getServerErrorMessage().getMessage();  // Mensaje limpio del RAISE
+                } else {
+            
+                    mensaje = pgEx.getMessage();
+                }
+
+            } else {
+                mensaje = e.getMessage();
+            }
+
+            return false;
+        }
+        
+    }
+    
+    public String mostrarMensaje(){
+        
+        return mensaje;
         
     }
     

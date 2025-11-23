@@ -7,6 +7,9 @@ package Controlador;
 import Conexion.ConexionBD;
 
 import Modelo.Venta;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,24 +17,55 @@ import Modelo.Venta;
  */
 public class VentaDAO {
     
+    String mensaje;
+    
     ConexionBD con = ConexionBD.getInstancia();
     
-    public boolean agregarVenta(Venta venta){
+    public boolean agregarVenta(Venta venta) {
+        try {
+
+            Connection cn = ConexionBD.getInstancia().getConexion();
+
+            CallableStatement cs = cn.prepareCall("CALL validacion_precio_final(?,?,?,?,?)");
+
+            cs.setDouble(1, venta.getPrecioFinal());
+            cs.setString(2, venta.getFormaPago());
+            cs.setString(3, venta.getIdCliente());
+            cs.setString(4, venta.getIdEmpleado());
+            cs.setString(5, venta.getIdVehiculo());
+
+            cs.execute();
         
-        String sql = "INSERT INTO ventas(fecha_venta, precio_final, forma_pago, id_cliente, id_empleado, id_vehiculo) VALUES(?,?,?,?,?,?);";
+
+            return true;
+
+        } catch (SQLException e) {
+
+            
+            if (e instanceof org.postgresql.util.PSQLException) {
+
+                org.postgresql.util.PSQLException pgEx = (org.postgresql.util.PSQLException) e;
+
+                if (pgEx.getServerErrorMessage() != null) {
+                    mensaje = pgEx.getServerErrorMessage().getMessage();
+                } else {
+                    mensaje = pgEx.getMessage();
+                }
+
+            } else {
+                mensaje = e.getMessage();
+            }
+
+            return false;
+        }
+    }
+    
+    public String mostrarMensaje(){
         
-        return con.ejecutarInstruccionLMD(sql,
-                
-            venta.getFechaVenta(),
-            venta.getPrecioFinal(),
-            venta.getFormaPago(),
-            venta.getIdCliente(),
-            venta.getIdEmpleado(),
-            venta.getIdVehiculo()
-                
-        );
+        return mensaje;
         
     }
+
     
     public boolean eliminarVenta(int id_venta){
         
