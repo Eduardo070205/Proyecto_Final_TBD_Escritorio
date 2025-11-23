@@ -8,8 +8,11 @@ import Modelo.Vehiculo;
 import Conexion.ConexionBD;
 import Controlador.ModeloDAO;
 import Controlador.VehiculoDAO;
+import Controlador.VentaDAO;
+import Modelo.Venta;
 import Modelo.Modelo;
 import Modelo.ResultSetTableModel;
+import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -26,6 +29,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     VehiculoDAO vehiculoDAO = new VehiculoDAO();
     
     ModeloDAO modeloDAO = new ModeloDAO();
+    
+    VentaDAO ventaDAO = new VentaDAO();
     
     ConexionBD con = ConexionBD.getInstancia();
     
@@ -59,6 +64,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         asignarFechas(comboAnioModificar, comboMesModificar);
         
         asignarFechas(comboAnioEntradaModificar, comboMesEntradaModificar);
+        
+        asignarFechas(comboVentasAnioActualizar, comboVentasMesActualizar);
         
         actualizarTabla(tablaVehiculos, "vehiculos");
         
@@ -130,12 +137,71 @@ public class VentanaInicio extends javax.swing.JFrame {
             
         }
         
-       
+        //=============================== Ventas ====================================
+        
+        
+        comboVentasMesBuscar.addItem("Enero");
+        comboVentasMesBuscar.addItem("Febrero");
+        comboVentasMesBuscar.addItem("Marzo");
+        comboVentasMesBuscar.addItem("Abril");
+        comboVentasMesBuscar.addItem("Mayo");
+        comboVentasMesBuscar.addItem("Junio");
+        comboVentasMesBuscar.addItem("Julio");
+        comboVentasMesBuscar.addItem("Agosto");
+        comboVentasMesBuscar.addItem("Septiembre");
+        comboVentasMesBuscar.addItem("Octubre");
+        comboVentasMesBuscar.addItem("Noviembre");
+        comboVentasMesBuscar.addItem("Diciembre");
         
         
         
+        
+         desabilitarComponenetes(radioTodosVentas, comboVentasPagoBuscar, comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasPrecioBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+        
+        
+        actualizarTabla(tablaVentas, "ventas");
         actualizarTabla(tablaVehiculos, "vehiculos");
         
+        comboVentasPrecioBuscar.addItem("200000");
+        comboVentasPrecioBuscar.addItem("400000");
+        comboVentasPrecioBuscar.addItem("600000");
+        comboVentasPrecioBuscar.addItem("800000");
+        comboVentasPrecioBuscar.addItem("1000000");
+        comboVentasPrecioBuscar.addItem("1200000");
+        comboVentasPrecioBuscar.addItem("1400000");
+        comboVentasPrecioBuscar.addItem("1600000");
+        comboVentasPrecioBuscar.addItem("1800000");
+        comboVentasPrecioBuscar.addItem("2000000");
+        
+        comboVentasPagoBuscar.addItem("Contado");
+        comboVentasPagoBuscar.addItem("Financiamiento");
+        comboVentasFormaAgregar.addItem("Contado");
+        comboVentasFormaAgregar.addItem("Financiamiento");
+        comboVentasFormaActualizar.addItem("Contado");
+        comboVentasFormaActualizar.addItem("Financiamiento");
+        
+        agregarClientesEmpleados(comboVentasClienteBuscar, 'C');
+        
+        agregarClientesEmpleados(comboVentasEmpleadoBuscar, 'E');
+        
+        agregarClientesEmpleados(comboVentasClienteAgregar, 'C');
+        
+        agregarClientesEmpleados(comboVentasEmpleadoAgregar, 'E');
+        
+        agregarClientesEmpleados(comboVentasClienteActualizar, 'C');
+        
+        agregarClientesEmpleados(comboVentasEmpleadoActualizar, 'E');
+        
+        
+        for(int i = 0; i < tablaVehiculos.getRowCount(); i++){
+            
+            comboVentasVehiculosBuscar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            comboVentasvehiculoAgregar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            comboVentasvehiculoActualizar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            
+            
+        }
+
         
         pack();
        
@@ -246,6 +312,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         radioIDVehiculoVentas = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaVentas = new javax.swing.JTable();
+        radioVentasPagoBuscar = new javax.swing.JRadioButton();
+        comboVentasPagoBuscar = new javax.swing.JComboBox<>();
         internalProximamente = new javax.swing.JInternalFrame();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -395,8 +463,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboVentasDiaActualizar = new javax.swing.JComboBox<>();
         comboVentasClienteActualizar = new javax.swing.JComboBox<>();
         comboVentasEmpleadoActualizar = new javax.swing.JComboBox<>();
-        btnVentasCancelarAgregar1 = new javax.swing.JButton();
-        btnVentasAgregarAgregar1 = new javax.swing.JButton();
+        btnVentasCancelarActualizar = new javax.swing.JButton();
+        btnVentasActualizarActualizar = new javax.swing.JButton();
         jLabel77 = new javax.swing.JLabel();
         comboVentasFormaActualizar = new javax.swing.JComboBox<>();
         comboVentasAnioActualizar = new javax.swing.JComboBox<>();
@@ -1261,6 +1329,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         groupBusquedaVentas.add(radioTodosVentas);
         radioTodosVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         radioTodosVentas.setForeground(new java.awt.Color(0, 0, 0));
+        radioTodosVentas.setSelected(true);
         radioTodosVentas.setText("Mostrar Todas las Ventas");
         radioTodosVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1268,17 +1337,27 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         jPanel4.add(radioTodosVentas);
-        radioTodosVentas.setBounds(160, 170, 170, 21);
+        radioTodosVentas.setBounds(280, 180, 170, 21);
 
         cajaIDVentasBuscar.setBackground(new java.awt.Color(255, 255, 255));
         cajaIDVentasBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaIDVentasBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaIDVentasBuscarKeyReleased(evt);
+            }
+        });
         jPanel4.add(cajaIDVentasBuscar);
         cajaIDVentasBuscar.setBounds(20, 110, 100, 18);
 
         comboVentasVehiculosBuscar.setBackground(new java.awt.Color(214, 198, 152));
         comboVentasVehiculosBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasVehiculosBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasVehiculosBuscarActionPerformed(evt);
+            }
+        });
         jPanel4.add(comboVentasVehiculosBuscar);
-        comboVentasVehiculosBuscar.setBounds(20, 180, 120, 26);
+        comboVentasVehiculosBuscar.setBounds(150, 180, 120, 26);
 
         groupBusquedaVentas.add(radioMesVentas);
         radioMesVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1294,6 +1373,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboVentasMesBuscar.setBackground(new java.awt.Color(214, 198, 152));
         comboVentasMesBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasMesBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasMesBuscarActionPerformed(evt);
+            }
+        });
         jPanel4.add(comboVentasMesBuscar);
         comboVentasMesBuscar.setBounds(160, 110, 76, 26);
 
@@ -1311,6 +1395,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboVentasPrecioBuscar.setBackground(new java.awt.Color(214, 198, 152));
         comboVentasPrecioBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasPrecioBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasPrecioBuscarActionPerformed(evt);
+            }
+        });
         jPanel4.add(comboVentasPrecioBuscar);
         comboVentasPrecioBuscar.setBounds(260, 110, 120, 26);
 
@@ -1324,12 +1413,17 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         jPanel4.add(radioIdClienteVentas);
-        radioIdClienteVentas.setBounds(410, 80, 100, 21);
+        radioIdClienteVentas.setBounds(550, 80, 100, 21);
 
         comboVentasClienteBuscar.setBackground(new java.awt.Color(214, 198, 152));
         comboVentasClienteBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasClienteBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasClienteBuscarActionPerformed(evt);
+            }
+        });
         jPanel4.add(comboVentasClienteBuscar);
-        comboVentasClienteBuscar.setBounds(400, 110, 120, 26);
+        comboVentasClienteBuscar.setBounds(550, 110, 120, 26);
 
         groupBusquedaVentas.add(radioIDEmpleadoVentas);
         radioIDEmpleadoVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1341,12 +1435,17 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         jPanel4.add(radioIDEmpleadoVentas);
-        radioIDEmpleadoVentas.setBounds(560, 80, 100, 21);
+        radioIDEmpleadoVentas.setBounds(10, 150, 100, 21);
 
         comboVentasEmpleadoBuscar.setBackground(new java.awt.Color(214, 198, 152));
         comboVentasEmpleadoBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasEmpleadoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasEmpleadoBuscarActionPerformed(evt);
+            }
+        });
         jPanel4.add(comboVentasEmpleadoBuscar);
-        comboVentasEmpleadoBuscar.setBounds(560, 110, 120, 26);
+        comboVentasEmpleadoBuscar.setBounds(10, 180, 120, 26);
 
         groupBusquedaVentas.add(radioIDVehiculoVentas);
         radioIDVehiculoVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1358,7 +1457,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         jPanel4.add(radioIDVehiculoVentas);
-        radioIDVehiculoVentas.setBounds(30, 150, 100, 21);
+        radioIDVehiculoVentas.setBounds(160, 150, 100, 21);
 
         tablaVentas.setBackground(new java.awt.Color(214, 198, 152));
         tablaVentas.setModel(new javax.swing.table.DefaultTableModel(
@@ -1376,6 +1475,28 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane3);
         jScrollPane3.setBounds(20, 310, 720, 240);
+
+        groupBusquedaVentas.add(radioVentasPagoBuscar);
+        radioVentasPagoBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        radioVentasPagoBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        radioVentasPagoBuscar.setText("Forma de Pago");
+        radioVentasPagoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioVentasPagoBuscarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(radioVentasPagoBuscar);
+        radioVentasPagoBuscar.setBounds(410, 80, 110, 21);
+
+        comboVentasPagoBuscar.setBackground(new java.awt.Color(214, 198, 152));
+        comboVentasPagoBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasPagoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasPagoBuscarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(comboVentasPagoBuscar);
+        comboVentasPagoBuscar.setBounds(410, 110, 120, 26);
 
         internalVentas.getContentPane().add(jPanel4);
         jPanel4.setBounds(0, 0, 760, 580);
@@ -2334,6 +2455,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalCambiosModelos);
         internalCambiosModelos.setBounds(150, 30, 440, 540);
 
+        internalAltasVentas.setClosable(true);
+        internalAltasVentas.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalAltasVentas.setTitle("Altas Ventas");
         internalAltasVentas.setVisible(false);
         internalAltasVentas.getContentPane().setLayout(null);
@@ -2434,6 +2557,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnVentasCancelarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasCancelarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
         btnVentasCancelarAgregar.setText("Cancelar");
+        btnVentasCancelarAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasCancelarAgregarActionPerformed(evt);
+            }
+        });
         jPanel17.add(btnVentasCancelarAgregar);
         btnVentasCancelarAgregar.setBounds(260, 280, 109, 50);
 
@@ -2442,6 +2570,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnVentasAgregarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasAgregarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
         btnVentasAgregarAgregar.setText("Agregar");
+        btnVentasAgregarAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasAgregarAgregarActionPerformed(evt);
+            }
+        });
         jPanel17.add(btnVentasAgregarAgregar);
         btnVentasAgregarAgregar.setBounds(10, 280, 110, 50);
 
@@ -2450,6 +2583,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnVentasRestaurarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasRestaurarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\restaurar.png")); // NOI18N
         btnVentasRestaurarAgregar.setText("Restaurar");
+        btnVentasRestaurarAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasRestaurarAgregarActionPerformed(evt);
+            }
+        });
         jPanel17.add(btnVentasRestaurarAgregar);
         btnVentasRestaurarAgregar.setBounds(130, 280, 116, 50);
 
@@ -2459,6 +2597,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalAltasVentas);
         internalAltasVentas.setBounds(180, 20, 390, 380);
 
+        internalActualizarVentas.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalActualizarVentas.setTitle("Actualizar Ventas");
         internalActualizarVentas.setVisible(false);
         internalActualizarVentas.getContentPane().setLayout(null);
@@ -2554,21 +2693,31 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel19.add(comboVentasEmpleadoActualizar);
         comboVentasEmpleadoActualizar.setBounds(170, 200, 170, 26);
 
-        btnVentasCancelarAgregar1.setBackground(new java.awt.Color(122, 122, 63));
-        btnVentasCancelarAgregar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnVentasCancelarAgregar1.setForeground(new java.awt.Color(0, 0, 0));
-        btnVentasCancelarAgregar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
-        btnVentasCancelarAgregar1.setText("Cancelar");
-        jPanel19.add(btnVentasCancelarAgregar1);
-        btnVentasCancelarAgregar1.setBounds(240, 280, 109, 50);
+        btnVentasCancelarActualizar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVentasCancelarActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnVentasCancelarActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        btnVentasCancelarActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
+        btnVentasCancelarActualizar.setText("Cancelar");
+        btnVentasCancelarActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasCancelarActualizarActionPerformed(evt);
+            }
+        });
+        jPanel19.add(btnVentasCancelarActualizar);
+        btnVentasCancelarActualizar.setBounds(240, 280, 109, 50);
 
-        btnVentasAgregarAgregar1.setBackground(new java.awt.Color(122, 122, 63));
-        btnVentasAgregarAgregar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnVentasAgregarAgregar1.setForeground(new java.awt.Color(0, 0, 0));
-        btnVentasAgregarAgregar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
-        btnVentasAgregarAgregar1.setText("Actualizar");
-        jPanel19.add(btnVentasAgregarAgregar1);
-        btnVentasAgregarAgregar1.setBounds(40, 280, 120, 50);
+        btnVentasActualizarActualizar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVentasActualizarActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnVentasActualizarActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        btnVentasActualizarActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
+        btnVentasActualizarActualizar.setText("Actualizar");
+        btnVentasActualizarActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasActualizarActualizarActionPerformed(evt);
+            }
+        });
+        jPanel19.add(btnVentasActualizarActualizar);
+        btnVentasActualizarActualizar.setBounds(40, 280, 120, 50);
 
         jLabel77.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel77.setForeground(new java.awt.Color(0, 0, 0));
@@ -2583,11 +2732,21 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         comboVentasAnioActualizar.setBackground(new java.awt.Color(214, 198, 152));
         comboVentasAnioActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasAnioActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasAnioActualizarActionPerformed(evt);
+            }
+        });
         jPanel19.add(comboVentasAnioActualizar);
         comboVentasAnioActualizar.setBounds(150, 80, 80, 26);
 
         comboVentasMesActualizar.setBackground(new java.awt.Color(214, 198, 152));
         comboVentasMesActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        comboVentasMesActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVentasMesActualizarActionPerformed(evt);
+            }
+        });
         jPanel19.add(comboVentasMesActualizar);
         comboVentasMesActualizar.setBounds(230, 80, 130, 26);
 
@@ -2633,6 +2792,25 @@ public class VentanaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void agregarClientesEmpleados(JComboBox combo, char tipo){
+        
+        
+        for(int i = 1; i <=5; i++){
+            
+            if(tipo == 'C'){
+                
+                combo.addItem("CL00" + i);
+                
+            }else if (tipo == 'E'){
+                
+                combo.addItem("EM0" + i);
+                
+            }
+            
+        }
+        
+    }
+    
     
     public void restablecer(JComponent... componentes){
 
@@ -2710,7 +2888,13 @@ public class VentanaInicio extends javax.swing.JFrame {
             
              CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE extract(year from " + campo + ") = " + valor + ";";
             
-        }else{
+        }else if(tipo == 'M'){
+            
+             CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE extract(month from " + campo + ") = " + valor + ";";
+            
+        }
+        
+        else{
             
             CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
             
@@ -2883,8 +3067,14 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosActionPerformed
+
+        actualizarTabla(tablaVehiculos, "vehiculos");
         
         actualizarTabla(tablaModelos, "modelos");
+        
+        actualizarTabla(tablaVentas, "ventas");
+        
+        //restablecer(caja);
         
         cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
@@ -2896,9 +3086,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosActionPerformed
 
+        actualizarTabla(tablaVehiculos, "vehiculos");
+        
         actualizarTabla(tablaModelos, "modelos");
-          
-            
+        
+        actualizarTabla(tablaVentas, "ventas");
         
         cambiarColorBoton(btnCerrarSesion, btnHome, btnVehiculos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
@@ -2909,6 +3101,12 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModelosActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+
+        actualizarTabla(tablaVehiculos, "vehiculos");
+        
+        actualizarTabla(tablaModelos, "modelos");
+        
+        actualizarTabla(tablaVentas, "ventas");
         
         cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVehiculos, btnEmpleados, btnClientes, btnDocumentacion);
         
@@ -3494,52 +3692,55 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void radioNumeroCilindrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumeroCilindrosActionPerformed
 
         desabilitarComponenetes(comboNumeroCilindrosBuscar, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda,
-                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
     }//GEN-LAST:event_radioNumeroCilindrosActionPerformed
 
     private void radioNombreModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNombreModeloActionPerformed
         
         desabilitarComponenetes( cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
-                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
+
         
     }//GEN-LAST:event_radioNombreModeloActionPerformed
 
     private void radioAnioModeloBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAnioModeloBuscarActionPerformed
+
+
         desabilitarComponenetes(comboAnioModeloBuscar, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
-                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
     }//GEN-LAST:event_radioAnioModeloBuscarActionPerformed
 
     private void radioFabricanteModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFabricanteModeloActionPerformed
 
         desabilitarComponenetes(cajaFabricanteModeloBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar , comboNumeroCilindrosBuscar, 
-                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
         // TODO add your handling code here:
     }//GEN-LAST:event_radioFabricanteModeloActionPerformed
 
     private void radioPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPaisActionPerformed
         desabilitarComponenetes(cajaPaisModeloBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
-                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda );
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, btnActualizarModelos, btnEliminarModelos);
         
     }//GEN-LAST:event_radioPaisActionPerformed
 
     private void radioNumeroPuertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumeroPuertasActionPerformed
         desabilitarComponenetes(cajaModeloPuertasBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
-                cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+                cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
     }//GEN-LAST:event_radioNumeroPuertasActionPerformed
 
     private void radioPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPesoActionPerformed
         desabilitarComponenetes(cajaModeloPesoBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
-                cajaModeloPuertasBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+                cajaModeloPuertasBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
     }//GEN-LAST:event_radioPesoActionPerformed
 
     private void radioPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPasajerosActionPerformed
         desabilitarComponenetes(cajaModeloPasajerosBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
-                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaPaisModeloBusqueda);
+                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
     }//GEN-LAST:event_radioPasajerosActionPerformed
 
@@ -3548,7 +3749,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         actualizarTabla(tablaModelos, "modelos");
 
         desabilitarComponenetes(radioTodosModelos, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
-               cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+               cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
     }//GEN-LAST:event_radioTodosModelosActionPerformed
 
@@ -3557,6 +3758,15 @@ public class VentanaInicio extends javax.swing.JFrame {
         desabilitarComponenetes(cajaIDModeloBusqueda, cajaNombreModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
         
+        if(tablaModelos.getRowCount() == 1){
+            
+            btnActualizarModelos.setEnabled(true);
+                
+            btnEliminarModelos.setEnabled(true);
+
+        }
+        
+
     }//GEN-LAST:event_radioidModeloBusquedaActionPerformed
 
     private void cajaFabricanteModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaFabricanteModeloBusquedaActionPerformed
@@ -3830,37 +4040,41 @@ public class VentanaInicio extends javax.swing.JFrame {
       //============================================ VENTAS ================================================
     
     private void radioTodosVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTodosVentasActionPerformed
-        // TODO add your handling code here:
+        
+        desabilitarComponenetes(radioTodosVentas, comboVentasPagoBuscar, comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasPrecioBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+        
+        actualizarTabla(tablaVentas, "ventas");
+        
     }//GEN-LAST:event_radioTodosVentasActionPerformed
 
     private void radioMesVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMesVentasActionPerformed
         
-         desabilitarComponenetes(comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasPrecioBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+         desabilitarComponenetes(comboVentasMesBuscar, comboVentasPagoBuscar, cajaIDVentasBuscar, comboVentasPrecioBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
         
     }//GEN-LAST:event_radioMesVentasActionPerformed
 
     private void radioPrecioVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPrecioVentasActionPerformed
        
-       desabilitarComponenetes(comboVentasPrecioBuscar,comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+       desabilitarComponenetes(comboVentasPrecioBuscar, comboVentasPagoBuscar, comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
         
     }//GEN-LAST:event_radioPrecioVentasActionPerformed
 
     private void radioIdClienteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioIdClienteVentasActionPerformed
         
-        desabilitarComponenetes(comboVentasClienteBuscar, comboVentasPrecioBuscar,comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+        desabilitarComponenetes(comboVentasClienteBuscar, comboVentasPagoBuscar, comboVentasPrecioBuscar,comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
 
         
     }//GEN-LAST:event_radioIdClienteVentasActionPerformed
 
     private void radioIDEmpleadoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioIDEmpleadoVentasActionPerformed
         
-        desabilitarComponenetes(comboVentasEmpleadoBuscar, comboVentasClienteBuscar, comboVentasPrecioBuscar,comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasVehiculosBuscar);
+        desabilitarComponenetes(comboVentasEmpleadoBuscar, comboVentasPagoBuscar, comboVentasClienteBuscar, comboVentasPrecioBuscar,comboVentasMesBuscar, cajaIDVentasBuscar, comboVentasVehiculosBuscar);
 
     }//GEN-LAST:event_radioIDEmpleadoVentasActionPerformed
 
     private void radioIDVehiculoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioIDVehiculoVentasActionPerformed
         
-        desabilitarComponenetes(comboVentasVehiculosBuscar, comboVentasEmpleadoBuscar, comboVentasClienteBuscar, comboVentasPrecioBuscar,comboVentasMesBuscar, cajaIDVentasBuscar);
+        desabilitarComponenetes(comboVentasVehiculosBuscar, comboVentasPagoBuscar, comboVentasEmpleadoBuscar, comboVentasClienteBuscar, comboVentasPrecioBuscar,comboVentasMesBuscar, cajaIDVentasBuscar);
 
     }//GEN-LAST:event_radioIDVehiculoVentasActionPerformed
 
@@ -3903,7 +4117,29 @@ public class VentanaInicio extends javax.swing.JFrame {
       //============================================ VENTAS ================================================
     
     private void btnEliminarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVentasActionPerformed
-        
+
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de eliminar el registro?");
+         
+        if(respuesta == JOptionPane.YES_OPTION){
+            
+            if(ventaDAO.eliminarVenta(Integer.parseInt(cajaIDVentasBuscar.getText().toString()))){
+            
+                JOptionPane.showMessageDialog(this, "El registro se elimino correctamente");
+            
+                actualizarTabla(tablaVentas, "ventas");
+                
+                btnEliminarVentas.setEnabled(false);
+                
+                btnActualizarVentas.setEnabled(false);
+            
+            }else{
+                
+                con.mostrarError(this);
+                
+            }
+            
+        }
+           
     }//GEN-LAST:event_btnEliminarVentasActionPerformed
 
     private void btnAgregarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVentasActionPerformed
@@ -3912,11 +4148,355 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnActualizarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarVentasActionPerformed
         internalActualizarVentas.setVisible(true);
+      
+        
+        String sql = "SELECT * FROM ventas WHERE id_venta = ?;";
+        
+        rs = con.ejecutarInstruccionSQL(sql, tablaVentas.getValueAt(0, 0));
+       
+
+        try {
+            
+            rs.next();
+            
+            String fechaVenta = rs.getString(2);
+            
+            String[] fechaSeparada = fechaVenta.split("-");
+            
+            System.out.println(fechaSeparada[0]);
+            
+            comboVentasAnioActualizar.setSelectedItem(fechaSeparada[0]);
+            
+            comboVentasMesActualizar.setSelectedIndex(Integer.parseInt(fechaSeparada[1]) - 1);
+            
+            comboVentasDiaActualizar.setSelectedIndex(Integer.parseInt(fechaSeparada[2]) - 1);
+            
+            cajaVentasPrecioActualizar.setText(rs.getString(3));
+            
+            comboVentasFormaActualizar.setSelectedItem(rs.getString(4));
+            
+            comboVentasClienteActualizar.setSelectedItem(rs.getString(5));
+            
+            comboVentasEmpleadoActualizar.setSelectedItem(rs.getString(6));
+            
+            comboVentasvehiculoActualizar.setSelectedItem(rs.getString(7));
+            
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(this, e);
+            
+            System.out.println(e);
+            
+        }
+             
     }//GEN-LAST:event_btnActualizarVentasActionPerformed
 
     private void radioIDVentaVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioIDVentaVentasActionPerformed
-        desabilitarComponenetes(cajaIDVentasBuscar, comboVentasMesBuscar, comboVentasPrecioBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+        desabilitarComponenetes(cajaIDVentasBuscar, comboVentasPagoBuscar, comboVentasMesBuscar, comboVentasPrecioBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
     }//GEN-LAST:event_radioIDVentaVentasActionPerformed
+
+    private void btnVentasAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasAgregarAgregarActionPerformed
+       
+        Venta venta = new Venta(
+        
+                hoy,
+                Double.parseDouble(cajaVentasPrecioAgregar.getText()),
+                comboVentasFormaAgregar.getSelectedItem().toString(),
+                comboVentasClienteAgregar.getSelectedItem().toString(),
+                comboVentasEmpleadoAgregar.getSelectedItem().toString(),
+                comboVentasvehiculoAgregar.getSelectedItem().toString()
+                
+        );
+        
+        if(ventaDAO.agregarVenta(venta)){
+            
+            actualizarTabla(tablaVentas, "ventas");
+            
+            JOptionPane.showMessageDialog(this, "Se  agrego la venta con exito");
+            
+            restablecer(
+                    
+   
+                    cajaVentasPrecioAgregar,
+                    comboVentasFormaAgregar,
+                    comboVentasClienteAgregar,
+                    comboVentasEmpleadoAgregar,
+                    comboVentasvehiculoAgregar
+            
+            );
+            
+            internalAltasVentas.setVisible(false);
+            
+        }else{
+            
+            con.mostrarError(this);
+            
+        }
+        
+    }//GEN-LAST:event_btnVentasAgregarAgregarActionPerformed
+
+    private void radioVentasPagoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioVentasPagoBuscarActionPerformed
+       
+        desabilitarComponenetes(comboVentasPagoBuscar, cajaIDVentasBuscar, comboVentasMesBuscar, comboVentasPrecioBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+        
+    }//GEN-LAST:event_radioVentasPagoBuscarActionPerformed
+
+    private void comboVentasAnioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasAnioActualizarActionPerformed
+        anioBisiesto(Integer.parseInt(comboVentasAnioActualizar.getSelectedItem().toString()), comboVentasMesActualizar.getSelectedIndex(), comboVentasDiaActualizar);
+    }//GEN-LAST:event_comboVentasAnioActualizarActionPerformed
+
+    private void comboVentasMesActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasMesActualizarActionPerformed
+        
+        anioBisiesto(Integer.parseInt(comboVentasAnioActualizar.getSelectedItem().toString()), comboVentasMesActualizar.getSelectedIndex(), comboVentasDiaActualizar);
+        
+    }//GEN-LAST:event_comboVentasMesActualizarActionPerformed
+
+    private void cajaIDVentasBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaIDVentasBuscarKeyReleased
+        
+        if(cajaIDVentasBuscar.getText().length() == 0){
+             
+            actualizarTabla(tablaVentas, "ventas");
+             
+         }else{
+             
+            actualizarTablaConFiltro(
+                tablaVentas,
+                "ventas",
+                "id_venta",
+                cajaIDVentasBuscar.getText().toString(),
+                'N'
+            ); 
+             
+        }
+        
+        if(radioIDVentaVentas.isSelected() && tablaVentas.getRowCount() == 1){
+            
+            
+            btnActualizarVentas.setEnabled(true);
+            
+            btnEliminarVentas.setEnabled(true);
+            
+        }else{
+            
+            btnActualizarVentas.setEnabled(false);
+            
+            btnEliminarVentas.setEnabled(false);
+            
+        }
+               
+               
+               
+    }//GEN-LAST:event_cajaIDVentasBuscarKeyReleased
+
+    private void btnVentasActualizarActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActualizarActualizarActionPerformed
+        
+        String mes, dia;
+        
+        if(String.valueOf(comboVentasMesActualizar.getSelectedIndex() + 1).length() == 1){
+           
+            mes = "0"+String.valueOf(comboVentasMesActualizar.getSelectedIndex()+1);
+            
+        }else{
+            
+            mes = String.valueOf(comboVentasMesActualizar.getSelectedIndex()+1);
+            
+        }
+        
+        if(comboVentasDiaActualizar.getSelectedItem().toString().length() == 1){
+            
+            dia = "0" + comboVentasDiaActualizar.getSelectedItem().toString();
+            
+        }else{
+            
+            dia = comboVentasDiaActualizar.getSelectedItem().toString();
+            
+        }
+        
+        String fechaVenta = comboAnioModificar.getSelectedItem().toString() + "-" + mes + "-" + dia;
+        
+        Venta venta = new Venta(
+        
+                LocalDate.parse(fechaVenta),
+                Double.parseDouble(cajaVentasPrecioActualizar.getText()),
+                comboVentasFormaActualizar.getSelectedItem().toString(),
+                comboVentasClienteActualizar.getSelectedItem().toString(),
+                comboVentasEmpleadoActualizar.getSelectedItem().toString(),
+                comboVentasvehiculoActualizar.getSelectedItem().toString()
+                
+        );
+        
+        if(ventaDAO.actualizarVenta(venta, Integer.parseInt(tablaVentas.getValueAt(0, 0).toString()))){
+            
+            JOptionPane.showMessageDialog(this, "Registro actualizado con exito");
+            
+            actualizarTabla(tablaVentas, "ventas");
+            
+            btnEliminarVentas.setEnabled(false);
+            
+            btnActualizarVentas.setEnabled(false);
+            
+            restablecer(
+                    
+                    comboVentasAnioActualizar,
+                    comboVentasMesActualizar,
+                    comboVentasDiaActualizar,
+                    cajaVentasPrecioActualizar,
+                    comboVentasFormaActualizar,
+                    comboVentasClienteActualizar,
+                    comboVentasEmpleadoActualizar,
+                    comboVentasvehiculoActualizar
+            
+            );
+            
+            internalActualizarVentas.setVisible(false);
+            
+        }
+        
+    }//GEN-LAST:event_btnVentasActualizarActualizarActionPerformed
+
+    private void btnVentasCancelarActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasCancelarActualizarActionPerformed
+        
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de cancelar?");
+         
+        if(respuesta == JOptionPane.YES_OPTION){
+            
+            restablecer(
+                    
+                    comboVentasAnioActualizar,
+                    comboVentasMesActualizar,
+                    comboVentasDiaActualizar,
+                    cajaVentasPrecioActualizar,
+                    comboVentasFormaActualizar,
+                    comboVentasClienteActualizar,
+                    comboVentasEmpleadoActualizar,
+                    comboVentasvehiculoActualizar
+            
+            );
+ 
+            internalActualizarVentas.setVisible(false);
+            
+        }
+        
+    }//GEN-LAST:event_btnVentasCancelarActualizarActionPerformed
+
+    private void btnVentasCancelarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasCancelarAgregarActionPerformed
+        
+            restablecer(
+                    
+   
+                    cajaVentasPrecioAgregar,
+                    comboVentasFormaAgregar,
+                    comboVentasClienteAgregar,
+                    comboVentasEmpleadoAgregar,
+                    comboVentasvehiculoAgregar
+            
+            );
+            
+            internalAltasVentas.setVisible(false);
+        
+    }//GEN-LAST:event_btnVentasCancelarAgregarActionPerformed
+
+    private void btnVentasRestaurarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasRestaurarAgregarActionPerformed
+        
+            restablecer(
+                    
+   
+                    cajaVentasPrecioAgregar,
+                    comboVentasFormaAgregar,
+                    comboVentasClienteAgregar,
+                    comboVentasEmpleadoAgregar,
+                    comboVentasvehiculoAgregar
+            
+            );
+            
+
+        
+    }//GEN-LAST:event_btnVentasRestaurarAgregarActionPerformed
+
+    private void comboVentasMesBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasMesBuscarActionPerformed
+        
+        String mes;
+        
+        if(String.valueOf(comboVentasMesBuscar.getSelectedIndex()+1).length() == 1){
+            
+            mes = "0" + String.valueOf(comboVentasMesBuscar.getSelectedIndex()+1);
+            
+        }else{
+            
+            mes = String.valueOf(comboVentasMesBuscar.getSelectedIndex()+1);
+            
+        }
+        
+        actualizarTablaConFiltro(
+                tablaVentas, 
+                "ventas", 
+                "fecha_venta", 
+                mes, 
+                'M'
+        );
+        
+    }//GEN-LAST:event_comboVentasMesBuscarActionPerformed
+
+    private void comboVentasPrecioBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasPrecioBuscarActionPerformed
+        
+        actualizarTablaConFiltro(
+                tablaVentas, 
+                "ventas", 
+                "precio_final", 
+                comboVentasPrecioBuscar.getSelectedItem().toString(), 
+                'O'
+        );
+        
+    }//GEN-LAST:event_comboVentasPrecioBuscarActionPerformed
+
+    private void comboVentasPagoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasPagoBuscarActionPerformed
+        
+        actualizarTablaConFiltro(
+                tablaVentas, 
+                "ventas", 
+                "forma_pago", 
+                comboVentasPagoBuscar.getSelectedItem().toString(), 
+                'T'
+        );
+        
+    }//GEN-LAST:event_comboVentasPagoBuscarActionPerformed
+
+    private void comboVentasClienteBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasClienteBuscarActionPerformed
+        
+        actualizarTablaConFiltro(
+                tablaVentas, 
+                "ventas", 
+                "id_cliente", 
+                comboVentasClienteBuscar.getSelectedItem().toString(), 
+                'T'
+        );
+        
+    }//GEN-LAST:event_comboVentasClienteBuscarActionPerformed
+
+    private void comboVentasEmpleadoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasEmpleadoBuscarActionPerformed
+        
+        actualizarTablaConFiltro(
+                tablaVentas, 
+                "ventas", 
+                "id_empleado", 
+                comboVentasEmpleadoBuscar.getSelectedItem().toString(), 
+                'T'
+        );
+        
+    }//GEN-LAST:event_comboVentasEmpleadoBuscarActionPerformed
+
+    private void comboVentasVehiculosBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasVehiculosBuscarActionPerformed
+        
+        actualizarTablaConFiltro(
+                tablaVentas, 
+                "ventas", 
+                "id_vehiculo", 
+                comboVentasVehiculosBuscar.getSelectedItem().toString(), 
+                'T'
+        );
+        
+    }//GEN-LAST:event_comboVentasVehiculosBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3972,10 +4552,10 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnRestaurarAgregar;
     private javax.swing.JButton btnVehiculos;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton btnVentasActualizarActualizar;
     private javax.swing.JButton btnVentasAgregarAgregar;
-    private javax.swing.JButton btnVentasAgregarAgregar1;
+    private javax.swing.JButton btnVentasCancelarActualizar;
     private javax.swing.JButton btnVentasCancelarAgregar;
-    private javax.swing.JButton btnVentasCancelarAgregar1;
     private javax.swing.JButton btnVentasRestaurarAgregar;
     private javax.swing.JTextField cajaFabricanteModeloBusqueda;
     private javax.swing.JTextField cajaIDModeloBusqueda;
@@ -4047,6 +4627,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboVentasFormaAgregar;
     private javax.swing.JComboBox<String> comboVentasMesActualizar;
     private javax.swing.JComboBox<String> comboVentasMesBuscar;
+    private javax.swing.JComboBox<String> comboVentasPagoBuscar;
     private javax.swing.JComboBox<String> comboVentasPrecioBuscar;
     private javax.swing.JComboBox<String> comboVentasVehiculosBuscar;
     private javax.swing.JComboBox<String> comboVentasvehiculoActualizar;
@@ -4193,6 +4774,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioTodosBusqueda;
     private javax.swing.JRadioButton radioTodosModelos;
     private javax.swing.JRadioButton radioTodosVentas;
+    private javax.swing.JRadioButton radioVentasPagoBuscar;
     private javax.swing.JRadioButton radioidModeloBusqueda;
     private javax.swing.JPanel sidePane;
     private javax.swing.JTable tablaModelos;
