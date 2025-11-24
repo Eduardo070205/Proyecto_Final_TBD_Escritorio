@@ -13,6 +13,8 @@ import Modelo.Venta;
 import Modelo.Modelo;
 import Modelo.ResultSetTableModel;
 import java.awt.Component;
+import java.awt.Desktop;
+import java.io.File;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,11 +22,16 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import javax.swing.*;
 
+import net.sf.dynamicreports.report.builder.DynamicReports;
+import net.sf.dynamicreports.report.builder.column.Columns;
+import net.sf.dynamicreports.report.builder.datatype.DataTypes;
+import net.sf.dynamicreports.report.builder.component.Components;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
-/**
- *
- * @author Eduardo
- */
+
+
 public class VentanaInicio extends javax.swing.JFrame {
    
     
@@ -123,7 +130,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             
             comboModeloModificar.addItem(tablaModelos.getValueAt(i, 0).toString());
             
-     
+            comboHomeModeloReporte.addItem(tablaModelos.getValueAt(i, 0).toString());
             
         }
         
@@ -506,6 +513,12 @@ public class VentanaInicio extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaVista = new javax.swing.JTable();
         btnVistaCerrar = new javax.swing.JButton();
+        internalGenerarReporte = new javax.swing.JInternalFrame();
+        jPanel26 = new javax.swing.JPanel();
+        jLabel89 = new javax.swing.JLabel();
+        comboHomeModeloReporte = new javax.swing.JComboBox<>();
+        btnHomeGenerarReporte = new javax.swing.JButton();
+        btnHomeCerrarReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autos Amistosos");
@@ -698,6 +711,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnHomeReporte.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeReporte.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\reporte.png")); // NOI18N
         btnHomeReporte.setText("Reporte Ventas");
+        btnHomeReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeReporteActionPerformed(evt);
+            }
+        });
         jPanel21.add(btnHomeReporte);
         btnHomeReporte.setBounds(290, 70, 210, 60);
 
@@ -3080,6 +3098,86 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalHomeVista);
         internalHomeVista.setBounds(120, 40, 420, 440);
 
+        internalGenerarReporte.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        internalGenerarReporte.setTitle("Generar Reporte");
+        internalGenerarReporte.setVisible(false);
+
+        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel89.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel89.setText("Introduce el modelo");
+
+        comboHomeModeloReporte.setBackground(new java.awt.Color(247, 227, 178));
+        comboHomeModeloReporte.setForeground(new java.awt.Color(0, 0, 0));
+
+        btnHomeGenerarReporte.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeGenerarReporte.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnHomeGenerarReporte.setForeground(new java.awt.Color(0, 0, 0));
+        btnHomeGenerarReporte.setText("Generar");
+        btnHomeGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeGenerarReporteActionPerformed(evt);
+            }
+        });
+
+        btnHomeCerrarReporte.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeCerrarReporte.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnHomeCerrarReporte.setForeground(new java.awt.Color(0, 0, 0));
+        btnHomeCerrarReporte.setText("Cerrar");
+        btnHomeCerrarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeCerrarReporteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel89))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(comboHomeModeloReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(btnHomeGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btnHomeCerrarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(comboHomeModeloReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHomeGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHomeCerrarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout internalGenerarReporteLayout = new javax.swing.GroupLayout(internalGenerarReporte.getContentPane());
+        internalGenerarReporte.getContentPane().setLayout(internalGenerarReporteLayout);
+        internalGenerarReporteLayout.setHorizontalGroup(
+            internalGenerarReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        internalGenerarReporteLayout.setVerticalGroup(
+            internalGenerarReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jDesktopPane1.add(internalGenerarReporte);
+        internalGenerarReporte.setBounds(180, 90, 280, 170);
+
         bg.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 770, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -3098,6 +3196,52 @@ public class VentanaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   
+    public void generarReporte(String modelo) {
+        
+        Connection cn = con.getConexion(); 
+        
+        if (cn == null) {
+            System.out.println("No se pudo conectar a la base de datos");
+            return;
+        }
+
+        try {
+            PreparedStatement ps = cn.prepareStatement(
+                "SELECT total_vendido_modelo(?) AS total_vendido"
+            );
+            ps.setInt(1, Integer.parseInt(modelo));
+            
+            String nombreArchivo = "reporte_ventas_modelo_" + modelo + ".pdf";
+            File archivo = new File(nombreArchivo);
+
+            // Construir y generar reporte
+            DynamicReports.report()
+                    .setDataSource(ps.executeQuery()) 
+                    .columns(
+                            Columns.column("Total de ventas", "total_vendido", DataTypes.bigDecimalType())
+                    )
+                    .title(Components.text("Reporte de ventas del modelo: " + modelo)) 
+                    .pageFooter(Components.pageXofY()) 
+                    .toPdf(new FileOutputStream("reporte_ventas_modelo_"+ modelo +".pdf")); 
+
+            
+            
+            if (Desktop.isDesktopSupported()) {
+                         
+                Desktop.getDesktop().open(archivo);
+                
+                JOptionPane.showMessageDialog(this, "Se genero el reporte correctamente");
+                
+            }
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+    }
+    
+    
     public void recrearVista(String nombreVista, String consultaSQL) {
 
         String sqlDrop = "DROP VIEW IF EXISTS " + nombreVista + " CASCADE";
@@ -3126,8 +3270,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(
 
-                CONTROLADOR_JDBC,
-                URL,
+                con.getConexion(),
                 CONSULTA
                     
             );
@@ -3196,16 +3339,14 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(
-                CONTROLADOR_JDBC,
-                URL,
+               
+                con.getConexion(),   
                 CONSULTA
             );
 
             tabla.setModel(modelo);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -3253,16 +3394,13 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(
-                CONTROLADOR_JDBC,
-                URL,
+                con.getConexion(),
                 CONSULTA
             );
 
             tabla.setModel(modelo);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         
@@ -4894,6 +5032,24 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnVistaCerrarActionPerformed
 
+    private void btnHomeReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeReporteActionPerformed
+        
+        internalGenerarReporte.setVisible(true);
+        
+    }//GEN-LAST:event_btnHomeReporteActionPerformed
+
+    private void btnHomeGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeGenerarReporteActionPerformed
+        
+        generarReporte(comboHomeModeloReporte.getSelectedItem().toString());
+        
+    }//GEN-LAST:event_btnHomeGenerarReporteActionPerformed
+
+    private void btnHomeCerrarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeCerrarReporteActionPerformed
+        
+        internalGenerarReporte.setVisible(false);
+        
+    }//GEN-LAST:event_btnHomeCerrarReporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4939,6 +5095,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnEmpleados;
     private javax.swing.JButton btnHistorialPreciosCerrar;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnHomeCerrarReporte;
+    private javax.swing.JButton btnHomeGenerarReporte;
     private javax.swing.JButton btnHomeGrafica;
     private javax.swing.JButton btnHomeHistorialPrecios;
     private javax.swing.JButton btnHomeReporte;
@@ -5004,6 +5162,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboDiaModificar;
     private javax.swing.JComboBox<String> comboEstadoBusqueda;
     private javax.swing.JComboBox<String> comboEstadoModificar;
+    private javax.swing.JComboBox<String> comboHomeModeloReporte;
     private javax.swing.JComboBox<String> comboMesAgregar;
     private javax.swing.JComboBox<String> comboMesEntradaModificar;
     private javax.swing.JComboBox<String> comboMesModificar;
@@ -5044,6 +5203,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JInternalFrame internalAgregarModelos;
     private javax.swing.JInternalFrame internalAltasVentas;
     private javax.swing.JInternalFrame internalCambiosModelos;
+    private javax.swing.JInternalFrame internalGenerarReporte;
     private javax.swing.JInternalFrame internalHistorialPrecios;
     private javax.swing.JInternalFrame internalHome;
     private javax.swing.JInternalFrame internalHomeVista;
@@ -5141,6 +5301,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -5160,6 +5321,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel3;

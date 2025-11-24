@@ -12,23 +12,20 @@ import javax.swing.table.AbstractTableModel;
 import java.sql.*;
 
 public class ResultSetTableModel extends AbstractTableModel {
+
     private Connection conexion;
     private Statement instruccion;
     private ResultSet conjuntoResultados;
     private ResultSetMetaData metaDatos;
-    private int numeroDeFilas;
 
+    private int numeroDeFilas;
     private boolean conectadoALaBaseDeDatos = false;
 
-    public ResultSetTableModel(String driver, String url, String consulta)
-            throws SQLException, ClassNotFoundException {
+    // 🔹 Constructor MODIFICADO para NO crear nueva conexión
+    public ResultSetTableModel(Connection conexion, String consulta)
+            throws SQLException {
 
-        // Cargar el driver de PostgreSQL
-        Class.forName("org.postgresql.Driver");
-
-        // Conectarse a PostgreSQL
-        conexion = DriverManager.getConnection(url, "eduardo", "Eduardo10");
-        // CAMBIA "postgres" y "1234" por tu usuario y contraseña reales
+        this.conexion = conexion;
 
         instruccion = conexion.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -41,18 +38,15 @@ public class ResultSetTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Class getColumnClass(int columna) {
+    public Class<?> getColumnClass(int columna) {
         if (!conectadoALaBaseDeDatos)
             throw new IllegalStateException("No hay conexion a la base de datos");
 
         try {
-            String nombreClase = metaDatos.getColumnClassName(columna + 1);
-            return Class.forName(nombreClase);
+            return Class.forName(metaDatos.getColumnClassName(columna + 1));
         } catch (Exception e) {
-            e.printStackTrace();
+            return Object.class;
         }
-
-        return Object.class;
     }
 
     @Override
@@ -63,9 +57,8 @@ public class ResultSetTableModel extends AbstractTableModel {
         try {
             return metaDatos.getColumnCount();
         } catch (SQLException e) {
-            e.printStackTrace();
+            return 0;
         }
-        return 0;
     }
 
     @Override
@@ -76,10 +69,8 @@ public class ResultSetTableModel extends AbstractTableModel {
         try {
             return metaDatos.getColumnName(columna + 1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            return "";
         }
-
-        return "";
     }
 
     @Override
@@ -99,14 +90,11 @@ public class ResultSetTableModel extends AbstractTableModel {
             conjuntoResultados.absolute(fila + 1);
             return conjuntoResultados.getObject(columna + 1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            return null;
         }
-
-        return "";
     }
 
-    public void establecerConsulta(String consulta)
-            throws SQLException {
+    public void establecerConsulta(String consulta) throws SQLException {
 
         if (!conectadoALaBaseDeDatos)
             throw new IllegalStateException("No hay conexion a la base de datos");
@@ -120,15 +108,15 @@ public class ResultSetTableModel extends AbstractTableModel {
         fireTableStructureChanged();
     }
 
-    public void desconectarDeLaBaseDeDatos() {
+    // 🔹 NO cerramos la conexión aquí (solo Statement y ResultSet)
+    public void cerrarRecursos() {
         try {
-            instruccion.close();
-            conexion.close();
+            if (conjuntoResultados != null) conjuntoResultados.close();
+            if (instruccion != null) instruccion.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conectadoALaBaseDeDatos = false;
         }
     }
 }
+
 
