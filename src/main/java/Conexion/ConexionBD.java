@@ -59,6 +59,17 @@ public class ConexionBD {
     }
     
     
+    public void reconectar() {
+    try {
+        if (conexion == null || conexion.isClosed()) {
+            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Reconexión exitosa");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+    
     public boolean ejecutarInstruccionLMD(String sql, Object... parametros){
 
         boolean res = false;

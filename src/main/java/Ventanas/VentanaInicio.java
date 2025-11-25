@@ -6,33 +6,31 @@ package Ventanas;
 
 import Modelo.Vehiculo;
 import Conexion.ConexionBD;
+import Controlador.IGraficador;
+import Controlador.IPrecioDAO;
+import Controlador.IPrecioService;
 import Controlador.ModeloDAO;
+import Controlador.PrecioDAO;
 import Controlador.VehiculoDAO;
 import Controlador.VentaDAO;
+import Graficador.GraficadorPrecios;
+import Logica.Recursos;
 import Modelo.Venta;
 import Modelo.Modelo;
-import Modelo.ResultSetTableModel;
-import java.awt.Component;
-import java.awt.Desktop;
-import java.io.File;
-import java.sql.CallableStatement;
+import Servicios.PrecioService;
+
+
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.*;
 
-import net.sf.dynamicreports.report.builder.DynamicReports;
-import net.sf.dynamicreports.report.builder.column.Columns;
-import net.sf.dynamicreports.report.builder.datatype.DataTypes;
-import net.sf.dynamicreports.report.builder.component.Components;
-import java.io.FileOutputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 
 
-public class VentanaInicio extends javax.swing.JFrame {
+public class VentanaInicio extends Recursos{
    
     
     VehiculoDAO vehiculoDAO = new VehiculoDAO();
@@ -132,6 +130,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             
             comboHomeModeloReporte.addItem(tablaModelos.getValueAt(i, 0).toString());
             
+
         }
         
         
@@ -207,8 +206,11 @@ public class VentanaInicio extends javax.swing.JFrame {
             comboVentasVehiculosBuscar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
             comboVentasvehiculoAgregar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
             comboVentasvehiculoActualizar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
-            
-            
+            comboGraficaId_1.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            comboGraficaId_2.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            comboGraficaId_3.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            comboGraficaId_4.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+
         }
 
         
@@ -519,10 +521,20 @@ public class VentanaInicio extends javax.swing.JFrame {
         comboHomeModeloReporte = new javax.swing.JComboBox<>();
         btnHomeGenerarReporte = new javax.swing.JButton();
         btnHomeCerrarReporte = new javax.swing.JButton();
+        internalGrafica = new javax.swing.JInternalFrame();
+        jPanel29 = new javax.swing.JPanel();
+        comboGraficaId_1 = new javax.swing.JComboBox<>();
+        comboGraficaId_2 = new javax.swing.JComboBox<>();
+        comboGraficaId_3 = new javax.swing.JComboBox<>();
+        comboGraficaId_4 = new javax.swing.JComboBox<>();
+        jPanel30 = new javax.swing.JPanel();
+        jLabel90 = new javax.swing.JLabel();
+        btnGraficar = new javax.swing.JButton();
+        jLabel91 = new javax.swing.JLabel();
+        btnGraficarCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autos Amistosos");
-        setPreferredSize(new java.awt.Dimension(1000, 650));
         setResizable(false);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
@@ -689,6 +701,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnHomeGrafica.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeGrafica.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\grafica.png")); // NOI18N
         btnHomeGrafica.setText("Gráfica Ventas");
+        btnHomeGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeGraficaActionPerformed(evt);
+            }
+        });
         jPanel21.add(btnHomeGrafica);
         btnHomeGrafica.setBounds(540, 70, 200, 60);
 
@@ -3178,6 +3195,108 @@ public class VentanaInicio extends javax.swing.JFrame {
         jDesktopPane1.add(internalGenerarReporte);
         internalGenerarReporte.setBounds(180, 90, 280, 170);
 
+        internalGrafica.setTitle("Graficar");
+        internalGrafica.setVisible(false);
+
+        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel29.setLayout(null);
+
+        comboGraficaId_1.setBackground(new java.awt.Color(247, 227, 178));
+        comboGraficaId_1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboGraficaId_1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel29.add(comboGraficaId_1);
+        comboGraficaId_1.setBounds(10, 100, 90, 26);
+
+        comboGraficaId_2.setBackground(new java.awt.Color(247, 227, 178));
+        comboGraficaId_2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboGraficaId_2.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel29.add(comboGraficaId_2);
+        comboGraficaId_2.setBounds(120, 100, 90, 26);
+
+        comboGraficaId_3.setBackground(new java.awt.Color(247, 227, 178));
+        comboGraficaId_3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboGraficaId_3.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel29.add(comboGraficaId_3);
+        comboGraficaId_3.setBounds(230, 100, 90, 26);
+
+        comboGraficaId_4.setBackground(new java.awt.Color(247, 227, 178));
+        comboGraficaId_4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboGraficaId_4.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel29.add(comboGraficaId_4);
+        comboGraficaId_4.setBounds(350, 100, 90, 26);
+
+        jPanel30.setBackground(new java.awt.Color(214, 198, 152));
+
+        jLabel90.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel90.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel90.setText("Graficar");
+
+        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+        jPanel30.setLayout(jPanel30Layout);
+        jPanel30Layout.setHorizontalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(291, Short.MAX_VALUE))
+        );
+        jPanel30Layout.setVerticalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        jPanel29.add(jPanel30);
+        jPanel30.setBounds(0, 0, 450, 60);
+
+        btnGraficar.setBackground(new java.awt.Color(122, 122, 63));
+        btnGraficar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGraficar.setForeground(new java.awt.Color(0, 0, 0));
+        btnGraficar.setText("Gráficar");
+        btnGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarActionPerformed(evt);
+            }
+        });
+        jPanel29.add(btnGraficar);
+        btnGraficar.setBounds(60, 190, 130, 60);
+
+        jLabel91.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel91.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel91.setText("Id's de los modelos a gráficar");
+        jPanel29.add(jLabel91);
+        jLabel91.setBounds(10, 70, 170, 16);
+
+        btnGraficarCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnGraficarCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGraficarCerrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnGraficarCerrar.setText("Cerrar");
+        btnGraficarCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarCerrarActionPerformed(evt);
+            }
+        });
+        jPanel29.add(btnGraficarCerrar);
+        btnGraficarCerrar.setBounds(260, 190, 130, 60);
+
+        javax.swing.GroupLayout internalGraficaLayout = new javax.swing.GroupLayout(internalGrafica.getContentPane());
+        internalGrafica.getContentPane().setLayout(internalGraficaLayout);
+        internalGraficaLayout.setHorizontalGroup(
+            internalGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        internalGraficaLayout.setVerticalGroup(
+            internalGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(internalGraficaLayout.createSequentialGroup()
+                .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
+        jDesktopPane1.add(internalGrafica);
+        internalGrafica.setBounds(180, 30, 460, 330);
+
         bg.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 770, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -3197,327 +3316,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    
-    public void generarReporte(String modelo) {
-        
-        Connection cn = con.getConexion(); 
-        
-        if (cn == null) {
-            System.out.println("No se pudo conectar a la base de datos");
-            return;
-        }
-
-        try {
-            PreparedStatement ps = cn.prepareStatement(
-                "SELECT total_vendido_modelo(?) AS total_vendido"
-            );
-            ps.setInt(1, Integer.parseInt(modelo));
-            
-            String nombreArchivo = "reporte_ventas_modelo_" + modelo + ".pdf";
-            File archivo = new File(nombreArchivo);
-
-            // Construir y generar reporte
-            DynamicReports.report()
-                    .setDataSource(ps.executeQuery()) 
-                    .columns(
-                            Columns.column("Total de ventas", "total_vendido", DataTypes.bigDecimalType())
-                    )
-                    .title(Components.text("Reporte de ventas del modelo: " + modelo)) 
-                    .pageFooter(Components.pageXofY()) 
-                    .toPdf(new FileOutputStream("reporte_ventas_modelo_"+ modelo +".pdf")); 
-
-            
-            
-            if (Desktop.isDesktopSupported()) {
-                         
-                Desktop.getDesktop().open(archivo);
-                
-                JOptionPane.showMessageDialog(this, "Se genero el reporte correctamente");
-                
-            }
-            
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
-    }
     
-    
-    public void recrearVista(String nombreVista, String consultaSQL) {
-
-        String sqlDrop = "DROP VIEW IF EXISTS " + nombreVista + " CASCADE";
-        String sqlCreate = "CREATE VIEW " + nombreVista + " AS " + consultaSQL;
-
-        try (Statement stmt = con.getConexion().createStatement()) {
-
-            stmt.executeUpdate(sqlDrop);
-            stmt.executeUpdate(sqlCreate);
-
-            System.out.println("Vista recreada correctamente.");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-    
-    public void cargarVistaEnTabla(JTable tabla, String nombreVista) {
-        
-        final String CONTROLADOR_JDBC = "org.postgresql.Driver";
-        final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-        String CONSULTA = "SELECT * FROM " + nombreVista;
-
-        try {
-            ResultSetTableModel modelo = new ResultSetTableModel(
-
-                con.getConexion(),
-                CONSULTA
-                    
-            );
-
-            tabla.setModel(modelo);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void agregarClientesEmpleados(JComboBox combo, char tipo){
-        
-        
-        for(int i = 1; i <=5; i++){
-            
-            if(tipo == 'C'){
-                
-                combo.addItem("CL00" + i);
-                
-            }else if (tipo == 'E'){
-                
-                combo.addItem("EM0" + i);
-                
-            }
-            
-        }
-        
-    }
-    
-    
-    public void restablecer(JComponent... componentes){
-
-        for(JComponent c : componentes){
-
-            if(c instanceof JTextField) {
-
-                ((JTextField) c).setText("");
-
-            }
-            if(c instanceof JComboBox<?>){
-
-                ((JComboBox<?>) c).setSelectedIndex(0);
-
-            }
-            if(c instanceof JRadioButton){
-
-                ((JRadioButton) c).setSelected(true);
-
-            }
-            if(c instanceof JSpinner){
-                
-                ((JSpinner) c).setValue(0);
-                
-            }
-
-        }
-
-    }
-
-    public void actualizarTabla(JTable tabla, String tablaBaseDatos) {
-
-        final String CONTROLADOR_JDBC = "org.postgresql.Driver";
-        final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
-
-        try {
-            ResultSetTableModel modelo = new ResultSetTableModel(
-               
-                con.getConexion(),   
-                CONSULTA
-            );
-
-            tabla.setModel(modelo);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    
-    public void actualizarTablaConFiltro(JTable tabla, String tablaBaseDatos, String campo, String valor, char tipo){
-        
-        
-        final String CONTROLADOR_JDBC = "org.postgresql.Driver";
-        final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-        String CONSULTA = null;
-        
-        
-        if(tipo == 'T'){
-                    
-            CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " LIKE '" + valor + "%';";
-            
-        }else if(tipo == 'N'){
-            
-          
-            CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " = " + valor + ";";
-            
-        }else if(tipo == 'O'){
-            
-             CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE " + campo + " < " + valor + ";";
-            
-        }else if(tipo == 'A'){
-            
-             CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE extract(year from " + campo + ") = " + valor + ";";
-            
-        }else if(tipo == 'M'){
-            
-             CONSULTA = "SELECT * FROM " + tablaBaseDatos + " WHERE extract(month from " + campo + ") = " + valor + ";";
-            
-        }
-        
-        else{
-            
-            CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
-            
-        }
-        
-     
-        
- 
-
-        try {
-            ResultSetTableModel modelo = new ResultSetTableModel(
-                con.getConexion(),
-                CONSULTA
-            );
-
-            tabla.setModel(modelo);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        
-    }
-
-    
-
-    
-    private void ocultarInternal(JInternalFrame internalVisible, JInternalFrame... internals){
-        
-        for(JInternalFrame i : internals){
-            
-            i.setVisible(false);
-            
-        }
-        
-        internalVisible.setVisible(true);
-        
-    }
-    
-    private void cambiarColorBoton(JButton... btnMenu){
-        
-        for(JButton i : btnMenu){
-            
-            i.setBackground(new java.awt.Color(227,211,163));
-            
-        }
-        
-    }
-    
-    private void desabilitarComponenetes(JComponent componente_activo, JComponent... componente){
-        
-        for(JComponent c : componente){
-            
-            c.setEnabled(false);
-            
-        }
-        
-        componente_activo.setEnabled(true);
-        
-    }
-    
-    private void asignarFechas(JComboBox comboAnio, JComboBox comboMes){
-        
-        comboAnio.removeAllItems();
-        comboMes.removeAllItems();
-       
-        
-        for(int i = 2025; i > 1900; i--){
-            
-            comboAnio.addItem(Integer.toString(i));
-            
-        }
-        
-        comboMes.addItem("Enero");
-        comboMes.addItem("Febrero");
-        comboMes.addItem("Marzo");
-        comboMes.addItem("Abril");
-        comboMes.addItem("Mayo");
-        comboMes.addItem("Junio");
-        comboMes.addItem("Julio");
-        comboMes.addItem("Agosto");
-        comboMes.addItem("Septiembre");
-        comboMes.addItem("Octubre");
-        comboMes.addItem("Noviembre");
-        comboMes.addItem("Diciembre");
-        
-        
- 
-    }
-    
-    public void anioBisiesto(int anio, int valorMes, JComboBox comboDias){
-        
-        
-        comboDias.removeAllItems();
-        
-        valorMes = valorMes + 1;
-        
-        if(valorMes == 1 || valorMes == 3 || valorMes == 5 || valorMes == 7 || valorMes == 8 || valorMes == 10 || valorMes == 12){
-            
-            for(int x = 1; x <= 31; x++){
-                
-                comboDias.addItem(x);
-                
-            }
-            
-        }else if(valorMes == 2){
-            
-            if ((anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)) {
-   
-                for(int x = 1; x <= 29; x++){
-                
-                    comboDias.addItem(x);
-                
-                }
-            
-            } else{
-                
-                for(int x = 1; x <= 28; x++){
-                
-                    comboDias.addItem(x);
-                
-                }
-                
-            }
-            
-        }else{
-            
-            for(int x = 1; x <= 30; x++){
-                
-                comboDias.addItem(x);
-                
-            }           
-            
-        }
-        
-    }
     
     // ============================================== VENTANA VEHICULOS ================================================================
     
@@ -5050,6 +4849,43 @@ public class VentanaInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnHomeCerrarReporteActionPerformed
 
+    private void btnHomeGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeGraficaActionPerformed
+        
+        internalGrafica.setVisible(true);
+        
+    }//GEN-LAST:event_btnHomeGraficaActionPerformed
+
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        
+        
+        String v1 = comboGraficaId_1.getSelectedItem().toString();
+        String v2 = comboGraficaId_2.getSelectedItem().toString();
+        String v3 = comboGraficaId_3.getSelectedItem().toString();
+        String v4 = comboGraficaId_4.getSelectedItem().toString();
+ 
+        
+        
+        List<String> vehiculos = Arrays.asList(v1, v2, v3, v4);
+
+        
+        IPrecioDAO precioDAO = new PrecioDAO();
+        IPrecioService service = new PrecioService(precioDAO);
+        IGraficador graficador = new GraficadorPrecios();
+
+        
+        List<Double> precios = service.obtenerPrecios(vehiculos);
+
+        
+        graficador.graficar(vehiculos, precios);
+        
+    }//GEN-LAST:event_btnGraficarActionPerformed
+
+    private void btnGraficarCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarCerrarActionPerformed
+        
+        internalGrafica.setVisible(false);
+        
+    }//GEN-LAST:event_btnGraficarCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5093,6 +4929,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarVehiculos;
     private javax.swing.JButton btnEliminarVentas;
     private javax.swing.JButton btnEmpleados;
+    private javax.swing.JButton btnGraficar;
+    private javax.swing.JButton btnGraficarCerrar;
     private javax.swing.JButton btnHistorialPreciosCerrar;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnHomeCerrarReporte;
@@ -5162,6 +5000,10 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboDiaModificar;
     private javax.swing.JComboBox<String> comboEstadoBusqueda;
     private javax.swing.JComboBox<String> comboEstadoModificar;
+    private javax.swing.JComboBox<String> comboGraficaId_1;
+    private javax.swing.JComboBox<String> comboGraficaId_2;
+    private javax.swing.JComboBox<String> comboGraficaId_3;
+    private javax.swing.JComboBox<String> comboGraficaId_4;
     private javax.swing.JComboBox<String> comboHomeModeloReporte;
     private javax.swing.JComboBox<String> comboMesAgregar;
     private javax.swing.JComboBox<String> comboMesEntradaModificar;
@@ -5204,6 +5046,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JInternalFrame internalAltasVentas;
     private javax.swing.JInternalFrame internalCambiosModelos;
     private javax.swing.JInternalFrame internalGenerarReporte;
+    private javax.swing.JInternalFrame internalGrafica;
     private javax.swing.JInternalFrame internalHistorialPrecios;
     private javax.swing.JInternalFrame internalHome;
     private javax.swing.JInternalFrame internalHomeVista;
@@ -5303,6 +5146,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -5324,7 +5169,9 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
