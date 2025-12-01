@@ -31,7 +31,7 @@ public class ConexionBD {
     private static final String USER = "eduardo";
     private static final String PASSWORD = "Eduardo10";
 
-    // Constructor privado para impedir instancias externas
+  
     private ConexionBD() {
         
         

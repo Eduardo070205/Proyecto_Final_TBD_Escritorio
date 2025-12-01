@@ -10,6 +10,7 @@ import org.knowm.xchart.CategoryChartBuilder;
 import org.knowm.xchart.SwingWrapper;
 
 import java.util.List;
+import javax.swing.JFrame;
 
 public class GraficadorPrecios implements IGraficador {
 
@@ -17,7 +18,7 @@ public class GraficadorPrecios implements IGraficador {
     public void graficar(List<String> vehiculos, List<Double> precios) {
 
         CategoryChart chart = new CategoryChartBuilder()
-                .width(800)
+                .width(1000)
                 .height(600)
                 .title("Precio Sugerido por ID de Modelo")
                 .xAxisTitle("ID Modelo")
@@ -32,7 +33,9 @@ public class GraficadorPrecios implements IGraficador {
         chart.addSeries("Precio Sugerido", modelosTexto, precios);
 
         new Thread(() -> {
-            new SwingWrapper<>(chart).displayChart();
+            SwingWrapper<CategoryChart> wrapper = new SwingWrapper<>(chart);
+            JFrame frame = wrapper.displayChart();  
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }).start();
     }
 }

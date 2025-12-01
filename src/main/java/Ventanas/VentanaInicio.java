@@ -61,18 +61,18 @@ public class VentanaInicio extends Recursos{
         internalProximamente.setVisible(false);
         internalAgregarAutos.setVisible(false);
         internalModificarAutos.setVisible(false);
-        
+                
         desabilitarComponenetes(radioTodosBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
                 comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
         
         
-        asignarFechas(comboAnioAgregar, comboMesAgregar);
+        fechas.asignarFechas(comboAnioAgregar, comboMesAgregar);
         
-        asignarFechas(comboAnioModificar, comboMesModificar);
+        fechas.asignarFechas(comboAnioModificar, comboMesModificar);
         
-        asignarFechas(comboAnioEntradaModificar, comboMesEntradaModificar);
+        fechas.asignarFechas(comboAnioEntradaModificar, comboMesEntradaModificar);
         
-        asignarFechas(comboVentasAnioActualizar, comboVentasMesActualizar);
+        fechas.asignarFechas(comboVentasAnioActualizar, comboVentasMesActualizar);
         
         actualizarTabla(tablaVehiculos, "vehiculos");
         
@@ -85,32 +85,21 @@ public class VentanaInicio extends Recursos{
             
         }
         
-        comboPrecioBusqueda1.addItem("100000");
-        comboPrecioBusqueda1.addItem("200000");
-        comboPrecioBusqueda1.addItem("300000");
-        comboPrecioBusqueda1.addItem("400000");
-        comboPrecioBusqueda1.addItem("500000");
-        comboPrecioBusqueda1.addItem("600000");
-        comboPrecioBusqueda1.addItem("700000");
-        comboPrecioBusqueda1.addItem("800000");
-        comboPrecioBusqueda1.addItem("900000");
-        comboPrecioBusqueda1.addItem("1000000");
-        
-        comboTipoBusqueda.addItem("Nuevo");
-        comboTipoBusqueda.addItem("Usado");
-        comboTipoAgregar.addItem("Nuevo");
-        comboTipoAgregar.addItem("Usado");
-        comboTipoModificar.addItem("Nuevo");
-        comboTipoModificar.addItem("Usado");
+        precios.asignarPrecios(comboPrecioBusqueda1);
         
         
+        asignarCombo.asignacionTipos(comboTipoBusqueda);
+        
+        asignarCombo.asignacionTipos(comboTipoAgregar);
+        
+        asignarCombo.asignacionTipos(comboTipoModificar);
         
         
+        asignarCombo.asignacionDisponibilidad(comboEstadoBusqueda);
         
-        comboEstadoBusqueda.addItem("Disponible");
-        comboEstadoBusqueda.addItem("Vendido");
-        comboEstadoModificar.addItem("Disponible");
-        comboEstadoModificar.addItem("Vendido");
+        asignarCombo.asignacionDisponibilidad(comboEstadoModificar);
+    
+        
         
         desabilitarComponenetes(radioTodosModelos, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
@@ -137,30 +126,18 @@ public class VentanaInicio extends Recursos{
         // ================================ Modelos ======================================
         
         
-        for(int i = 2; i <= 12; i = i+2){
-            
-            comboNumeroCilindrosBuscar.addItem(Integer.toString(i));
-            comboModelosCilindrosAgregar.addItem(Integer.toString(i));
-            comboModelosCilindrosActualizar.addItem(Integer.toString(i));
-            
-        }
+        asignarCombo.asignacionCilindros(comboNumeroCilindrosBuscar);
+        
+        asignarCombo.asignacionCilindros(comboModelosCilindrosAgregar);
+        
+        asignarCombo.asignacionCilindros(comboModelosCilindrosActualizar);
+        
+ 
         
         //=============================== Ventas ====================================
         
         
-        comboVentasMesBuscar.addItem("Enero");
-        comboVentasMesBuscar.addItem("Febrero");
-        comboVentasMesBuscar.addItem("Marzo");
-        comboVentasMesBuscar.addItem("Abril");
-        comboVentasMesBuscar.addItem("Mayo");
-        comboVentasMesBuscar.addItem("Junio");
-        comboVentasMesBuscar.addItem("Julio");
-        comboVentasMesBuscar.addItem("Agosto");
-        comboVentasMesBuscar.addItem("Septiembre");
-        comboVentasMesBuscar.addItem("Octubre");
-        comboVentasMesBuscar.addItem("Noviembre");
-        comboVentasMesBuscar.addItem("Diciembre");
-        
+        fechas.asignarMeses(comboVentasMesBuscar);
         
         
         
@@ -170,23 +147,14 @@ public class VentanaInicio extends Recursos{
         actualizarTabla(tablaVentas, "ventas");
         actualizarTabla(tablaVehiculos, "vehiculos");
         
-        comboVentasPrecioBuscar.addItem("200000");
-        comboVentasPrecioBuscar.addItem("400000");
-        comboVentasPrecioBuscar.addItem("600000");
-        comboVentasPrecioBuscar.addItem("800000");
-        comboVentasPrecioBuscar.addItem("1000000");
-        comboVentasPrecioBuscar.addItem("1200000");
-        comboVentasPrecioBuscar.addItem("1400000");
-        comboVentasPrecioBuscar.addItem("1600000");
-        comboVentasPrecioBuscar.addItem("1800000");
-        comboVentasPrecioBuscar.addItem("2000000");
+        precios.asignarPrecioVenta(comboVentasPrecioBuscar);
         
-        comboVentasPagoBuscar.addItem("Contado");
-        comboVentasPagoBuscar.addItem("Financiamiento");
-        comboVentasFormaAgregar.addItem("Contado");
-        comboVentasFormaAgregar.addItem("Financiamiento");
-        comboVentasFormaActualizar.addItem("Contado");
-        comboVentasFormaActualizar.addItem("Financiamiento");
+        asignarCombo.asignarTipoPago(comboVentasPagoBuscar);
+        
+        asignarCombo.asignarTipoPago(comboVentasFormaAgregar);
+        
+        asignarCombo.asignarTipoPago(comboVentasFormaActualizar);
+        
         
         agregarClientesEmpleados(comboVentasClienteBuscar, 'C');
         
@@ -201,16 +169,25 @@ public class VentanaInicio extends Recursos{
         agregarClientesEmpleados(comboVentasEmpleadoActualizar, 'E');
         
         
+        
         for(int i = 0; i < tablaVehiculos.getRowCount(); i++){
             
             comboVentasVehiculosBuscar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
-            comboVentasvehiculoAgregar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            
             comboVentasvehiculoActualizar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
             comboGraficaId_1.addItem(tablaVehiculos.getValueAt(i, 0).toString());
             comboGraficaId_2.addItem(tablaVehiculos.getValueAt(i, 0).toString());
             comboGraficaId_3.addItem(tablaVehiculos.getValueAt(i, 0).toString());
             comboGraficaId_4.addItem(tablaVehiculos.getValueAt(i, 0).toString());
 
+        }
+        
+        actualizarTablaConFiltro(tablaVehiculos, "vehiculos", "estado", "Disponible", 'T');
+        
+        for(int i = 0; i < tablaVehiculos.getRowCount(); i++){
+            
+            comboVentasvehiculoAgregar.addItem(tablaVehiculos.getValueAt(i, 0).toString());
+            
         }
 
         
@@ -655,7 +632,7 @@ public class VentanaInicio extends Recursos{
         btnDocumentacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDocumentacion.setForeground(new java.awt.Color(0, 0, 0));
         btnDocumentacion.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\documento.png")); // NOI18N
-        btnDocumentacion.setText("Docimentación");
+        btnDocumentacion.setText("Documentación");
         btnDocumentacion.setToolTipText("");
         btnDocumentacion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnDocumentacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -671,7 +648,7 @@ public class VentanaInicio extends Recursos{
         internalHome.setBackground(new java.awt.Color(255, 255, 255));
         internalHome.setTitle("Home");
         internalHome.setToolTipText("");
-        internalHome.setVisible(false);
+        internalHome.setVisible(true);
         internalHome.getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(247, 227, 178));
@@ -696,7 +673,7 @@ public class VentanaInicio extends Recursos{
         jPanel21.add(jLabel82);
         jLabel82.setBounds(10, 10, 150, 30);
 
-        btnHomeGrafica.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeGrafica.setBackground(new java.awt.Color(227, 211, 163));
         btnHomeGrafica.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHomeGrafica.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeGrafica.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\grafica.png")); // NOI18N
@@ -709,7 +686,7 @@ public class VentanaInicio extends Recursos{
         jPanel21.add(btnHomeGrafica);
         btnHomeGrafica.setBounds(540, 70, 200, 60);
 
-        btnHomeVista.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeVista.setBackground(new java.awt.Color(227, 211, 163));
         btnHomeVista.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHomeVista.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeVista.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\vista.png")); // NOI18N
@@ -723,7 +700,7 @@ public class VentanaInicio extends Recursos{
         jPanel21.add(btnHomeVista);
         btnHomeVista.setBounds(10, 70, 240, 60);
 
-        btnHomeReporte.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeReporte.setBackground(new java.awt.Color(227, 211, 163));
         btnHomeReporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHomeReporte.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeReporte.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\reporte.png")); // NOI18N
@@ -736,7 +713,7 @@ public class VentanaInicio extends Recursos{
         jPanel21.add(btnHomeReporte);
         btnHomeReporte.setBounds(290, 70, 210, 60);
 
-        btnHomeHistorialPrecios.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeHistorialPrecios.setBackground(new java.awt.Color(227, 211, 163));
         btnHomeHistorialPrecios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHomeHistorialPrecios.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeHistorialPrecios.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\ventas.png")); // NOI18N
@@ -750,7 +727,7 @@ public class VentanaInicio extends Recursos{
         jPanel21.add(btnHomeHistorialPrecios);
         btnHomeHistorialPrecios.setBounds(450, 180, 240, 60);
 
-        btnHomeVehiculosEliminados.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeVehiculosEliminados.setBackground(new java.awt.Color(227, 211, 163));
         btnHomeVehiculosEliminados.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHomeVehiculosEliminados.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeVehiculosEliminados.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\carro.png")); // NOI18N
@@ -788,11 +765,12 @@ public class VentanaInicio extends Recursos{
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\logo_oscuro.png")); // NOI18N
 
-        btnModificarVehiculos.setBackground(new java.awt.Color(122, 122, 63));
+        btnModificarVehiculos.setBackground(new java.awt.Color(227, 211, 163));
         btnModificarVehiculos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnModificarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
         btnModificarVehiculos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
         btnModificarVehiculos.setText("Actualizar");
+        btnModificarVehiculos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnModificarVehiculos.setEnabled(false);
         btnModificarVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -800,22 +778,24 @@ public class VentanaInicio extends Recursos{
             }
         });
 
-        btnAgregarVehiculos.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarVehiculos.setBackground(new java.awt.Color(227, 211, 163));
         btnAgregarVehiculos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarVehiculos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
         btnAgregarVehiculos.setText("Agregar");
+        btnAgregarVehiculos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnAgregarVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarVehiculosActionPerformed(evt);
             }
         });
 
-        btnEliminarVehiculos.setBackground(new java.awt.Color(122, 122, 63));
+        btnEliminarVehiculos.setBackground(new java.awt.Color(227, 211, 163));
         btnEliminarVehiculos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarVehiculos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\eliminar.png")); // NOI18N
         btnEliminarVehiculos.setText("Eliminar");
+        btnEliminarVehiculos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnEliminarVehiculos.setEnabled(false);
         btnEliminarVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -830,8 +810,8 @@ public class VentanaInicio extends Recursos{
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(btnAgregarVehiculos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                .addComponent(btnAgregarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnModificarVehiculos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1046,6 +1026,11 @@ public class VentanaInicio extends Recursos{
                 "ID_Vehiculo", "Numero_Serie", "ID_Modelo", "Fecha_Fabricacion", "Precio", "Kilometraje", "Fecha_Entrada", "Tipo", "Estado"
             }
         ));
+        tablaVehiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tablaVehiculosMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaVehiculos);
 
         jPanel2.add(jScrollPane1);
@@ -1090,11 +1075,12 @@ public class VentanaInicio extends Recursos{
         jPanel11.add(jLabel3);
         jLabel3.setBounds(70, 130, 420, 90);
 
-        btnEliminarModelos.setBackground(new java.awt.Color(122, 122, 63));
+        btnEliminarModelos.setBackground(new java.awt.Color(227, 211, 163));
         btnEliminarModelos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarModelos.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarModelos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\eliminar.png")); // NOI18N
         btnEliminarModelos.setText("Eliminar");
+        btnEliminarModelos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnEliminarModelos.setEnabled(false);
         btnEliminarModelos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1104,11 +1090,12 @@ public class VentanaInicio extends Recursos{
         jPanel11.add(btnEliminarModelos);
         btnEliminarModelos.setBounds(520, 10, 120, 40);
 
-        btnAgregarModelos.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarModelos.setBackground(new java.awt.Color(227, 211, 163));
         btnAgregarModelos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregarModelos.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarModelos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
         btnAgregarModelos.setText("Agregar");
+        btnAgregarModelos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnAgregarModelos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarModelosActionPerformed(evt);
@@ -1121,11 +1108,12 @@ public class VentanaInicio extends Recursos{
         jPanel11.add(jLabel20);
         jLabel20.setBounds(690, 0, 50, 58);
 
-        btnActualizarModelos.setBackground(new java.awt.Color(122, 122, 63));
+        btnActualizarModelos.setBackground(new java.awt.Color(227, 211, 163));
         btnActualizarModelos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnActualizarModelos.setForeground(new java.awt.Color(0, 0, 0));
         btnActualizarModelos.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
         btnActualizarModelos.setText("Actualizar");
+        btnActualizarModelos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnActualizarModelos.setEnabled(false);
         btnActualizarModelos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1409,11 +1397,12 @@ public class VentanaInicio extends Recursos{
         jPanel16.add(jLabel4);
         jLabel4.setBounds(10, 10, 90, 40);
 
-        btnEliminarVentas.setBackground(new java.awt.Color(122, 122, 63));
+        btnEliminarVentas.setBackground(new java.awt.Color(227, 211, 163));
         btnEliminarVentas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarVentas.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\eliminar.png")); // NOI18N
         btnEliminarVentas.setText("Eliminar");
+        btnEliminarVentas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnEliminarVentas.setEnabled(false);
         btnEliminarVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1423,11 +1412,12 @@ public class VentanaInicio extends Recursos{
         jPanel16.add(btnEliminarVentas);
         btnEliminarVentas.setBounds(560, 10, 120, 40);
 
-        btnAgregarVentas.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarVentas.setBackground(new java.awt.Color(227, 211, 163));
         btnAgregarVentas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregarVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarVentas.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
         btnAgregarVentas.setText("Agregar");
+        btnAgregarVentas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnAgregarVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarVentasActionPerformed(evt);
@@ -1436,11 +1426,12 @@ public class VentanaInicio extends Recursos{
         jPanel16.add(btnAgregarVentas);
         btnAgregarVentas.setBounds(290, 10, 120, 40);
 
-        btnActualizarVentas.setBackground(new java.awt.Color(122, 122, 63));
+        btnActualizarVentas.setBackground(new java.awt.Color(227, 211, 163));
         btnActualizarVentas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnActualizarVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnActualizarVentas.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
         btnActualizarVentas.setText("Actualizar");
+        btnActualizarVentas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnActualizarVentas.setEnabled(false);
         btnActualizarVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1666,7 +1657,6 @@ public class VentanaInicio extends Recursos{
         jDesktopPane1.add(internalProximamente);
         internalProximamente.setBounds(0, 0, 770, 610);
 
-        internalAgregarAutos.setClosable(true);
         internalAgregarAutos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalAgregarAutos.setTitle("Agregar Vehículo");
         internalAgregarAutos.setMinimumSize(new java.awt.Dimension(480, 550));
@@ -1714,6 +1704,11 @@ public class VentanaInicio extends Recursos{
         cajaNumVehiculoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cajaNumVehiculoAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaNumVehiculoAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaNumVehiculoAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaNumVehiculoAgregarKeyReleased(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -1723,6 +1718,11 @@ public class VentanaInicio extends Recursos{
         cajaNumSerieAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cajaNumSerieAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaNumSerieAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaNumSerieAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaNumSerieAgregarKeyReleased(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -1780,7 +1780,7 @@ public class VentanaInicio extends Recursos{
         comboTipoAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboTipoAgregar.setForeground(new java.awt.Color(0, 0, 0));
 
-        btnAgregarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnAgregarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnAgregarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
@@ -1791,7 +1791,7 @@ public class VentanaInicio extends Recursos{
             }
         });
 
-        btnRestaurarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnRestaurarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnRestaurarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRestaurarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnRestaurarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\restaurar.png")); // NOI18N
@@ -1802,7 +1802,7 @@ public class VentanaInicio extends Recursos{
             }
         });
 
-        btnCancelarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnCancelarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnCancelarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
@@ -1817,11 +1817,21 @@ public class VentanaInicio extends Recursos{
         cajaPrecioAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cajaPrecioAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaPrecioAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaPrecioAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaPrecioAgregarKeyReleased(evt);
+            }
+        });
 
         cajaKilometrajeAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaKilometrajeAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cajaKilometrajeAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaKilometrajeAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaKilometrajeAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaKilometrajeAgregarKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1933,7 +1943,6 @@ public class VentanaInicio extends Recursos{
         jDesktopPane1.add(internalAgregarAutos);
         internalAgregarAutos.setBounds(200, 30, 490, 550);
 
-        internalModificarAutos.setClosable(true);
         internalModificarAutos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalModificarAutos.setTitle("Modificar Vehículo");
         internalModificarAutos.setMinimumSize(new java.awt.Dimension(480, 550));
@@ -2054,7 +2063,7 @@ public class VentanaInicio extends Recursos{
         comboEstadoModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboEstadoModificar.setForeground(new java.awt.Color(0, 0, 0));
 
-        btnActualizarModificar.setBackground(new java.awt.Color(122, 122, 63));
+        btnActualizarModificar.setBackground(new java.awt.Color(227, 211, 163));
         btnActualizarModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnActualizarModificar.setForeground(new java.awt.Color(0, 0, 0));
         btnActualizarModificar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
@@ -2065,7 +2074,7 @@ public class VentanaInicio extends Recursos{
             }
         });
 
-        btnCancelarModificar.setBackground(new java.awt.Color(122, 122, 63));
+        btnCancelarModificar.setBackground(new java.awt.Color(227, 211, 163));
         btnCancelarModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelarModificar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelarModificar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
@@ -2255,7 +2264,6 @@ public class VentanaInicio extends Recursos{
         jDesktopPane1.add(internalModificarAutos);
         internalModificarAutos.setBounds(140, 20, 490, 580);
 
-        internalAgregarModelos.setClosable(true);
         internalAgregarModelos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalAgregarModelos.setTitle("Agregar Modelos");
         internalAgregarModelos.setVisible(false);
@@ -2370,7 +2378,7 @@ public class VentanaInicio extends Recursos{
         jPanel12.add(comboModelosAnioAgregar);
         comboModelosAnioAgregar.setBounds(160, 110, 250, 26);
 
-        btnModelosCancelarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnModelosCancelarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnModelosCancelarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnModelosCancelarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnModelosCancelarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
@@ -2383,7 +2391,7 @@ public class VentanaInicio extends Recursos{
         jPanel12.add(btnModelosCancelarAgregar);
         btnModelosCancelarAgregar.setBounds(290, 400, 120, 40);
 
-        btnModelosAgregarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnModelosAgregarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnModelosAgregarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnModelosAgregarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnModelosAgregarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
@@ -2396,7 +2404,7 @@ public class VentanaInicio extends Recursos{
         jPanel12.add(btnModelosAgregarAgregar);
         btnModelosAgregarAgregar.setBounds(10, 400, 120, 40);
 
-        btnModelosRestaurarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnModelosRestaurarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnModelosRestaurarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnModelosRestaurarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnModelosRestaurarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\restaurar.png")); // NOI18N
@@ -2433,7 +2441,6 @@ public class VentanaInicio extends Recursos{
         jDesktopPane1.add(internalAgregarModelos);
         internalAgregarModelos.setBounds(150, 30, 440, 540);
 
-        internalCambiosModelos.setClosable(true);
         internalCambiosModelos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalCambiosModelos.setTitle("Actualizar Modelos");
         internalCambiosModelos.setVisible(false);
@@ -2548,7 +2555,7 @@ public class VentanaInicio extends Recursos{
         jPanel14.add(comboModelosAnioActualizar);
         comboModelosAnioActualizar.setBounds(160, 110, 250, 26);
 
-        btnModelosCancelarActualizar.setBackground(new java.awt.Color(122, 122, 63));
+        btnModelosCancelarActualizar.setBackground(new java.awt.Color(227, 211, 163));
         btnModelosCancelarActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnModelosCancelarActualizar.setForeground(new java.awt.Color(0, 0, 0));
         btnModelosCancelarActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
@@ -2561,7 +2568,7 @@ public class VentanaInicio extends Recursos{
         jPanel14.add(btnModelosCancelarActualizar);
         btnModelosCancelarActualizar.setBounds(260, 400, 120, 40);
 
-        btnModelosActualizarActualizar.setBackground(new java.awt.Color(122, 122, 63));
+        btnModelosActualizarActualizar.setBackground(new java.awt.Color(227, 211, 163));
         btnModelosActualizarActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnModelosActualizarActualizar.setForeground(new java.awt.Color(0, 0, 0));
         btnModelosActualizarActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
@@ -2598,7 +2605,6 @@ public class VentanaInicio extends Recursos{
         jDesktopPane1.add(internalCambiosModelos);
         internalCambiosModelos.setBounds(150, 30, 440, 540);
 
-        internalAltasVentas.setClosable(true);
         internalAltasVentas.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalAltasVentas.setTitle("Altas Ventas");
         internalAltasVentas.setVisible(false);
@@ -2695,7 +2701,7 @@ public class VentanaInicio extends Recursos{
         jPanel17.add(comboVentasEmpleadoAgregar);
         comboVentasEmpleadoAgregar.setBounds(170, 180, 170, 26);
 
-        btnVentasCancelarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVentasCancelarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnVentasCancelarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVentasCancelarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasCancelarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
@@ -2708,7 +2714,7 @@ public class VentanaInicio extends Recursos{
         jPanel17.add(btnVentasCancelarAgregar);
         btnVentasCancelarAgregar.setBounds(260, 280, 109, 50);
 
-        btnVentasAgregarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVentasAgregarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnVentasAgregarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVentasAgregarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasAgregarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\agregar.png")); // NOI18N
@@ -2721,7 +2727,7 @@ public class VentanaInicio extends Recursos{
         jPanel17.add(btnVentasAgregarAgregar);
         btnVentasAgregarAgregar.setBounds(10, 280, 110, 50);
 
-        btnVentasRestaurarAgregar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVentasRestaurarAgregar.setBackground(new java.awt.Color(227, 211, 163));
         btnVentasRestaurarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVentasRestaurarAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasRestaurarAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\restaurar.png")); // NOI18N
@@ -2836,7 +2842,7 @@ public class VentanaInicio extends Recursos{
         jPanel19.add(comboVentasEmpleadoActualizar);
         comboVentasEmpleadoActualizar.setBounds(170, 200, 170, 26);
 
-        btnVentasCancelarActualizar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVentasCancelarActualizar.setBackground(new java.awt.Color(227, 211, 163));
         btnVentasCancelarActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVentasCancelarActualizar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasCancelarActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\cancelar.png")); // NOI18N
@@ -2849,7 +2855,7 @@ public class VentanaInicio extends Recursos{
         jPanel19.add(btnVentasCancelarActualizar);
         btnVentasCancelarActualizar.setBounds(240, 280, 109, 50);
 
-        btnVentasActualizarActualizar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVentasActualizarActualizar.setBackground(new java.awt.Color(227, 211, 163));
         btnVentasActualizarActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVentasActualizarActualizar.setForeground(new java.awt.Color(0, 0, 0));
         btnVentasActualizarActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\eduar\\Documents\\ITSJ\\5. Quinto Semestre\\Taller de bases de datos\\Proyecto final\\Proyecto_Final_TBD_Escritorio\\src\\main\\java\\img\\actualizar.png")); // NOI18N
@@ -2957,7 +2963,7 @@ public class VentanaInicio extends Recursos{
         jPanel22.add(jScrollPane4);
         jScrollPane4.setBounds(10, 60, 390, 220);
 
-        btnVehiculosEliminadosCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVehiculosEliminadosCerrar.setBackground(new java.awt.Color(227, 211, 163));
         btnVehiculosEliminadosCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnVehiculosEliminadosCerrar.setForeground(new java.awt.Color(0, 0, 0));
         btnVehiculosEliminadosCerrar.setText("Cerrar Ventana");
@@ -3023,7 +3029,7 @@ public class VentanaInicio extends Recursos{
         jPanel24.add(jScrollPane5);
         jScrollPane5.setBounds(10, 60, 390, 220);
 
-        btnHistorialPreciosCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnHistorialPreciosCerrar.setBackground(new java.awt.Color(227, 211, 163));
         btnHistorialPreciosCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHistorialPreciosCerrar.setForeground(new java.awt.Color(0, 0, 0));
         btnHistorialPreciosCerrar.setText("Cerrar Ventana");
@@ -3089,7 +3095,7 @@ public class VentanaInicio extends Recursos{
         jPanel27.add(jScrollPane6);
         jScrollPane6.setBounds(10, 60, 390, 220);
 
-        btnVistaCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnVistaCerrar.setBackground(new java.awt.Color(227, 211, 163));
         btnVistaCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnVistaCerrar.setForeground(new java.awt.Color(0, 0, 0));
         btnVistaCerrar.setText("Cerrar Ventana");
@@ -3127,7 +3133,7 @@ public class VentanaInicio extends Recursos{
         comboHomeModeloReporte.setBackground(new java.awt.Color(247, 227, 178));
         comboHomeModeloReporte.setForeground(new java.awt.Color(0, 0, 0));
 
-        btnHomeGenerarReporte.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeGenerarReporte.setBackground(new java.awt.Color(227, 211, 163));
         btnHomeGenerarReporte.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnHomeGenerarReporte.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeGenerarReporte.setText("Generar");
@@ -3137,7 +3143,7 @@ public class VentanaInicio extends Recursos{
             }
         });
 
-        btnHomeCerrarReporte.setBackground(new java.awt.Color(122, 122, 63));
+        btnHomeCerrarReporte.setBackground(new java.awt.Color(227, 211, 163));
         btnHomeCerrarReporte.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnHomeCerrarReporte.setForeground(new java.awt.Color(0, 0, 0));
         btnHomeCerrarReporte.setText("Cerrar");
@@ -3195,6 +3201,7 @@ public class VentanaInicio extends Recursos{
         jDesktopPane1.add(internalGenerarReporte);
         internalGenerarReporte.setBounds(180, 90, 280, 170);
 
+        internalGrafica.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         internalGrafica.setTitle("Graficar");
         internalGrafica.setVisible(false);
 
@@ -3251,7 +3258,7 @@ public class VentanaInicio extends Recursos{
         jPanel29.add(jPanel30);
         jPanel30.setBounds(0, 0, 450, 60);
 
-        btnGraficar.setBackground(new java.awt.Color(122, 122, 63));
+        btnGraficar.setBackground(new java.awt.Color(227, 211, 163));
         btnGraficar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGraficar.setForeground(new java.awt.Color(0, 0, 0));
         btnGraficar.setText("Gráficar");
@@ -3269,7 +3276,7 @@ public class VentanaInicio extends Recursos{
         jPanel29.add(jLabel91);
         jLabel91.setBounds(10, 70, 170, 16);
 
-        btnGraficarCerrar.setBackground(new java.awt.Color(122, 122, 63));
+        btnGraficarCerrar.setBackground(new java.awt.Color(227, 211, 163));
         btnGraficarCerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGraficarCerrar.setForeground(new java.awt.Color(0, 0, 0));
         btnGraficarCerrar.setText("Cerrar");
@@ -3285,7 +3292,7 @@ public class VentanaInicio extends Recursos{
         internalGrafica.getContentPane().setLayout(internalGraficaLayout);
         internalGraficaLayout.setHorizontalGroup(
             internalGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
         );
         internalGraficaLayout.setVerticalGroup(
             internalGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3441,7 +3448,10 @@ public class VentanaInicio extends Recursos{
     private void radioModeloBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModeloBusquedaActionPerformed
       
         desabilitarComponenetes(comboModeloBusqueda, cajaNumSerieBuscar, cajaNumVehiculoBuscar,  
-                comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);    
+                comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda); 
+        
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
         
     }//GEN-LAST:event_radioModeloBusquedaActionPerformed
 
@@ -3449,6 +3459,9 @@ public class VentanaInicio extends Recursos{
        
         desabilitarComponenetes(cajaNumSerieBuscar, cajaNumVehiculoBuscar, 
                 comboModeloBusqueda, comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
         
     }//GEN-LAST:event_radioNumSerieBusquedaActionPerformed
 
@@ -3460,6 +3473,9 @@ public class VentanaInicio extends Recursos{
         
         actualizarTabla(tablaVehiculos, "vehiculos");
         
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
+        
     }//GEN-LAST:event_radioTodosBusquedaActionPerformed
 
     private void radioNumVehiculoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumVehiculoBusquedaActionPerformed
@@ -3469,12 +3485,18 @@ public class VentanaInicio extends Recursos{
                 comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
         
         
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
+        
     }//GEN-LAST:event_radioNumVehiculoBusquedaActionPerformed
 
     private void radioAnioBusqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAnioBusqueda1ActionPerformed
         
         desabilitarComponenetes(comboAnioBusqueda1, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
                 comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
         
     }//GEN-LAST:event_radioAnioBusqueda1ActionPerformed
 
@@ -3483,12 +3505,18 @@ public class VentanaInicio extends Recursos{
         desabilitarComponenetes(comboPrecioBusqueda1,comboAnioBusqueda1, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
                 comboTipoBusqueda, comboEstadoBusqueda);
         
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
+        
     }//GEN-LAST:event_radioPrecioBusqueda1ActionPerformed
 
     private void radioTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTipoBusquedaActionPerformed
         
         desabilitarComponenetes(comboTipoBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
                 comboAnioBusqueda1, comboPrecioBusqueda1, comboEstadoBusqueda);
+        
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
         
     }//GEN-LAST:event_radioTipoBusquedaActionPerformed
 
@@ -3497,63 +3525,53 @@ public class VentanaInicio extends Recursos{
         desabilitarComponenetes(comboEstadoBusqueda, comboTipoBusqueda, cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, 
                 comboAnioBusqueda1, comboPrecioBusqueda1);
         
+        btnModificarVehiculos.setEnabled(false);
+        btnEliminarVehiculos.setEnabled(false);
+        
     }//GEN-LAST:event_radioEstadoBusqueda1ActionPerformed
 
     private void btnAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAgregarActionPerformed
 
-        String mes, dia;
+        validar.camposVacios(internalAgregarAutos, cajaNumVehiculoAgregar, cajaNumSerieAgregar, cajaPrecioAgregar, cajaKilometrajeAgregar);
         
-        if(String.valueOf(comboMesAgregar.getSelectedIndex()+1).length() == 1){
-           
-            mes = "0"+String.valueOf(comboMesAgregar.getSelectedIndex()+1);
+        String fechaFabricacion = validar.validarFecha(comboAnioAgregar, comboMesAgregar, comboDiaAgregar, internalAgregarAutos);
+        
+        if(validar.sePuedeAgregar()){
             
-        }else{
-            
-            mes = String.valueOf(comboMesAgregar.getSelectedIndex()+1);
+            Vehiculo vehiculo = new Vehiculo(
+ 
+                cajaNumVehiculoAgregar.getText().toString().toUpperCase(),
+                cajaNumSerieAgregar.getText().toString().toUpperCase(),
+                Integer.parseInt(comboModeloAgregar.getSelectedItem().toString()),
+                LocalDate.parse(fechaFabricacion),
+                Double.parseDouble(cajaPrecioAgregar.getText()),
+                Integer.parseInt(cajaKilometrajeAgregar.getText()),
+                hoy,
+                comboTipoAgregar.getSelectedItem().toString(),
+                "Disponible"
+
+            );
+
+            if(vehiculoDAO.agregarVehiculo(vehiculo)){
+
+                actualizarTabla(tablaVehiculos, "vehiculos");
+
+                restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, cajaPrecioAgregar, cajaKilometrajeAgregar, comboTipoAgregar);
+
+                JOptionPane.showMessageDialog(this, "Registro agregado correctamente");
+
+            }else{
+
+                JOptionPane.showMessageDialog(this, "Error en la Insercción");
+
+                con.mostrarError(this);
+
+            }
             
         }
-        
-        if(comboDiaAgregar.getSelectedItem().toString().length() == 1){
-            
-            dia = "0" + comboDiaAgregar.getSelectedItem().toString();
-            
-        }else{
-            
-            dia = comboDiaAgregar.getSelectedItem().toString();
-            
-        }
-        
-        String fechaFabricacion = comboAnioAgregar.getSelectedItem().toString() + "-" + mes + "-" + dia;
-        
 
         
-        Vehiculo vehiculo = new Vehiculo(
-        
-            cajaNumVehiculoAgregar.getText().toString().toUpperCase(),
-            cajaNumSerieAgregar.getText().toString().toUpperCase(),
-            Integer.parseInt(comboModeloAgregar.getSelectedItem().toString()),
-            LocalDate.parse(fechaFabricacion),
-            Double.parseDouble(cajaPrecioAgregar.getText()),
-            Integer.parseInt(cajaKilometrajeAgregar.getText()),
-            hoy,
-            comboTipoAgregar.getSelectedItem().toString(),
-            "Disponible"
-         
-        );
-        
-        if(vehiculoDAO.agregarVehiculo(vehiculo)){
-            
-            actualizarTabla(tablaVehiculos, "vehiculos");
-            
-            JOptionPane.showMessageDialog(this, "Registro agregado correctamente");
-            
-        }else{
 
-            JOptionPane.showMessageDialog(this, "Error en la Insercción");
-
-            con.mostrarError(this);
-            
-        }
         
     }//GEN-LAST:event_btnAgregarAgregarActionPerformed
 
@@ -3580,7 +3598,8 @@ public class VentanaInicio extends Recursos{
 
     private void btnAgregarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculosActionPerformed
         
-        internalAgregarAutos.setVisible(true);
+        mostrarInternal(internalAgregarAutos);
+        
         
     }//GEN-LAST:event_btnAgregarVehiculosActionPerformed
 
@@ -3668,7 +3687,17 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_btnActualizarModificarActionPerformed
 
     private void btnCancelarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarModificarActionPerformed
-        // TODO add your handling code here:
+
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de cancelar la modificación? Se perderan los cambios hechos");
+         
+        if(respuesta == JOptionPane.YES_OPTION){
+            
+            restablecer(cajaNumSerieModificar, comboModeloModificar, comboAnioModificar, comboMesModificar, comboDiaModificar, cajaPrecioModificar, cajaKilometrajeModificar, comboTipoModificar);
+            
+            internalModificarAutos.setVisible(false);
+            
+        }
+
     }//GEN-LAST:event_btnCancelarModificarActionPerformed
 
     private void comboModeloModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModeloModificarActionPerformed
@@ -3677,7 +3706,7 @@ public class VentanaInicio extends Recursos{
 
     private void comboAnioAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioAgregarActionPerformed
         
-        anioBisiesto(Integer.parseInt(comboAnioAgregar.getSelectedItem().toString()), comboMesAgregar.getSelectedIndex(), comboDiaAgregar);
+        fechas.anioBisiesto(Integer.parseInt(comboAnioAgregar.getSelectedItem().toString()), comboMesAgregar.getSelectedIndex(), comboDiaAgregar);
         
         //JOptionPane.showMessageDialog(this, comboAnioAgregar.getSelectedIndex());
         
@@ -3685,7 +3714,7 @@ public class VentanaInicio extends Recursos{
 
     private void comboMesAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMesAgregarActionPerformed
         
-        anioBisiesto(Integer.parseInt(comboAnioAgregar.getSelectedItem().toString()), comboMesAgregar.getSelectedIndex(), comboDiaAgregar);
+        fechas.anioBisiesto(Integer.parseInt(comboAnioAgregar.getSelectedItem().toString()), comboMesAgregar.getSelectedIndex(), comboDiaAgregar);
         
         //JOptionPane.showMessageDialog(this, comboMesAgregar.getSelectedIndex());
         
@@ -3693,6 +3722,8 @@ public class VentanaInicio extends Recursos{
 
     private void cajaNumVehiculoBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumVehiculoBuscarKeyReleased
 
+        validar.validarLetrasNumeros(cajaNumVehiculoBuscar, internalVehiculos);
+        
         actualizarTablaConFiltro(
             tablaVehiculos,
             "vehiculos",
@@ -3720,7 +3751,10 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaNumVehiculoBuscarKeyReleased
 
     private void cajaNumSerieBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumSerieBuscarKeyReleased
-       
+
+        
+        validar.validarLetrasNumeros(cajaNumSerieBuscar, internalVehiculos);
+        
         actualizarTablaConFiltro(
             tablaVehiculos,
             "vehiculos",
@@ -3757,7 +3791,8 @@ public class VentanaInicio extends Recursos{
 
     private void btnModificarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarVehiculosActionPerformed
         
-        internalModificarAutos.setVisible(true);
+        mostrarInternal(internalModificarAutos);
+       
         
         String sql = "SELECT * FROM vehiculos WHERE id_vehiculo = ?;";
         
@@ -3873,25 +3908,25 @@ public class VentanaInicio extends Recursos{
 
     private void comboAnioModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioModificarActionPerformed
        
-        anioBisiesto(Integer.parseInt(comboAnioModificar.getSelectedItem().toString()), comboMesModificar.getSelectedIndex(), comboDiaModificar);
+        fechas.anioBisiesto(Integer.parseInt(comboAnioModificar.getSelectedItem().toString()), comboMesModificar.getSelectedIndex(), comboDiaModificar);
         
     }//GEN-LAST:event_comboAnioModificarActionPerformed
 
     private void comboMesModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMesModificarActionPerformed
         
-        anioBisiesto(Integer.parseInt(comboAnioModificar.getSelectedItem().toString()), comboMesModificar.getSelectedIndex(), comboDiaModificar);
+        fechas.anioBisiesto(Integer.parseInt(comboAnioModificar.getSelectedItem().toString()), comboMesModificar.getSelectedIndex(), comboDiaModificar);
         
     }//GEN-LAST:event_comboMesModificarActionPerformed
 
     private void comboAnioEntradaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnioEntradaModificarActionPerformed
         
-        anioBisiesto(Integer.parseInt(comboAnioEntradaModificar.getSelectedItem().toString()), comboMesEntradaModificar.getSelectedIndex(), comboDiaEntradaModificar);
+        fechas.anioBisiesto(Integer.parseInt(comboAnioEntradaModificar.getSelectedItem().toString()), comboMesEntradaModificar.getSelectedIndex(), comboDiaEntradaModificar);
         
     }//GEN-LAST:event_comboAnioEntradaModificarActionPerformed
 
     private void comboMesEntradaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMesEntradaModificarActionPerformed
         
-        anioBisiesto(Integer.parseInt(comboAnioEntradaModificar.getSelectedItem().toString()), comboMesEntradaModificar.getSelectedIndex(), comboDiaEntradaModificar);
+        fechas.anioBisiesto(Integer.parseInt(comboAnioEntradaModificar.getSelectedItem().toString()), comboMesEntradaModificar.getSelectedIndex(), comboDiaEntradaModificar);
     }//GEN-LAST:event_comboMesEntradaModificarActionPerformed
 
     
@@ -3927,13 +3962,15 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_btnEliminarModelosActionPerformed
 
     private void btnAgregarModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarModelosActionPerformed
-        
-        internalAgregarModelos.setVisible(true);
+
+        mostrarInternal(internalAgregarModelos);
         
     }//GEN-LAST:event_btnAgregarModelosActionPerformed
 
     private void btnActualizarModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarModelosActionPerformed
-        internalCambiosModelos.setVisible(true);
+        
+        mostrarInternal(internalCambiosModelos);
+        
         
         String sql = "SELECT * FROM modelos WHERE id_modelo = ?;";
         
@@ -3977,14 +4014,21 @@ public class VentanaInicio extends Recursos{
 
         desabilitarComponenetes(comboNumeroCilindrosBuscar, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda,
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
-        
+       
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
     }//GEN-LAST:event_radioNumeroCilindrosActionPerformed
 
     private void radioNombreModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNombreModeloActionPerformed
         
         desabilitarComponenetes( cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
-
+        
+        
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
         
     }//GEN-LAST:event_radioNombreModeloActionPerformed
 
@@ -3994,6 +4038,11 @@ public class VentanaInicio extends Recursos{
         desabilitarComponenetes(comboAnioModeloBuscar, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
+        
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
+        
     }//GEN-LAST:event_radioAnioModeloBuscarActionPerformed
 
     private void radioFabricanteModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFabricanteModeloActionPerformed
@@ -4001,6 +4050,10 @@ public class VentanaInicio extends Recursos{
         desabilitarComponenetes(cajaFabricanteModeloBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar , comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
+        
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_radioFabricanteModeloActionPerformed
 
@@ -4008,11 +4061,19 @@ public class VentanaInicio extends Recursos{
         desabilitarComponenetes(cajaPaisModeloBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, btnActualizarModelos, btnEliminarModelos);
         
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
+        
     }//GEN-LAST:event_radioPaisActionPerformed
 
     private void radioNumeroPuertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNumeroPuertasActionPerformed
         desabilitarComponenetes(cajaModeloPuertasBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
+        
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
         
     }//GEN-LAST:event_radioNumeroPuertasActionPerformed
 
@@ -4020,11 +4081,19 @@ public class VentanaInicio extends Recursos{
         desabilitarComponenetes(cajaModeloPesoBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
         
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
+        
     }//GEN-LAST:event_radioPesoActionPerformed
 
     private void radioPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPasajerosActionPerformed
         desabilitarComponenetes(cajaModeloPasajerosBusqueda, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                 cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
+        
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
         
     }//GEN-LAST:event_radioPasajerosActionPerformed
 
@@ -4034,6 +4103,10 @@ public class VentanaInicio extends Recursos{
 
         desabilitarComponenetes(radioTodosModelos, cajaNombreModeloBusqueda, cajaIDModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar, 
                cajaModeloPuertasBusqueda, cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda, btnActualizarModelos, btnEliminarModelos);
+        
+        btnActualizarModelos.setEnabled(false);
+                
+        btnEliminarModelos.setEnabled(false);
         
     }//GEN-LAST:event_radioTodosModelosActionPerformed
 
@@ -4068,6 +4141,8 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaIDModeloBusquedaActionPerformed
 
     private void cajaIDModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaIDModeloBusquedaKeyReleased
+
+        validar.validarNumerosEnteros(cajaIDModeloBusqueda, internalModelos);
         
         if(cajaIDModeloBusqueda.getText().length() == 0){
             
@@ -4104,6 +4179,8 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaIDModeloBusquedaKeyReleased
 
     private void cajaNombreModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreModeloBusquedaKeyReleased
+
+        validar.validarLetras(cajaNombreModeloBusqueda, internalModelos);
         
         actualizarTablaConFiltro(
             tablaModelos,
@@ -4129,6 +4206,8 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_comboAnioModeloBuscarActionPerformed
 
     private void cajaFabricanteModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaFabricanteModeloBusquedaKeyReleased
+
+        validar.validarLetras(cajaFabricanteModeloBusqueda, internalModelos);
         
         actualizarTablaConFiltro(
             tablaModelos,
@@ -4165,6 +4244,9 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaModeloPuertasBusquedaActionPerformed
 
     private void cajaModeloPuertasBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModeloPuertasBusquedaKeyReleased
+
+        validar.validarNumerosEnteros(cajaModeloPuertasBusqueda, internalModelos);
+        
         if(cajaModeloPuertasBusqueda.getText().length() == 0){
              
             actualizarTabla(tablaModelos, "modelos");
@@ -4186,6 +4268,10 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaModeloPuertasBusquedaKeyReleased
 
     private void cajaModeloPesoBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModeloPesoBusquedaKeyReleased
+
+
+        
+        validar.validarNumeros(cajaModeloPesoBusqueda, internalModelos);
         
         if(cajaModeloPesoBusqueda.getText().length() == 0){
              
@@ -4206,6 +4292,8 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaModeloPesoBusquedaKeyReleased
 
     private void cajaModeloPasajerosBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModeloPasajerosBusquedaKeyReleased
+
+        validar.validarNumerosEnteros(cajaModeloPasajerosBusqueda, internalModelos);
         
         if(cajaModeloPasajerosBusqueda.getText().length() == 0){
              
@@ -4226,7 +4314,8 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaModeloPasajerosBusquedaKeyReleased
 
     private void cajaPaisModeloBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaPaisModeloBusquedaKeyReleased
-        
+
+        validar.validarLetras(cajaPaisModeloBusqueda, internalModelos);
         
         if(cajaPaisModeloBusqueda.getText().length() == 0){
              
@@ -4247,8 +4336,7 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaPaisModeloBusquedaKeyReleased
 
     private void btnModelosAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosAgregarAgregarActionPerformed
-
-        
+      
         Modelo modelo = new Modelo(
         
                 cajaModelosNombreAgregar.getText().toUpperCase(),
@@ -4276,9 +4364,7 @@ public class VentanaInicio extends Recursos{
             JOptionPane.showMessageDialog(this, modeloDAO.mostrarMensaje());
             
             System.out.println(modeloDAO.mostrarMensaje());
-            
-            
-            
+         
         }
         
     }//GEN-LAST:event_btnModelosAgregarAgregarActionPerformed
@@ -4381,20 +4467,23 @@ public class VentanaInicio extends Recursos{
             
             restablecer(cajaModelosNombreAgregar, comboModelosAnioAgregar, cajaModelosFabricanteAgregar, comboModelosCilindrosAgregar, cajaModelosPuertasAgregar, cajaModelosPesoAgregar, cajaModelosPasajerosAgregar, cajaModelosColorAgregar, cajaModelosPaisAgregar);
             
+            internalAgregarModelos.setVisible(false);
+            
         }
         
                 
     }//GEN-LAST:event_btnModelosCancelarAgregarActionPerformed
 
     private void btnModelosCancelarActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosCancelarActualizarActionPerformed
-       
-        
+            
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro de salir sin guardar los cambios?");
          
         if(respuesta == JOptionPane.YES_OPTION){
         
             restablecer(cajaModelosNombreActualizar, comboModelosAnioActualizar, cajaModelosFabricanteActualizar, comboModelosCilindrosActualizar, cajaModelosPuertasActualizar, cajaModelosPesoActualizar, cajaModelosPasajerosActualizar, cajaModelosColorActualizar, cajaModelosPaisActualizar);
 
+            internalCambiosModelos.setVisible(false);
+            
         } 
         
     }//GEN-LAST:event_btnModelosCancelarActualizarActionPerformed
@@ -4428,13 +4517,15 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_btnEliminarVentasActionPerformed
 
     private void btnAgregarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVentasActionPerformed
-        internalAltasVentas.setVisible(true);
+
+        mostrarInternal(internalAltasVentas);
+
     }//GEN-LAST:event_btnAgregarVentasActionPerformed
 
     private void btnActualizarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarVentasActionPerformed
-        internalActualizarVentas.setVisible(true);
-      
         
+        mostrarInternal(internalActualizarVentas);
+    
         String sql = "SELECT * FROM ventas WHERE id_venta = ?;";
         
         rs = con.ejecutarInstruccionSQL(sql, tablaVentas.getValueAt(0, 0));
@@ -4530,16 +4621,18 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_radioVentasPagoBuscarActionPerformed
 
     private void comboVentasAnioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasAnioActualizarActionPerformed
-        anioBisiesto(Integer.parseInt(comboVentasAnioActualizar.getSelectedItem().toString()), comboVentasMesActualizar.getSelectedIndex(), comboVentasDiaActualizar);
+        fechas.anioBisiesto(Integer.parseInt(comboVentasAnioActualizar.getSelectedItem().toString()), comboVentasMesActualizar.getSelectedIndex(), comboVentasDiaActualizar);
     }//GEN-LAST:event_comboVentasAnioActualizarActionPerformed
 
     private void comboVentasMesActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasMesActualizarActionPerformed
         
-        anioBisiesto(Integer.parseInt(comboVentasAnioActualizar.getSelectedItem().toString()), comboVentasMesActualizar.getSelectedIndex(), comboVentasDiaActualizar);
+        fechas.anioBisiesto(Integer.parseInt(comboVentasAnioActualizar.getSelectedItem().toString()), comboVentasMesActualizar.getSelectedIndex(), comboVentasDiaActualizar);
         
     }//GEN-LAST:event_comboVentasMesActualizarActionPerformed
 
     private void cajaIDVentasBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaIDVentasBuscarKeyReleased
+
+        validar.validarNumerosEnteros(cajaIDVentasBuscar, internalVentas);
         
         if(cajaIDVentasBuscar.getText().length() == 0){
              
@@ -4669,7 +4762,11 @@ public class VentanaInicio extends Recursos{
 
     private void btnVentasCancelarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasCancelarAgregarActionPerformed
         
-            restablecer(
+        int pregunta = JOptionPane.showConfirmDialog(this, "¿Estás seguro de cancelar? Se perderan todo los caobios no guardaddos");
+        
+        if(pregunta == JOptionPane.YES_OPTION){
+            
+                        restablecer(
                     
    
                     cajaVentasPrecioAgregar,
@@ -4681,6 +4778,8 @@ public class VentanaInicio extends Recursos{
             );
             
             internalAltasVentas.setVisible(false);
+            
+        }
         
     }//GEN-LAST:event_btnVentasCancelarAgregarActionPerformed
 
@@ -4688,7 +4787,6 @@ public class VentanaInicio extends Recursos{
         
             restablecer(
                     
-   
                     cajaVentasPrecioAgregar,
                     comboVentasFormaAgregar,
                     comboVentasClienteAgregar,
@@ -4696,9 +4794,7 @@ public class VentanaInicio extends Recursos{
                     comboVentasvehiculoAgregar
             
             );
-            
-
-        
+  
     }//GEN-LAST:event_btnVentasRestaurarAgregarActionPerformed
 
     private void comboVentasMesBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVentasMesBuscarActionPerformed
@@ -4792,7 +4888,9 @@ public class VentanaInicio extends Recursos{
  
         cargarVistaEnTabla(tablaVista, "view_vehiculos_modelos");
         
-        internalHomeVista.setVisible(true);
+        mostrarInternal(internalHomeVista);
+        
+        
         
     }//GEN-LAST:event_btnHomeVistaActionPerformed
 
@@ -4800,7 +4898,7 @@ public class VentanaInicio extends Recursos{
         
         actualizarTabla(tablaHistorialPrecios, "historial_precios");
         
-        internalHistorialPrecios.setVisible(true);
+        mostrarInternal(internalHistorialPrecios);
         
     }//GEN-LAST:event_btnHomeHistorialPreciosActionPerformed
 
@@ -4808,8 +4906,8 @@ public class VentanaInicio extends Recursos{
        
         actualizarTabla(tablaVehiculosEliminados, "vehiculos_elimminados");
         
-        internalVehiculosEliminados.setVisible(true);
-        
+        mostrarInternal(internalVehiculosEliminados);
+            
     }//GEN-LAST:event_btnHomeVehiculosEliminadosActionPerformed
 
     private void btnVehiculosEliminadosCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosEliminadosCerrarActionPerformed
@@ -4833,7 +4931,8 @@ public class VentanaInicio extends Recursos{
 
     private void btnHomeReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeReporteActionPerformed
         
-        internalGenerarReporte.setVisible(true);
+        mostrarInternal(internalGenerarReporte);
+       
         
     }//GEN-LAST:event_btnHomeReporteActionPerformed
 
@@ -4851,7 +4950,9 @@ public class VentanaInicio extends Recursos{
 
     private void btnHomeGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeGraficaActionPerformed
         
-        internalGrafica.setVisible(true);
+        mostrarInternal(internalGrafica);
+        
+        
         
     }//GEN-LAST:event_btnHomeGraficaActionPerformed
 
@@ -4885,6 +4986,43 @@ public class VentanaInicio extends Recursos{
         internalGrafica.setVisible(false);
         
     }//GEN-LAST:event_btnGraficarCerrarActionPerformed
+
+    // =============================== Acciones Tabla modelos =======================
+    
+    private void tablaVehiculosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVehiculosMouseReleased
+
+        String nc = (String) tablaVehiculos.getValueAt(tablaVehiculos.getSelectedRow(), 0);
+        
+        cajaNumVehiculoBuscar.setText(nc);
+        
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaVehiculosMouseReleased
+
+    private void cajaNumVehiculoAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumVehiculoAgregarKeyReleased
+        
+        validar.validarLetrasNumeros(cajaNumVehiculoAgregar, internalAgregarAutos);
+        
+    }//GEN-LAST:event_cajaNumVehiculoAgregarKeyReleased
+
+    private void cajaNumSerieAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumSerieAgregarKeyReleased
+        
+        validar.validarLetrasNumeros(cajaNumSerieAgregar, internalAgregarAutos);
+        
+    }//GEN-LAST:event_cajaNumSerieAgregarKeyReleased
+
+    private void cajaPrecioAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaPrecioAgregarKeyReleased
+        
+        validar.validarNumeros(cajaPrecioAgregar, internalAgregarAutos);
+        
+    }//GEN-LAST:event_cajaPrecioAgregarKeyReleased
+
+    private void cajaKilometrajeAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaKilometrajeAgregarKeyReleased
+        
+        validar.validarNumeros(cajaKilometrajeAgregar, internalAgregarAutos);
+        
+    }//GEN-LAST:event_cajaKilometrajeAgregarKeyReleased
 
     /**
      * @param args the command line arguments

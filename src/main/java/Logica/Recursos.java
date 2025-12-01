@@ -39,7 +39,15 @@ import net.sf.dynamicreports.report.builder.datatype.DataTypes;
 public class Recursos extends javax.swing.JFrame{
   
     ConexionBD con = ConexionBD.getInstancia();
-
+    
+    public Precios precios = new Precios();
+    
+    public AsignacionesCombos asignarCombo = new AsignacionesCombos();
+    
+    public Fechas fechas = new Fechas();
+    
+    public Validacion validar = new Validacion();
+    
     
     public void generarReporte(String modelo) {
         
@@ -59,13 +67,15 @@ public class Recursos extends javax.swing.JFrame{
             String nombreArchivo = "reporte_ventas_modelo_" + modelo + ".pdf";
             File archivo = new File(nombreArchivo);
 
-            // Construir y generar reporte
+            
             DynamicReports.report()
                     .setDataSource(ps.executeQuery()) 
                     .columns(
                             Columns.column("Total de ventas", "total_vendido", DataTypes.bigDecimalType())
                     )
-                    .title(Components.text("Reporte de ventas del modelo: " + modelo)) 
+                    .title(
+                            Components.image(getClass().getResource("/img/LOGO_chico.png")).setFixedDimension(120, 120),
+                            Components.text("Reporte de ventas del modelo: " + modelo)) 
                     .pageFooter(Components.pageXofY()) 
                     .toPdf(new FileOutputStream("reporte_ventas_modelo_"+ modelo +".pdf")); 
 
@@ -79,12 +89,24 @@ public class Recursos extends javax.swing.JFrame{
                 
             }
             
-
         } catch (Exception e) {
             e.printStackTrace();
         } 
     }
     
+    public void mostrarInternal(JInternalFrame internal){
+        
+        internal.setVisible(true);
+        
+        internal.toFront();
+        
+    }
+    
+    public void accionCancelar(JInternalFrame intenal){
+        
+        
+        
+    }
     
     public void recrearVista(String nombreVista, String consultaSQL) {
 
@@ -101,7 +123,6 @@ public class Recursos extends javax.swing.JFrame{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
     }
     
@@ -176,10 +197,12 @@ public class Recursos extends javax.swing.JFrame{
     }
 
     public void actualizarTabla(JTable tabla, String tablaBaseDatos) {
+        
+        String clave = "id_" + tablaBaseDatos.substring(0, tablaBaseDatos.length()-1);
 
         final String CONTROLADOR_JDBC = "org.postgresql.Driver";
         final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
+        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + " ORDER BY " + clave + ";";
 
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(
@@ -233,9 +256,6 @@ public class Recursos extends javax.swing.JFrame{
         }
         
      
-        
- 
-
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(
                 con.getConexion(),
@@ -249,9 +269,6 @@ public class Recursos extends javax.swing.JFrame{
         }
         
     }
-
-    
-
     
     public void ocultarInternal(JInternalFrame internalVisible, JInternalFrame... internals){
         
@@ -287,80 +304,6 @@ public class Recursos extends javax.swing.JFrame{
         
     }
     
-    public void asignarFechas(JComboBox comboAnio, JComboBox comboMes){
-        
-        comboAnio.removeAllItems();
-        comboMes.removeAllItems();
-       
-        
-        for(int i = 2025; i > 1900; i--){
-            
-            comboAnio.addItem(Integer.toString(i));
-            
-        }
-        
-        comboMes.addItem("Enero");
-        comboMes.addItem("Febrero");
-        comboMes.addItem("Marzo");
-        comboMes.addItem("Abril");
-        comboMes.addItem("Mayo");
-        comboMes.addItem("Junio");
-        comboMes.addItem("Julio");
-        comboMes.addItem("Agosto");
-        comboMes.addItem("Septiembre");
-        comboMes.addItem("Octubre");
-        comboMes.addItem("Noviembre");
-        comboMes.addItem("Diciembre");
-        
-        
- 
-    }
-    
-    public void anioBisiesto(int anio, int valorMes, JComboBox comboDias){
-        
-        
-        comboDias.removeAllItems();
-        
-        valorMes = valorMes + 1;
-        
-        if(valorMes == 1 || valorMes == 3 || valorMes == 5 || valorMes == 7 || valorMes == 8 || valorMes == 10 || valorMes == 12){
-            
-            for(int x = 1; x <= 31; x++){
-                
-                comboDias.addItem(x);
-                
-            }
-            
-        }else if(valorMes == 2){
-            
-            if ((anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)) {
-   
-                for(int x = 1; x <= 29; x++){
-                
-                    comboDias.addItem(x);
-                
-                }
-            
-            } else{
-                
-                for(int x = 1; x <= 28; x++){
-                
-                    comboDias.addItem(x);
-                
-                }
-                
-            }
-            
-        }else{
-            
-            for(int x = 1; x <= 30; x++){
-                
-                comboDias.addItem(x);
-                
-            }           
-            
-        }
-        
-    }
-    
 }
+
+
