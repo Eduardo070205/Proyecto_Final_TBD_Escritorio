@@ -3430,6 +3430,9 @@ public class VentanaInicio extends Recursos{
     // ============================================== VENTANA VEHICULOS ================================================================
     
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+
+
+        con.cerrarConexion();
         
         SwingUtilities.invokeLater(new Runnable() {
 

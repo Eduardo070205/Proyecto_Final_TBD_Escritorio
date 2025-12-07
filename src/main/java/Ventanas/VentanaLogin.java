@@ -4,6 +4,9 @@
  */
 package Ventanas;
 
+import Conexion.ConexionBD;
+import Logica.Recursos;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -12,8 +15,13 @@ import javax.swing.SwingUtilities;
  */
 public class VentanaLogin extends javax.swing.JFrame {
     
-
-        
+    ConexionBD con;
+    
+    public String user = "";
+    
+    public String contra = "";
+    
+    //Recursos recursos = new Recursos();
         
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaLogin.class.getName());
@@ -133,6 +141,11 @@ public class VentanaLogin extends javax.swing.JFrame {
         btnRestablecerLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRestablecerLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnRestablecerLogin.setText("Restablecer");
+        btnRestablecerLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestablecerLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
         Right.setLayout(RightLayout);
@@ -197,7 +210,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cajaUsuarioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaUsuarioLoginActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cajaUsuarioLoginActionPerformed
 
     private void cajaContrasenaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaContrasenaLoginActionPerformed
@@ -206,7 +219,20 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         
-       SwingUtilities.invokeLater(new Runnable() {
+       
+       user = cajaUsuarioLogin.getText();
+       
+       contra = new String(cajaContrasenaLogin.getPassword());
+       
+       ConexionBD con = ConexionBD.getInstancia();
+       
+       con.setUsuario(user);
+       
+       con.setContraseña(contra);
+
+       if(con.conectar()){
+           
+            SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
@@ -217,8 +243,22 @@ public class VentanaLogin extends javax.swing.JFrame {
         });
        
         setVisible(false);
+           
+       }else{
+           
+           JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+           
+       }
+        
+
         
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnRestablecerLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestablecerLoginActionPerformed
+
+        
+        
+    }//GEN-LAST:event_btnRestablecerLoginActionPerformed
 
     /**
      * @param args the command line arguments

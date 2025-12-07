@@ -5,6 +5,7 @@
 package Conexion;
 
 
+import Ventanas.VentanaLogin;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
  *
  * @author Eduardo
  */
-public class ConexionBD {
+public class ConexionBD{
 
     private static ConexionBD instancia;
     private Connection conexion;
@@ -25,27 +26,44 @@ public class ConexionBD {
     private PreparedStatement pstm;
     private ResultSet rs;
 
+    private boolean conectado = false;
+    
     String mensaje;
     
     private static final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-    private static final String USER = "eduardo";
-    private static final String PASSWORD = "Eduardo10";
+    private String usuario = "";
+    private String contraseña = "";
+   
 
   
     private ConexionBD() {
-        
-        
+  
+        conexion = null;
+        conectado = false;
+    }
+    
+    public boolean conectar() {
         try {
-            Class.forName("org.postgresql.Driver"); // cargar driver
-            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Conexión establecida");
-        } catch (Exception e) {
-            System.out.println("Error al conectar a la BD:");
+            if (conexion == null || conexion.isClosed()) {
+                conexion = DriverManager.getConnection(URL, usuario, contraseña);
+                conectado = true;
+            }
+            return true;
+        } catch (SQLException e) {
+            conectado = false;
             e.printStackTrace();
+            return false;
         }
     }
 
-    // Obtener la instancia única
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
     public static synchronized ConexionBD getInstancia() {
         if (instancia == null) {
             instancia = new ConexionBD();
@@ -53,23 +71,24 @@ public class ConexionBD {
         return instancia;
     }
 
-    // Obtener conexión
     public Connection getConexion() {
         return conexion;
     }
     
     
     public void reconectar() {
-    try {
-        if (conexion == null || conexion.isClosed()) {
-            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Reconexión exitosa");
+        try {
+            if (conexion == null || conexion.isClosed()) {
+                conexion = DriverManager.getConnection(URL, usuario, contraseña);
+                System.out.println("Reconexión exitosa");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-}
     
+ 
+
     public boolean ejecutarInstruccionLMD(String sql, Object... parametros){
 
         boolean res = false;
@@ -113,6 +132,24 @@ public class ConexionBD {
 
         return res;
 
+    }
+    
+    public void cerrarConexion() {
+        try {
+            if (rs != null && !rs.isClosed()) {
+                rs.close();
+            }
+            if (pstm != null && !pstm.isClosed()) {
+                pstm.close();
+            }
+            if (conexion != null && !conexion.isClosed()) {
+                conexion.close();
+                conectado = false;
+                System.out.println("Conexión cerrada correctamente");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
