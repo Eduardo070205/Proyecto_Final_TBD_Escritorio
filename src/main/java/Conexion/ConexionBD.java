@@ -96,7 +96,14 @@ public class ConexionBD {
 
             }
             
-            mensaje = e.toString();
+            String sqlState = e.getSQLState(); // código SQLSTATE
+
+            if ("23503".equals(sqlState)) {
+                
+                mensaje = "No se puede eliminar este vehículo/modelo porque ya está asociado a una venta.";
+            }
+            
+            //mensaje = e.toString();
             
             System.err.println(mensaje);
 ;

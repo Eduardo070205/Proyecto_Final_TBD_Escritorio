@@ -202,7 +202,28 @@ public class Recursos extends javax.swing.JFrame{
 
         final String CONTROLADOR_JDBC = "org.postgresql.Driver";
         final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
-        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + " ORDER BY " + clave + ";";
+        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + " ORDER BY " + clave + " DESC;";
+
+        try {
+            ResultSetTableModel modelo = new ResultSetTableModel(
+               
+                con.getConexion(),   
+                CONSULTA
+            );
+
+            tabla.setModel(modelo);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void actualizarTablaTrigger(JTable tabla, String tablaBaseDatos) {
+
+
+        final String CONTROLADOR_JDBC = "org.postgresql.Driver";
+        final String URL = "jdbc:postgresql://localhost:5432/autos_amistosos";
+        final String CONSULTA = "SELECT * FROM " + tablaBaseDatos + ";";
 
         try {
             ResultSetTableModel modelo = new ResultSetTableModel(

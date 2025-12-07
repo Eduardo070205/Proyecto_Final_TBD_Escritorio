@@ -1990,6 +1990,11 @@ public class VentanaInicio extends Recursos{
         cajaNumSerieModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cajaNumSerieModificar.setForeground(new java.awt.Color(0, 0, 0));
         cajaNumSerieModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaNumSerieModificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaNumSerieModificarKeyReleased(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
@@ -2073,6 +2078,11 @@ public class VentanaInicio extends Recursos{
                 btnActualizarModificarActionPerformed(evt);
             }
         });
+        btnActualizarModificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnActualizarModificarKeyReleased(evt);
+            }
+        });
 
         btnCancelarModificar.setBackground(new java.awt.Color(227, 211, 163));
         btnCancelarModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -2121,11 +2131,21 @@ public class VentanaInicio extends Recursos{
         cajaPrecioModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cajaPrecioModificar.setForeground(new java.awt.Color(0, 0, 0));
         cajaPrecioModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaPrecioModificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaPrecioModificarKeyReleased(evt);
+            }
+        });
 
         cajaKilometrajeModificar.setBackground(new java.awt.Color(255, 255, 255));
         cajaKilometrajeModificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cajaKilometrajeModificar.setForeground(new java.awt.Color(0, 0, 0));
         cajaKilometrajeModificar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaKilometrajeModificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaKilometrajeModificarKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -2347,24 +2367,44 @@ public class VentanaInicio extends Recursos{
         cajaModelosPaisAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPaisAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPaisAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPaisAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPaisAgregarKeyReleased(evt);
+            }
+        });
         jPanel12.add(cajaModelosPaisAgregar);
         cajaModelosPaisAgregar.setBounds(160, 320, 250, 20);
 
         cajaModelosNombreAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosNombreAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosNombreAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosNombreAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosNombreAgregarKeyReleased(evt);
+            }
+        });
         jPanel12.add(cajaModelosNombreAgregar);
         cajaModelosNombreAgregar.setBounds(160, 80, 250, 20);
 
         cajaModelosFabricanteAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosFabricanteAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosFabricanteAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosFabricanteAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosFabricanteAgregarKeyReleased(evt);
+            }
+        });
         jPanel12.add(cajaModelosFabricanteAgregar);
         cajaModelosFabricanteAgregar.setBounds(160, 140, 250, 20);
 
         cajaModelosColorAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosColorAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosColorAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosColorAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosColorAgregarKeyReleased(evt);
+            }
+        });
         jPanel12.add(cajaModelosColorAgregar);
         cajaModelosColorAgregar.setBounds(160, 290, 250, 20);
 
@@ -2420,18 +2460,33 @@ public class VentanaInicio extends Recursos{
         cajaModelosPasajerosAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPasajerosAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPasajerosAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPasajerosAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPasajerosAgregarKeyReleased(evt);
+            }
+        });
         jPanel12.add(cajaModelosPasajerosAgregar);
         cajaModelosPasajerosAgregar.setBounds(160, 260, 250, 20);
 
         cajaModelosPuertasAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPuertasAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPuertasAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPuertasAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPuertasAgregarKeyReleased(evt);
+            }
+        });
         jPanel12.add(cajaModelosPuertasAgregar);
         cajaModelosPuertasAgregar.setBounds(160, 200, 250, 20);
 
         cajaModelosPesoAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPesoAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPesoAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPesoAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPesoAgregarKeyReleased(evt);
+            }
+        });
         jPanel12.add(cajaModelosPesoAgregar);
         cajaModelosPesoAgregar.setBounds(160, 230, 250, 20);
 
@@ -2524,24 +2579,44 @@ public class VentanaInicio extends Recursos{
         cajaModelosPaisActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPaisActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPaisActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPaisActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPaisActualizarKeyReleased(evt);
+            }
+        });
         jPanel14.add(cajaModelosPaisActualizar);
         cajaModelosPaisActualizar.setBounds(160, 320, 250, 20);
 
         cajaModelosNombreActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosNombreActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosNombreActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosNombreActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosNombreActualizarKeyReleased(evt);
+            }
+        });
         jPanel14.add(cajaModelosNombreActualizar);
         cajaModelosNombreActualizar.setBounds(160, 80, 250, 20);
 
         cajaModelosFabricanteActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosFabricanteActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosFabricanteActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosFabricanteActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosFabricanteActualizarKeyReleased(evt);
+            }
+        });
         jPanel14.add(cajaModelosFabricanteActualizar);
         cajaModelosFabricanteActualizar.setBounds(160, 140, 250, 20);
 
         cajaModelosColorActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosColorActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosColorActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosColorActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosColorActualizarKeyReleased(evt);
+            }
+        });
         jPanel14.add(cajaModelosColorActualizar);
         cajaModelosColorActualizar.setBounds(160, 290, 250, 20);
 
@@ -2584,18 +2659,33 @@ public class VentanaInicio extends Recursos{
         cajaModelosPasajerosActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPasajerosActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPasajerosActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPasajerosActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPasajerosActualizarKeyReleased(evt);
+            }
+        });
         jPanel14.add(cajaModelosPasajerosActualizar);
         cajaModelosPasajerosActualizar.setBounds(160, 260, 250, 20);
 
         cajaModelosPuertasActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPuertasActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPuertasActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPuertasActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPuertasActualizarKeyReleased(evt);
+            }
+        });
         jPanel14.add(cajaModelosPuertasActualizar);
         cajaModelosPuertasActualizar.setBounds(160, 200, 250, 20);
 
         cajaModelosPesoActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaModelosPesoActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaModelosPesoActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaModelosPesoActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaModelosPesoActualizarKeyReleased(evt);
+            }
+        });
         jPanel14.add(cajaModelosPesoActualizar);
         cajaModelosPesoActualizar.setBounds(160, 230, 250, 20);
 
@@ -2678,6 +2768,11 @@ public class VentanaInicio extends Recursos{
         cajaVentasPrecioAgregar.setBackground(new java.awt.Color(255, 255, 255));
         cajaVentasPrecioAgregar.setForeground(new java.awt.Color(0, 0, 0));
         cajaVentasPrecioAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaVentasPrecioAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaVentasPrecioAgregarKeyReleased(evt);
+            }
+        });
         jPanel17.add(cajaVentasPrecioAgregar);
         cajaVentasPrecioAgregar.setBounds(170, 90, 170, 20);
 
@@ -2819,6 +2914,11 @@ public class VentanaInicio extends Recursos{
         cajaVentasPrecioActualizar.setBackground(new java.awt.Color(255, 255, 255));
         cajaVentasPrecioActualizar.setForeground(new java.awt.Color(0, 0, 0));
         cajaVentasPrecioActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cajaVentasPrecioActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaVentasPrecioActualizarKeyReleased(evt);
+            }
+        });
         jPanel19.add(cajaVentasPrecioActualizar);
         cajaVentasPrecioActualizar.setBounds(170, 110, 170, 20);
 
@@ -3365,7 +3465,11 @@ public class VentanaInicio extends Recursos{
         
         actualizarTabla(tablaVentas, "ventas");
         
-        //restablecer(caja);
+        //restablecer(cajaNumVehiculoBuscar, cajaNumSerieBuscar, comboModeloBusqueda, comboAnioBusqueda1, comboPrecioBusqueda1, comboTipoBusqueda, comboEstadoBusqueda);
+        
+        btnEliminarVehiculos.setEnabled(false);
+        
+        btnModificarVehiculos.setEnabled(false);
         
         cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
@@ -3383,6 +3487,12 @@ public class VentanaInicio extends Recursos{
         
         actualizarTabla(tablaVentas, "ventas");
         
+        //restablecer(cajaIDModeloBusqueda, cajaNombreModeloBusqueda, comboAnioModeloBuscar, cajaFabricanteModeloBusqueda, comboNumeroCilindrosBuscar,cajaModeloPuertasBusqueda,cajaModeloPesoBusqueda, cajaModeloPasajerosBusqueda, cajaPaisModeloBusqueda);
+        
+        btnEliminarModelos.setEnabled(false);
+        
+        btnActualizarModelos.setEnabled(false);
+        
         cambiarColorBoton(btnCerrarSesion, btnHome, btnVehiculos, btnVentas, btnEmpleados, btnClientes, btnDocumentacion);
         
         btnModelos.setBackground(new java.awt.Color(214,198,152));
@@ -3398,6 +3508,12 @@ public class VentanaInicio extends Recursos{
         actualizarTabla(tablaModelos, "modelos");
         
         actualizarTabla(tablaVentas, "ventas");
+        
+        //restablecer(cajaIDVentasBuscar, comboVentasMesBuscar, comboVentasPrecioBuscar, comboVentasPagoBuscar, comboVentasClienteBuscar, comboVentasEmpleadoBuscar, comboVentasVehiculosBuscar);
+        
+        btnEliminarVentas.setEnabled(false);
+        
+        btnActualizarVentas.setEnabled(false);
         
         cambiarColorBoton(btnCerrarSesion, btnHome, btnModelos, btnVehiculos, btnEmpleados, btnClientes, btnDocumentacion);
         
@@ -3604,55 +3720,14 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_btnAgregarVehiculosActionPerformed
 
     private void btnActualizarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarModificarActionPerformed
-        
-        String mes, dia, mes2, dia2;
-        
-        if(String.valueOf(comboMesModificar.getSelectedIndex()+1).length() == 1){
-           
-            mes = "0"+String.valueOf(comboMesModificar.getSelectedIndex()+1);
+
+        validar.camposVacios(internalModificarAutos, cajaNumSerieModificar, cajaPrecioModificar, cajaKilometrajeModificar);
+
+
+        String fechaFabricacion = validar.validarFecha(comboAnioModificar, comboMesModificar, comboDiaModificar, internalModificarAutos);
             
-        }else{
-            
-            mes = String.valueOf(comboMesModificar.getSelectedIndex()+1);
-            
-        }
-        
-        if(comboDiaModificar.getSelectedItem().toString().length() == 1){
-            
-            dia = "0" + comboDiaModificar.getSelectedItem().toString();
-            
-        }else{
-            
-            dia = comboDiaModificar.getSelectedItem().toString();
-            
-        }
-        
-        //============================================================================================================
-        
-        if(String.valueOf(comboMesEntradaModificar.getSelectedIndex()+1).length() == 1){
-           
-            mes2 = "0"+String.valueOf(comboMesEntradaModificar.getSelectedIndex()+1);
-            
-        }else{
-            
-            mes2 = String.valueOf(comboMesEntradaModificar.getSelectedIndex()+1);
-            
-        }
-        
-        if(comboDiaEntradaModificar.getSelectedItem().toString().length() == 1){
-            
-            dia2 = "0" + comboDiaEntradaModificar.getSelectedItem().toString();
-            
-        }else{
-            
-            dia2 = comboDiaEntradaModificar.getSelectedItem().toString();
-            
-        }
-        
-        
-        String fechaFabricacion = comboAnioModificar.getSelectedItem().toString() + "-" + mes + "-" + dia;
-        
-        String fechaEntrada = comboAnioEntradaModificar.getSelectedItem().toString() + "-" + mes2 + "-" +  dia2;
+        String fechaEntrada = validar.validarFecha(comboAnioEntradaModificar, comboMesEntradaModificar, comboDiaEntradaModificar, internalModificarAutos);
+  
         
         Vehiculo vehiculo = new Vehiculo(
         
@@ -4336,8 +4411,14 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaPaisModeloBusquedaKeyReleased
 
     private void btnModelosAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosAgregarAgregarActionPerformed
-      
-        Modelo modelo = new Modelo(
+
+        
+        validar.camposVacios(internalAgregarModelos, cajaModelosNombreAgregar, cajaModelosFabricanteAgregar, cajaModelosPuertasAgregar, cajaModelosPesoAgregar, cajaModelosPasajerosAgregar, cajaModelosColorAgregar, cajaModelosPaisAgregar);
+        
+        
+        if(validar.sePuedeAgregar()){
+            
+            Modelo modelo = new Modelo(
         
                 cajaModelosNombreAgregar.getText().toUpperCase(),
                 Short.parseShort(comboModelosAnioAgregar.getSelectedItem().toString()),
@@ -4349,60 +4430,72 @@ public class VentanaInicio extends Recursos{
                 cajaModelosColorAgregar.getText().toUpperCase(),
                 cajaModelosPaisAgregar.getText().toUpperCase()
                
-        );
+             );
         
-        if(modeloDAO.agregarModelo(modelo)){
+            if(modeloDAO.agregarModelo(modelo)){
+
+                actualizarTabla(tablaModelos, "modelos");
+
+                JOptionPane.showMessageDialog(this, "El modelo se agrego correctamente");
+
+                restablecer(cajaModelosNombreAgregar, comboModelosAnioAgregar, cajaModelosFabricanteAgregar, comboModelosCilindrosAgregar, cajaModelosPuertasAgregar, cajaModelosPesoAgregar, cajaModelosPasajerosAgregar, cajaModelosColorAgregar, cajaModelosPaisAgregar);
+
+            }else{
+
+                JOptionPane.showMessageDialog(this, modeloDAO.mostrarMensaje());
+
+                System.out.println(modeloDAO.mostrarMensaje());
+
+            }
             
-            actualizarTabla(tablaModelos, "modelos");
-            
-            JOptionPane.showMessageDialog(this, "El modelo se agrego correctamente");
-            
-            restablecer(cajaModelosNombreAgregar, comboModelosAnioAgregar, cajaModelosFabricanteAgregar, comboModelosCilindrosAgregar, cajaModelosPuertasAgregar, cajaModelosPesoAgregar, cajaModelosPasajerosAgregar, cajaModelosColorAgregar, cajaModelosPaisAgregar);
-            
-        }else{
-            
-            JOptionPane.showMessageDialog(this, modeloDAO.mostrarMensaje());
-            
-            System.out.println(modeloDAO.mostrarMensaje());
-         
         }
+        
+
         
     }//GEN-LAST:event_btnModelosAgregarAgregarActionPerformed
 
     private void btnModelosActualizarActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelosActualizarActualizarActionPerformed
-        
-        Modelo modelo = new Modelo(
-        
-            cajaModelosNombreActualizar.getText().toUpperCase(),
-            Short.parseShort(comboModelosAnioActualizar.getSelectedItem().toString()),
-            cajaModelosFabricanteActualizar.getText().toUpperCase(),
-            Byte.parseByte(comboModelosCilindrosActualizar.getSelectedItem().toString()),
-            Byte.parseByte(cajaModelosPuertasActualizar.getText()),
-            Double.parseDouble(cajaModelosPesoActualizar.getText()),
-            Byte.parseByte(cajaModelosPasajerosActualizar.getText()),
-            cajaModelosColorActualizar.getText().toUpperCase(),
-            cajaModelosPaisActualizar.getText().toUpperCase()
-               
-        );
-        
-        if(modeloDAO.actualizarModelo(modelo, Integer.parseInt(tablaModelos.getValueAt(0, 0).toString()))){
-            
-            actualizarTabla(tablaModelos, "modelos");
-            
-            JOptionPane.showMessageDialog(this, "El modelo se actualizo correctamente");
-            
-            btnEliminarModelos.setEnabled(false);
-            
-            btnActualizarModelos.setEnabled(false);
-            
-            restablecer(cajaModelosNombreActualizar, comboModelosAnioActualizar, cajaModelosFabricanteActualizar, comboModelosCilindrosActualizar, cajaModelosPuertasActualizar, cajaModelosPesoActualizar, cajaModelosPasajerosActualizar, cajaModelosColorActualizar, cajaModelosPaisActualizar);
 
+        validar.camposVacios(internalCambiosModelos, cajaModelosNombreActualizar, cajaModelosFabricanteActualizar, cajaModelosPuertasActualizar, cajaModelosPesoActualizar, cajaModelosPasajerosActualizar, cajaModelosColorActualizar, cajaModelosPaisActualizar);
+        
+        if(validar.sePuedeAgregar()){
             
-        }else{
-            
-            con.mostrarError(this);
+            Modelo modelo = new Modelo(
+        
+                cajaModelosNombreActualizar.getText().toUpperCase(),
+                Short.parseShort(comboModelosAnioActualizar.getSelectedItem().toString()),
+                cajaModelosFabricanteActualizar.getText().toUpperCase(),
+                Byte.parseByte(comboModelosCilindrosActualizar.getSelectedItem().toString()),
+                Byte.parseByte(cajaModelosPuertasActualizar.getText()),
+                Double.parseDouble(cajaModelosPesoActualizar.getText()),
+                Byte.parseByte(cajaModelosPasajerosActualizar.getText()),
+                cajaModelosColorActualizar.getText().toUpperCase(),
+                cajaModelosPaisActualizar.getText().toUpperCase()
+
+            );
+
+            if(modeloDAO.actualizarModelo(modelo, Integer.parseInt(tablaModelos.getValueAt(0, 0).toString()))){
+
+                actualizarTabla(tablaModelos, "modelos");
+
+                JOptionPane.showMessageDialog(this, "El modelo se actualizo correctamente");
+
+                btnEliminarModelos.setEnabled(false);
+
+                btnActualizarModelos.setEnabled(false);
+
+                restablecer(cajaModelosNombreActualizar, comboModelosAnioActualizar, cajaModelosFabricanteActualizar, comboModelosCilindrosActualizar, cajaModelosPuertasActualizar, cajaModelosPesoActualizar, cajaModelosPasajerosActualizar, cajaModelosColorActualizar, cajaModelosPaisActualizar);
+
+
+            }else{
+
+                con.mostrarError(this);
+
+            }
             
         }
+        
+        
         
         
     }//GEN-LAST:event_btnModelosActualizarActualizarActionPerformed
@@ -4573,8 +4666,13 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_radioIDVentaVentasActionPerformed
 
     private void btnVentasAgregarAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasAgregarAgregarActionPerformed
-       
-        Venta venta = new Venta(
+
+        
+        validar.camposVacios(internalAltasVentas, cajaVentasPrecioAgregar);
+        
+        if(validar.sePuedeAgregar()){
+            
+            Venta venta = new Venta(
         
                 hoy,
                 Double.parseDouble(cajaVentasPrecioAgregar.getText()),
@@ -4583,34 +4681,35 @@ public class VentanaInicio extends Recursos{
                 comboVentasEmpleadoAgregar.getSelectedItem().toString(),
                 comboVentasvehiculoAgregar.getSelectedItem().toString()
                 
-        );
-        
-        if(ventaDAO.agregarVenta(venta)){
-            
-            actualizarTabla(tablaVentas, "ventas");
-            
-            JOptionPane.showMessageDialog(this, "Se  agrego la venta con exito");
-            
-            restablecer(
-                    
-   
-                    cajaVentasPrecioAgregar,
-                    comboVentasFormaAgregar,
-                    comboVentasClienteAgregar,
-                    comboVentasEmpleadoAgregar,
-                    comboVentasvehiculoAgregar
-            
             );
-            
-            internalAltasVentas.setVisible(false);
-            
-        }else{
-            
-            JOptionPane.showMessageDialog(this, ventaDAO.mostrarMensaje());
-            
-           
+
+            if(ventaDAO.agregarVenta(venta)){
+
+                actualizarTabla(tablaVentas, "ventas");
+
+                JOptionPane.showMessageDialog(this, "Se  agrego la venta con exito");
+
+                restablecer(
+
+
+                        cajaVentasPrecioAgregar,
+                        comboVentasFormaAgregar,
+                        comboVentasClienteAgregar,
+                        comboVentasEmpleadoAgregar,
+                        comboVentasvehiculoAgregar
+
+                );
+
+                internalAltasVentas.setVisible(false);
+
+            }else{
+
+                JOptionPane.showMessageDialog(this, ventaDAO.mostrarMensaje());
+
+            }
             
         }
+        
         
     }//GEN-LAST:event_btnVentasAgregarAgregarActionPerformed
 
@@ -4670,32 +4769,15 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_cajaIDVentasBuscarKeyReleased
 
     private void btnVentasActualizarActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActualizarActualizarActionPerformed
+
+
+        validar.camposVacios(internalActualizarVentas, cajaVentasPrecioActualizar);
         
-        String mes, dia;
+        String fechaVenta = validar.validarFecha(comboVentasAnioActualizar, comboVentasMesActualizar, comboVentasDiaActualizar, internalActualizarVentas);
         
-        if(String.valueOf(comboVentasMesActualizar.getSelectedIndex() + 1).length() == 1){
-           
-            mes = "0"+String.valueOf(comboVentasMesActualizar.getSelectedIndex()+1);
+        if(validar.sePuedeAgregar()){
             
-        }else{
-            
-            mes = String.valueOf(comboVentasMesActualizar.getSelectedIndex()+1);
-            
-        }
-        
-        if(comboVentasDiaActualizar.getSelectedItem().toString().length() == 1){
-            
-            dia = "0" + comboVentasDiaActualizar.getSelectedItem().toString();
-            
-        }else{
-            
-            dia = comboVentasDiaActualizar.getSelectedItem().toString();
-            
-        }
-        
-        String fechaVenta = comboAnioModificar.getSelectedItem().toString() + "-" + mes + "-" + dia;
-        
-        Venta venta = new Venta(
+            Venta venta = new Venta(
         
                 LocalDate.parse(fechaVenta),
                 Double.parseDouble(cajaVentasPrecioActualizar.getText()),
@@ -4704,34 +4786,39 @@ public class VentanaInicio extends Recursos{
                 comboVentasEmpleadoActualizar.getSelectedItem().toString(),
                 comboVentasvehiculoActualizar.getSelectedItem().toString()
                 
-        );
-        
-        if(ventaDAO.actualizarVenta(venta, Integer.parseInt(tablaVentas.getValueAt(0, 0).toString()))){
-            
-            JOptionPane.showMessageDialog(this, "Registro actualizado con exito");
-            
-            actualizarTabla(tablaVentas, "ventas");
-            
-            btnEliminarVentas.setEnabled(false);
-            
-            btnActualizarVentas.setEnabled(false);
-            
-            restablecer(
-                    
-                    comboVentasAnioActualizar,
-                    comboVentasMesActualizar,
-                    comboVentasDiaActualizar,
-                    cajaVentasPrecioActualizar,
-                    comboVentasFormaActualizar,
-                    comboVentasClienteActualizar,
-                    comboVentasEmpleadoActualizar,
-                    comboVentasvehiculoActualizar
-            
             );
+
+            if(ventaDAO.actualizarVenta(venta, Integer.parseInt(tablaVentas.getValueAt(0, 0).toString()))){
+
+                JOptionPane.showMessageDialog(this, "Registro actualizado con exito");
+
+                actualizarTabla(tablaVentas, "ventas");
+
+                btnEliminarVentas.setEnabled(false);
+
+                btnActualizarVentas.setEnabled(false);
+
+                restablecer(
+
+                        comboVentasAnioActualizar,
+                        comboVentasMesActualizar,
+                        comboVentasDiaActualizar,
+                        cajaVentasPrecioActualizar,
+                        comboVentasFormaActualizar,
+                        comboVentasClienteActualizar,
+                        comboVentasEmpleadoActualizar,
+                        comboVentasvehiculoActualizar
+
+                );
+
+                internalActualizarVentas.setVisible(false);
+
+            }
             
-            internalActualizarVentas.setVisible(false);
-            
-        }
+       }
+        
+        
+        
         
     }//GEN-LAST:event_btnVentasActualizarActualizarActionPerformed
 
@@ -4896,7 +4983,7 @@ public class VentanaInicio extends Recursos{
 
     private void btnHomeHistorialPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeHistorialPreciosActionPerformed
         
-        actualizarTabla(tablaHistorialPrecios, "historial_precios");
+        actualizarTablaTrigger(tablaHistorialPrecios, "historial_precios");
         
         mostrarInternal(internalHistorialPrecios);
         
@@ -4904,7 +4991,7 @@ public class VentanaInicio extends Recursos{
 
     private void btnHomeVehiculosEliminadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeVehiculosEliminadosActionPerformed
        
-        actualizarTabla(tablaVehiculosEliminados, "vehiculos_elimminados");
+        actualizarTablaTrigger(tablaVehiculosEliminados, "vehiculos_elimminados");
         
         mostrarInternal(internalVehiculosEliminados);
             
@@ -5008,7 +5095,10 @@ public class VentanaInicio extends Recursos{
 
     private void cajaNumSerieAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumSerieAgregarKeyReleased
         
+        
         validar.validarLetrasNumeros(cajaNumSerieAgregar, internalAgregarAutos);
+        
+        
         
     }//GEN-LAST:event_cajaNumSerieAgregarKeyReleased
 
@@ -5023,6 +5113,124 @@ public class VentanaInicio extends Recursos{
         validar.validarNumeros(cajaKilometrajeAgregar, internalAgregarAutos);
         
     }//GEN-LAST:event_cajaKilometrajeAgregarKeyReleased
+
+    private void cajaNumSerieModificarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumSerieModificarKeyReleased
+       
+        validar.validarLetrasNumeros(cajaNumSerieModificar, internalModificarAutos);
+        
+    }//GEN-LAST:event_cajaNumSerieModificarKeyReleased
+
+    private void cajaPrecioModificarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaPrecioModificarKeyReleased
+        
+        validar.validarNumeros(cajaPrecioModificar, internalModificarAutos);
+        
+    }//GEN-LAST:event_cajaPrecioModificarKeyReleased
+
+    private void cajaKilometrajeModificarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaKilometrajeModificarKeyReleased
+    
+        validar.validarNumerosEnteros(cajaKilometrajeModificar, internalModificarAutos);
+        
+    }//GEN-LAST:event_cajaKilometrajeModificarKeyReleased
+
+    private void btnActualizarModificarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnActualizarModificarKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarModificarKeyReleased
+
+    private void cajaModelosNombreAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosNombreAgregarKeyReleased
+        
+        validar.validarLetrasNumeros(cajaModelosNombreAgregar, internalAgregarModelos);
+        
+    }//GEN-LAST:event_cajaModelosNombreAgregarKeyReleased
+
+    private void cajaModelosFabricanteAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosFabricanteAgregarKeyReleased
+        
+        validar.validarLetras(cajaModelosFabricanteAgregar, internalAgregarModelos);
+        
+    }//GEN-LAST:event_cajaModelosFabricanteAgregarKeyReleased
+
+    private void cajaModelosPuertasAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPuertasAgregarKeyReleased
+        
+        validar.validarNumerosEnteros(cajaModelosPuertasAgregar, internalAgregarModelos);
+        
+    }//GEN-LAST:event_cajaModelosPuertasAgregarKeyReleased
+
+    private void cajaModelosPesoAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPesoAgregarKeyReleased
+        
+        validar.validarNumeros(cajaModelosPesoAgregar, internalAgregarModelos);
+        
+    }//GEN-LAST:event_cajaModelosPesoAgregarKeyReleased
+
+    private void cajaModelosPasajerosAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPasajerosAgregarKeyReleased
+        
+        validar.validarNumerosEnteros(cajaModelosPasajerosAgregar, internalAgregarModelos);
+        
+    }//GEN-LAST:event_cajaModelosPasajerosAgregarKeyReleased
+
+    private void cajaModelosColorAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosColorAgregarKeyReleased
+        
+        validar.validarLetras(cajaModelosColorAgregar, internalAgregarModelos);
+        
+    }//GEN-LAST:event_cajaModelosColorAgregarKeyReleased
+
+    private void cajaModelosPaisAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPaisAgregarKeyReleased
+        
+        validar.validarLetras(cajaModelosPaisAgregar, internalAgregarModelos);
+        
+    }//GEN-LAST:event_cajaModelosPaisAgregarKeyReleased
+
+    private void cajaModelosNombreActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosNombreActualizarKeyReleased
+        
+        validar.validarLetrasNumeros(cajaModelosNombreActualizar, internalCambiosModelos);
+        
+    }//GEN-LAST:event_cajaModelosNombreActualizarKeyReleased
+
+    private void cajaModelosFabricanteActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosFabricanteActualizarKeyReleased
+        
+        validar.validarLetras(cajaModelosFabricanteActualizar, internalCambiosModelos);
+        
+    }//GEN-LAST:event_cajaModelosFabricanteActualizarKeyReleased
+
+    private void cajaModelosPuertasActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPuertasActualizarKeyReleased
+        
+        validar.validarNumerosEnteros(cajaModelosPuertasActualizar, internalCambiosModelos);
+        
+    }//GEN-LAST:event_cajaModelosPuertasActualizarKeyReleased
+
+    private void cajaModelosPesoActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPesoActualizarKeyReleased
+        
+        validar.validarNumeros(cajaModelosPesoActualizar, internalCambiosModelos);
+        
+    }//GEN-LAST:event_cajaModelosPesoActualizarKeyReleased
+
+    private void cajaModelosPasajerosActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPasajerosActualizarKeyReleased
+       
+        validar.validarNumerosEnteros(cajaModelosPasajerosActualizar, internalCambiosModelos);
+        
+    }//GEN-LAST:event_cajaModelosPasajerosActualizarKeyReleased
+
+    private void cajaModelosColorActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosColorActualizarKeyReleased
+        
+        validar.validarLetras(cajaModelosColorActualizar, internalCambiosModelos);
+        
+    }//GEN-LAST:event_cajaModelosColorActualizarKeyReleased
+
+    private void cajaModelosPaisActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPaisActualizarKeyReleased
+        
+        validar.validarLetras(cajaModelosPaisActualizar, internalCambiosModelos);
+        
+    }//GEN-LAST:event_cajaModelosPaisActualizarKeyReleased
+
+    private void cajaVentasPrecioAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaVentasPrecioAgregarKeyReleased
+        
+        validar.validarNumeros(cajaVentasPrecioAgregar, internalAltasVentas);
+        
+    }//GEN-LAST:event_cajaVentasPrecioAgregarKeyReleased
+
+    private void cajaVentasPrecioActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaVentasPrecioActualizarKeyReleased
+        
+        validar.validarNumeros(cajaVentasPrecioActualizar, internalActualizarVentas);
+        
+    }//GEN-LAST:event_cajaVentasPrecioActualizarKeyReleased
 
     /**
      * @param args the command line arguments
