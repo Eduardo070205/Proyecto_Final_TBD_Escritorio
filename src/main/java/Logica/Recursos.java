@@ -48,50 +48,49 @@ public class Recursos extends javax.swing.JFrame{
     
     public Validacion validar = new Validacion();
     
+    private static Recursos instancia;
+
     
     public void generarReporte(String modelo) {
-        
-        Connection cn = con.getConexion(); 
-        
-        if (cn == null) {
-            System.out.println("No se pudo conectar a la base de datos");
-            return;
-        }
 
-        try {
-            PreparedStatement ps = cn.prepareStatement(
-                "SELECT total_vendido_modelo(?) AS total_vendido"
-            );
-            ps.setInt(1, Integer.parseInt(modelo));
-            
-            String nombreArchivo = "reporte_ventas_modelo_" + modelo + ".pdf";
-            File archivo = new File(nombreArchivo);
+       Connection cn = con.getConexion();
+       if (cn == null) {
+           System.out.println("No se pudo conectar a la base de datos");
+           return;
+       }
 
-            
-            DynamicReports.report()
-                    .setDataSource(ps.executeQuery()) 
-                    .columns(
-                            Columns.column("Total de ventas", "total_vendido", DataTypes.bigDecimalType())
-                    )
-                    .title(
-                            Components.image(getClass().getResource("/img/LOGO_chico.png")).setFixedDimension(120, 120),
-                            Components.text("Reporte de ventas del modelo: " + modelo)) 
-                    .pageFooter(Components.pageXofY()) 
-                    .toPdf(new FileOutputStream("reporte_ventas_modelo_"+ modelo +".pdf")); 
+       try {
+           ConsultaFactory factory = new ConsultaTotalVendidoFactory();
+           PreparedStatement ps = factory.createStatement(cn, modelo);
 
-            
-            
-            if (Desktop.isDesktopSupported()) {
-                         
-                Desktop.getDesktop().open(archivo);
-                
-                JOptionPane.showMessageDialog(this, "Se genero el reporte correctamente");
-                
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
+           String nombreArchivo = "reporte_ventas_modelo_" + modelo + ".pdf";
+
+           DynamicReports.report()
+                   .setDataSource(ps.executeQuery())
+                   .columns(
+                           Columns.column("Total de ventas", "total_vendido", DataTypes.bigDecimalType())
+                   )
+                   .title(Components.text("Reporte de ventas del modelo: " + modelo))
+                   .pageFooter(Components.pageXofY())
+                   .toPdf(new FileOutputStream(nombreArchivo));
+
+           File archivo = new File(nombreArchivo);
+           if (Desktop.isDesktopSupported()) {
+               Desktop.getDesktop().open(archivo);
+           }
+
+           JOptionPane.showMessageDialog(this,
+                   "Se generó el reporte correctamente.\nArchivo: " + nombreArchivo,
+                   "Reporte generado",
+                   JOptionPane.INFORMATION_MESSAGE);
+
+       } catch (Exception e) {
+           e.printStackTrace();
+           JOptionPane.showMessageDialog(this,
+                   "Ocurrió un error al generar el reporte:\n" + e.getMessage(),
+                   "Error",
+                   JOptionPane.ERROR_MESSAGE);
+       }
     }
     
     public void mostrarInternal(JInternalFrame internal){
