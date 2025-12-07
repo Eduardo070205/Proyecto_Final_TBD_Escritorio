@@ -15,6 +15,8 @@ import Controlador.VehiculoDAO;
 import Controlador.VentaDAO;
 import Graficador.GraficadorPrecios;
 import Logica.Recursos;
+import Logica.TablaTemplate;
+import Logica.TablaTrigger;
 import Modelo.Venta;
 import Modelo.Modelo;
 import Servicios.PrecioService;
@@ -4982,16 +4984,20 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_btnHomeVistaActionPerformed
 
     private void btnHomeHistorialPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeHistorialPreciosActionPerformed
+
+        TablaTemplate tablaT = new TablaTrigger();
         
-        actualizarTablaTrigger(tablaHistorialPrecios, "historial_precios");
+        tablaT.actualizarTabla(tablaHistorialPrecios, "historial_precios", con.getConexion());
         
         mostrarInternal(internalHistorialPrecios);
         
     }//GEN-LAST:event_btnHomeHistorialPreciosActionPerformed
 
     private void btnHomeVehiculosEliminadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeVehiculosEliminadosActionPerformed
-       
-        actualizarTablaTrigger(tablaVehiculosEliminados, "vehiculos_elimminados");
+
+        TablaTemplate tablaT = new TablaTrigger();
+        
+        tablaT.actualizarTabla(tablaVehiculosEliminados, "vehiculos_elimminados", con.getConexion());
         
         mostrarInternal(internalVehiculosEliminados);
             
