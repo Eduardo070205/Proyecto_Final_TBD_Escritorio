@@ -4,6 +4,7 @@
  */
 package Logica;
 
+import Conexion.BDHelper;
 import Conexion.ConexionBD;
 import Controlador.ModeloDAO;
 import Controlador.VehiculoDAO;
@@ -49,6 +50,8 @@ public class Recursos extends javax.swing.JFrame{
     public Validacion validar = new Validacion();
     
     private static Recursos instancia;
+    
+    BDHelper bd = new BDHelper();
 
     
     public void generarReporte(String modelo) {
@@ -107,22 +110,15 @@ public class Recursos extends javax.swing.JFrame{
         
     }
     
+
     public void recrearVista(String nombreVista, String consultaSQL) {
-
-        String sqlDrop = "DROP VIEW IF EXISTS " + nombreVista + " CASCADE";
-        String sqlCreate = "CREATE VIEW " + nombreVista + " AS " + consultaSQL;
-
-        try (Statement stmt = con.getConexion().createStatement()) {
-
-            stmt.executeUpdate(sqlDrop);
-            stmt.executeUpdate(sqlCreate);
-
+        try {
+            bd.ejecutarActualizacion("DROP VIEW IF EXISTS " + nombreVista + " CASCADE");
+            bd.ejecutarActualizacion("CREATE VIEW " + nombreVista + " AS " + consultaSQL);
             System.out.println("Vista recreada correctamente.");
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     
     public void cargarVistaEnTabla(JTable tabla, String nombreVista) {
