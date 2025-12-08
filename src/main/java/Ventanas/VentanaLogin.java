@@ -256,7 +256,9 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void btnRestablecerLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestablecerLoginActionPerformed
 
+        cajaContrasenaLogin.setText("");
         
+        cajaUsuarioLogin.setText("");
         
     }//GEN-LAST:event_btnRestablecerLoginActionPerformed
 

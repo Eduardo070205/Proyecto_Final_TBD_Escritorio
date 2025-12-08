@@ -115,11 +115,17 @@ public class ConexionBD{
 
             }
             
-            String sqlState = e.getSQLState(); // código SQLSTATE
+            String sqlState = e.getSQLState(); 
+            
+            if ("23505".equals(sqlState)) { 
+                
+                mensaje = "Error: El ID ya existe. No puedes registrar un vehículo con una clave duplicada";
+        
+            }
 
             if ("23503".equals(sqlState)) {
                 
-                mensaje = "No se puede eliminar este vehículo/modelo porque ya está asociado a una venta.";
+                mensaje = "No se puede eliminar este vehículo/modelo porque ya está asociado a una venta";
             }
             
             //mensaje = e.toString();

@@ -21,13 +21,23 @@ public class Validacion {
     
     boolean agregar = false;
     
-    public void validarNumeros(JTextField caja, JInternalFrame internal){
+    public void validarNumeros(JTextField caja, JInternalFrame internal, char accion){
+        
+
         
         String ultimoElemento;
         
         String cadena = caja.getText();
-        
         byte contPuntos = 0;
+        
+        if(accion == 'U'){
+            
+            puntoDecimal = true;
+            
+            
+        }
+        
+        
         
         int numeroCaracteres = (caja.getText().length());
  
@@ -52,7 +62,7 @@ public class Validacion {
             
         }
         
-        if(contPuntos == 0 ){
+        if(contPuntos == 0){
             
             puntoDecimal = false;
             

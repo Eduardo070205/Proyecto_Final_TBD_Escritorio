@@ -3680,6 +3680,8 @@ public class VentanaInicio extends Recursos{
                 restablecer(cajaNumVehiculoAgregar, cajaNumSerieAgregar, comboModeloAgregar, comboAnioAgregar, comboMesAgregar, comboDiaAgregar, cajaPrecioAgregar, cajaKilometrajeAgregar, comboTipoAgregar);
 
                 JOptionPane.showMessageDialog(this, "Registro agregado correctamente");
+                
+                internalAgregarAutos.setVisible(false);
 
             }else{
 
@@ -3734,35 +3736,44 @@ public class VentanaInicio extends Recursos{
         String fechaEntrada = validar.validarFecha(comboAnioEntradaModificar, comboMesEntradaModificar, comboDiaEntradaModificar, internalModificarAutos);
   
         
-        Vehiculo vehiculo = new Vehiculo(
+        if(validar.sePuedeAgregar()){
         
-            tablaVehiculos.getValueAt(0, 0).toString(),    
-            cajaNumSerieModificar.getText().toString().toUpperCase(),
-            Integer.parseInt(comboModeloModificar.getSelectedItem().toString()),
-            LocalDate.parse(fechaFabricacion),
-            Double.parseDouble(cajaPrecioModificar.getText()),
-            Integer.parseInt(cajaKilometrajeModificar.getText()),
-            LocalDate.parse(fechaEntrada),
-            comboTipoModificar.getSelectedItem().toString(),
-            comboEstadoModificar.getSelectedItem().toString()
-         
-        );
+            Vehiculo vehiculo = new Vehiculo(
+
+               tablaVehiculos.getValueAt(0, 0).toString(),    
+               cajaNumSerieModificar.getText().toString().toUpperCase(),
+               Integer.parseInt(comboModeloModificar.getSelectedItem().toString()),
+               LocalDate.parse(fechaFabricacion),
+               Double.parseDouble(cajaPrecioModificar.getText()),
+               Integer.parseInt(cajaKilometrajeModificar.getText()),
+               LocalDate.parse(fechaEntrada),
+               comboTipoModificar.getSelectedItem().toString(),
+               comboEstadoModificar.getSelectedItem().toString()
+
+           );
+
+           if(vehiculoDAO.editarVehiculo(vehiculo)){
+
+               actualizarTabla(tablaVehiculos, "vehiculos");
+
+               JOptionPane.showMessageDialog(this, "Se guardaron los cambios");
+               
+               internalModificarAutos.setVisible(false);
+
+               btnModificarVehiculos.setEnabled(false);
+               btnEliminarVehiculos.setEnabled(false);
+
+           }else{
+
+
+               con.mostrarError(this);
+
+           }
         
-        if(vehiculoDAO.editarVehiculo(vehiculo)){
-            
-            actualizarTabla(tablaVehiculos, "vehiculos");
-            
-            JOptionPane.showMessageDialog(this, "Se guardaron los cambios");
-            
-            btnModificarVehiculos.setEnabled(false);
-            btnEliminarVehiculos.setEnabled(false);
-            
-        }else{
-           
-            
-            con.mostrarError(this);
-            
+        
         }
+        
+       
         
     }//GEN-LAST:event_btnActualizarModificarActionPerformed
 
@@ -4351,7 +4362,7 @@ public class VentanaInicio extends Recursos{
 
 
         
-        validar.validarNumeros(cajaModeloPesoBusqueda, internalModelos);
+        validar.validarNumeros(cajaModeloPesoBusqueda, internalModelos, 'B');
         
         if(cajaModeloPesoBusqueda.getText().length() == 0){
              
@@ -4385,7 +4396,7 @@ public class VentanaInicio extends Recursos{
                 tablaModelos,
                 "modelos",
                 "capacidad_pasajeros",
-                cajaModeloPasajerosBusqueda.getText().toString(),
+                cajaModeloPasajerosBusqueda.getText().toString().toUpperCase(),
                 'N'
             ); 
              
@@ -4407,7 +4418,7 @@ public class VentanaInicio extends Recursos{
                 tablaModelos,
                 "modelos",
                 "pais_fabricacion",
-                cajaPaisModeloBusqueda.getText().toString(),
+                cajaPaisModeloBusqueda.getText().toString().toUpperCase(),
                 'T'
             ); 
              
@@ -4445,6 +4456,8 @@ public class VentanaInicio extends Recursos{
 
                 restablecer(cajaModelosNombreAgregar, comboModelosAnioAgregar, cajaModelosFabricanteAgregar, comboModelosCilindrosAgregar, cajaModelosPuertasAgregar, cajaModelosPesoAgregar, cajaModelosPasajerosAgregar, cajaModelosColorAgregar, cajaModelosPaisAgregar);
 
+                internalAgregarModelos.setVisible(false);
+                
             }else{
 
                 JOptionPane.showMessageDialog(this, modeloDAO.mostrarMensaje());
@@ -4491,6 +4504,7 @@ public class VentanaInicio extends Recursos{
 
                 restablecer(cajaModelosNombreActualizar, comboModelosAnioActualizar, cajaModelosFabricanteActualizar, comboModelosCilindrosActualizar, cajaModelosPuertasActualizar, cajaModelosPesoActualizar, cajaModelosPasajerosActualizar, cajaModelosColorActualizar, cajaModelosPaisActualizar);
 
+                internalCambiosModelos.setVisible(false);
 
             }else{
 
@@ -5113,13 +5127,13 @@ public class VentanaInicio extends Recursos{
 
     private void cajaPrecioAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaPrecioAgregarKeyReleased
         
-        validar.validarNumeros(cajaPrecioAgregar, internalAgregarAutos);
+        validar.validarNumeros(cajaPrecioAgregar, internalAgregarAutos, 'A');
         
     }//GEN-LAST:event_cajaPrecioAgregarKeyReleased
 
     private void cajaKilometrajeAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaKilometrajeAgregarKeyReleased
         
-        validar.validarNumeros(cajaKilometrajeAgregar, internalAgregarAutos);
+        validar.validarNumeros(cajaKilometrajeAgregar, internalAgregarAutos, 'A');
         
     }//GEN-LAST:event_cajaKilometrajeAgregarKeyReleased
 
@@ -5131,7 +5145,7 @@ public class VentanaInicio extends Recursos{
 
     private void cajaPrecioModificarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaPrecioModificarKeyReleased
         
-        validar.validarNumeros(cajaPrecioModificar, internalModificarAutos);
+        validar.validarNumeros(cajaPrecioModificar, internalModificarAutos, 'U');
         
     }//GEN-LAST:event_cajaPrecioModificarKeyReleased
 
@@ -5165,7 +5179,7 @@ public class VentanaInicio extends Recursos{
 
     private void cajaModelosPesoAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPesoAgregarKeyReleased
         
-        validar.validarNumeros(cajaModelosPesoAgregar, internalAgregarModelos);
+        validar.validarNumeros(cajaModelosPesoAgregar, internalAgregarModelos, 'A');
         
     }//GEN-LAST:event_cajaModelosPesoAgregarKeyReleased
 
@@ -5207,7 +5221,7 @@ public class VentanaInicio extends Recursos{
 
     private void cajaModelosPesoActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaModelosPesoActualizarKeyReleased
         
-        validar.validarNumeros(cajaModelosPesoActualizar, internalCambiosModelos);
+        validar.validarNumeros(cajaModelosPesoActualizar, internalCambiosModelos, 'U');
         
     }//GEN-LAST:event_cajaModelosPesoActualizarKeyReleased
 
@@ -5231,13 +5245,13 @@ public class VentanaInicio extends Recursos{
 
     private void cajaVentasPrecioAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaVentasPrecioAgregarKeyReleased
         
-        validar.validarNumeros(cajaVentasPrecioAgregar, internalAltasVentas);
+        validar.validarNumeros(cajaVentasPrecioAgregar, internalAltasVentas, 'A');
         
     }//GEN-LAST:event_cajaVentasPrecioAgregarKeyReleased
 
     private void cajaVentasPrecioActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaVentasPrecioActualizarKeyReleased
         
-        validar.validarNumeros(cajaVentasPrecioActualizar, internalActualizarVentas);
+        validar.validarNumeros(cajaVentasPrecioActualizar, internalActualizarVentas, 'U');
         
     }//GEN-LAST:event_cajaVentasPrecioActualizarKeyReleased
 
