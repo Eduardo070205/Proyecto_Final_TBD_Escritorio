@@ -337,4 +337,22 @@ public class Validacion {
         
     }
     
+    public void contarCaracteres(JTextField caja){
+        
+        String cadena = caja.getText();
+        
+        if(cadena.length() <= 6){
+            
+            
+            
+        }else{
+         
+
+            caja.setText(cadena.substring(0, cadena.length()-1));
+            
+        }
+        
+        
+    }
+    
 }

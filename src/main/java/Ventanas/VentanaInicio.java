@@ -5111,6 +5111,8 @@ public class VentanaInicio extends Recursos{
     }//GEN-LAST:event_tablaVehiculosMouseReleased
 
     private void cajaNumVehiculoAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumVehiculoAgregarKeyReleased
+
+        validar.contarCaracteres(cajaNumVehiculoAgregar);
         
         validar.validarLetrasNumeros(cajaNumVehiculoAgregar, internalAgregarAutos);
         
